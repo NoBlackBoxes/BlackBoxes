@@ -4,7 +4,7 @@ import pyaudio
 import numpy as np
 
 # Locals libs
-import libs.NB3_sound as sound
+import boxes.audio.python.libs.NBB_sound as sound
 
 # Reimport
 import importlib
