@@ -2,8 +2,12 @@ import torch
 import matplotlib.pyplot as plt
 from diffusers import StableDiffusionPipeline, EulerDiscreteScheduler
 
+# Get user name
+import os
+username = os.getlogin()
+
 # Specify paths
-repo_path = '/home/kampff/NoBlackBoxes/repos/LastBlackBox'
+repo_path = '/home/' + username + '/NoBlackBoxes/LastBlackBox'
 box_path = repo_path + '/boxes/intelligence/transformers/diffusion'
 output_path = box_path + '/_tmp/steps'
 

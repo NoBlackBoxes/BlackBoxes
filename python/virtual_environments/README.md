@@ -1,9 +1,9 @@
 # Python : Virtual Environments
 
-Virtual environments are self-contained installations of Python. All of the packages you install and changes you make only affect this local environment.
+Virtual environments are self-contained installations of Python. All of the packages you install and changes you make only affect this *local* environment.
 
 ---
-## Create a virutal environnmet
+## Create a virtual environnmet
 
 - Make a sub-folder in the repository root called "_tmp"
   - *Note*: Anything in the "_tmp" folder is ignored by Git and not synced to the main repository
@@ -33,9 +33,8 @@ pip install numpy matplotlib pyaudio
 You can include custom Python libraries by adding a ".pth" file to the *site-packages* folder with the absolute path to your library.
 
 ```bash
-# From repo root
-cp boxes/python/virtual_environments/pths/NBB_sound.pth _tmp/NBB/lib/python3.11/site-packages/.
+# From repo root, insert the path (first bit of text) into (>) a *.pth file
+echo "/home/${USER}/NoBlackBoxes/LastBlackBox/boxes/audio/python/libs" > _tmp/NBB/lib/python3.11/site-packages/NBB_sound.pth
 ```
-
 
 ---

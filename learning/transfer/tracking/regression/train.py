@@ -13,8 +13,12 @@ import importlib
 importlib.reload(dataset)
 importlib.reload(model)
 
+# Get user name
+import os
+username = os.getlogin()
+
 # Specify paths
-repo_path = '/home/kampff/NoBlackBoxes/repos/LastBlackBox'
+repo_path = '/home/' + username + '/NoBlackBoxes/LastBlackBox'
 box_path = repo_path + '/boxes/learning/transfer/tracking/regression'
 output_path = box_path + '/_tmp'
 

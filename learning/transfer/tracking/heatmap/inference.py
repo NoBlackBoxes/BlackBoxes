@@ -13,8 +13,12 @@ else:
     width = 512
     height = 512
 
+# Get user name
+import os
+username = os.getlogin()
+
 # Specify paths
-repo_path = '/home/kampff/NoBlackBoxes/repos/LastBlackBox'
+repo_path = '/home/' + username + '/NoBlackBoxes/LastBlackBox'
 box_path = repo_path + '/boxes/learning/transfer/tracking/heatmap'
 model_path = box_path + '/_tmp/previous.pt'
 video_path = repo_path + '/boxes/ai/tracking/_data/nose.mp4'

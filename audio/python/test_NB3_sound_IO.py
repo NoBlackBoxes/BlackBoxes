@@ -14,7 +14,7 @@ importlib.reload(sound)
 username = os.getlogin()
 
 # Specify paths
-repo_path = '/home/' + username + '/LastBlackBox'
+repo_path = '/home/' + username + '/NoBlackBoxes/LastBlackBox'
 box_path = repo_path + '/boxes/audio/python'
 
 # List available sound devices

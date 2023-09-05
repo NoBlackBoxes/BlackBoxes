@@ -2,8 +2,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import cv2
 
+# Get user name
+import os
+username = os.getlogin()
+
 # Specify paths
-repo_path = '/home/kampff/NoBlackBoxes/repos/LastBlackBox'
+repo_path = '/home/' + username + '/NoBlackBoxes/LastBlackBox'
 box_path = repo_path + '/boxes/python/_data'
 image_path = box_path + '/image.jpeg'
 

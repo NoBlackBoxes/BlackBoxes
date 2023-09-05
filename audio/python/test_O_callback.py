@@ -7,7 +7,7 @@ import pyaudio
 username = os.getlogin()
 
 # Specify paths
-repo_path = '/home/' + username + '/LastBlackBox'
+repo_path = '/home/' + username + '/NoBlackBoxes/LastBlackBox'
 box_path = repo_path + '/boxes/audio'
 wav_path = box_path + '/_data/sounds/Bach_prelude_C_major.wav'
 

@@ -2,7 +2,7 @@
 set -eu
 
 # Set Root
-LBB_ROOT="/home/kampff/NoBlackBoxes/repos/LastBlackBox"
+LBB_ROOT="/home/${USER}/NoBlackBoxes/LastBlackBox"
 
 # Set CPU and Modules folder
 CPU=$LBB_ROOT"/boxes/fpgas/hdl/verilog/cpu"

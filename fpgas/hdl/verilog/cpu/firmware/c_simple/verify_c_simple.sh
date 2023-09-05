@@ -2,13 +2,13 @@
 set -eu
 
 # Set Root
-NBB_ROOT="/home/kampff/NoBlackBoxes"
+NBB_ROOT="/home/${USER}/NoBlackBoxes"
 
 # Set toolchain
 RISCV_TOOLCHAIN=$NBB_ROOT"/tools/rv32i-toolchain/bin"
 
 # Set Tests include folder
-TESTS_INCLUDES="$NBB_ROOT/repos/LastBlackBox/boxes/fpgas/hdl/verilog/cpu/verification/tests"
+TESTS_INCLUDES="$NBB_ROOT/LastBlackBox/boxes/fpgas/hdl/verilog/cpu/verification/tests"
 
 # Create output directory
 mkdir -p bin

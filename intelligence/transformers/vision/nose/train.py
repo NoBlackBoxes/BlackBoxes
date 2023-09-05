@@ -24,7 +24,7 @@ importlib.reload(optimizer)
 username = os.getlogin()
 
 # Specify paths
-repo_path = '/home/' + username + '/NoBlackBoxes/repos/LastBlackBox'
+repo_path = '/home/' + username + '/NoBlackBoxes/LastBlackBox'
 box_path = repo_path + '/boxes/intelligence/transformers/vision/nose'
 output_path = box_path + '/_tmp'
 

@@ -2,8 +2,8 @@
 set -eu
 
 # Set Root
-NBB_ROOT="/home/kampff/NoBlackBoxes"
-LBB_ROOT=$NBB_ROOT"/repos/LastBlackBox"
+NBB_ROOT="/home/${USER}/NoBlackBoxes"
+LBB_ROOT=$NBB_ROOT"/LastBlackBox"
 
 # Set ARM toolchain
 ARM_TOOLCHAIN=$NBB_ROOT"/tools/arm-toolchain/bin/arm-none-eabi-"
