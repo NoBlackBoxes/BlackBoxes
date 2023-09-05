@@ -36,12 +36,6 @@ class microphone:
         self.valid_samples = 0
         self.freq_bins = np.fft.fftfreq(buffer_size_samples, 1.0/self.sample_rate)[1:]
 
-        # Get pyaudio object
-        self.pya = pyaudio.PyAudio()
-
-        # Open audio input stream
-        self.stream = self.pya.open(input_device_index=device, format=self.format, channels=num_channels, rate=sample_rate, input=True, output=False, frames_per_buffer=buffer_size_samples)
-
         # Set Stream params
         self.streaming = False
 
@@ -60,6 +54,31 @@ class microphone:
         self.wav_current_samples = 0
         self.wav_recording = False
 
+        # Configure callback
+        def callback(input_data, frame_count, time_info, status):
+            output_data= []
+
+            # Seperate channel data
+            channel_data = np.reshape(np.frombuffer(input_data, dtype=np.int16).transpose(), (-1,self.num_channels))
+
+            # Fill buffer...and then concat
+            if self.valid_samples < self.max_samples:
+                self.sound[self.valid_samples:(self.valid_samples + self.buffer_size_samples), :] = channel_data
+                self.valid_samples = self.valid_samples + self.buffer_size_samples
+            else:
+                self.sound = np.vstack([self.sound[self.buffer_size_samples:, :], channel_data])
+                self.valid_samples = self.max_samples
+            return (output_data, pyaudio.paContinue)
+
+        # Set callback
+        self.callback = callback
+
+        # Get pyaudio object
+        self.pya = pyaudio.PyAudio()
+
+        # Open audio input stream
+        self.stream = self.pya.open(input_device_index=device, format=self.format, channels=num_channels, rate=sample_rate, input=True, output=False, frames_per_buffer=buffer_size_samples, callback=self.callback)
+
         # Configure thread
         self.thread = Thread(target=self.update, args=())
         self.thread.daemon = True
@@ -75,7 +94,10 @@ class microphone:
             # End?
             if self.streaming is False :
                 break
-            
+
+            # Did stream End automatically?
+            # ???
+
             # Read raw data
             raw_data = self.stream.read(self.buffer_size_samples, exception_on_overflow=False)
 
@@ -87,16 +109,6 @@ class microphone:
                     print("stopped")
                     self.stop_recording_wav()
 
-            # Seperate channel data
-            channel_data = np.reshape(np.frombuffer(raw_data, dtype=np.int16).transpose(), (-1,self.num_channels))
-
-            # Fill buffer...and then concat
-            if self.valid_samples < self.max_samples:
-                self.sound[self.valid_samples:(self.valid_samples + self.buffer_size_samples), :] = channel_data
-                self.valid_samples = self.valid_samples + self.buffer_size_samples
-            else:
-                self.sound = np.vstack([self.sound[self.buffer_size_samples:, :], channel_data])
-                self.valid_samples = self.max_samples
 
             # Is it speech or not?
             if self.detect_speech:
