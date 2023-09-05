@@ -1,10 +1,7 @@
 import os
-import time
-import pyaudio
-import numpy as np
 
 # Locals libs
-import boxes.audio.python.libs.NBB_sound as sound
+import NBB_sound as sound
 
 # Reimport
 import importlib
@@ -22,21 +19,14 @@ wav_path = box_path + '/_tmp/test.wav'
 sound.list_devices()
 
 # Initialize microphone thread
-microphone = sound.microphone(1, 2, 44100, 4410, 441000, False)
+microphone = sound.microphone(4, 2, 44100, 4410, 441000)
 microphone.start()
 
 # Wait to start recording
-input("Press Enter to start recording...")
+input("Press Enter to save recording...")
 
 # Start recording
-microphone.reset()
-microphone.start_recording_wav(wav_path, 441000)
-
-# Wait to stop recording
-input("Press Enter to stop recording.")
-
-# Stop recording
-microphone.stop_recording_wav()
+microphone.save_wav(wav_path, 44100*3)
 
 # Shutdown microphone
 microphone.stop()

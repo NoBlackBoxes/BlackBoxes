@@ -1,7 +1,6 @@
 import numpy as np
 import pyaudio
 import wave
-from threading import Thread
 
 #
 # Utilities
@@ -24,39 +23,23 @@ def list_devices():
     return
 
 #
-# Sound input thread (microphone)
+# Sound thread (microphone)
 #
 class microphone:
-    def __init__(self, device, num_channels, sample_rate, buffer_size_samples, max_samples, detect_speech):        
+    def __init__(self, device, num_channels, sample_rate, buffer_size_samples, max_samples):        
         self.num_channels = num_channels
         self.sample_rate = sample_rate
         self.format = pyaudio.paInt16
         self.buffer_size_samples = buffer_size_samples
         self.max_samples = max_samples
         self.valid_samples = 0
-        self.freq_bins = np.fft.fftfreq(buffer_size_samples, 1.0/self.sample_rate)[1:]
-
-        # Set Stream params
-        self.streaming = False
 
         # Create rolling buffer (assumes 16-bit signed int samples)
         self.sound = np.zeros((self.max_samples, self.num_channels), dtype=np.int16)
 
-        # Create Speech parameters
-        self.detect_speech = detect_speech
-        self.speech = False
-        self.no_speech_since = 0
-
-        # Create WAV parameters
-        self.wav_path = ''
-        self.wav_file = 0
-        self.wav_max_samples = 0
-        self.wav_current_samples = 0
-        self.wav_recording = False
-
         # Configure callback
         def callback(input_data, frame_count, time_info, status):
-            output_data= []
+            output_data= np.zeros((0))
 
             # Seperate channel data
             channel_data = np.reshape(np.frombuffer(input_data, dtype=np.int16).transpose(), (-1,self.num_channels))
@@ -68,98 +51,27 @@ class microphone:
             else:
                 self.sound = np.vstack([self.sound[self.buffer_size_samples:, :], channel_data])
                 self.valid_samples = self.max_samples
-            return (output_data, pyaudio.paContinue)
 
-        # Set callback
-        self.callback = callback
+            # Debug
+            #print(np.mean(np.abs(channel_data), 0))
+
+            return (output_data, pyaudio.paContinue)
 
         # Get pyaudio object
         self.pya = pyaudio.PyAudio()
 
         # Open audio input stream
-        self.stream = self.pya.open(input_device_index=device, format=self.format, channels=num_channels, rate=sample_rate, input=True, output=False, frames_per_buffer=buffer_size_samples, callback=self.callback)
-
-        # Configure thread
-        self.thread = Thread(target=self.update, args=())
-        self.thread.daemon = True
+        self.stream = self.pya.open(input_device_index=device, format=self.format, channels=num_channels, rate=sample_rate, input=True, output=False, frames_per_buffer=buffer_size_samples, start=False, stream_callback=callback)
         
-    # Start thread method
+    # Start streaming
     def start(self):
-        self.streaming = True
-        self.thread.start()
+        self.stream.start_stream()
 
-    # Update thread method
-    def update(self):
-        while True :
-            # End?
-            if self.streaming is False :
-                break
-
-            # Did stream End automatically?
-            # ???
-
-            # Read raw data
-            raw_data = self.stream.read(self.buffer_size_samples, exception_on_overflow=False)
-
-            # Write to WAV?
-            if self.wav_recording:
-                self.wav_file.writeframes(raw_data)
-                self.wav_current_samples += self.buffer_size_samples
-                if self.wav_current_samples >= self.wav_max_samples:
-                    print("stopped")
-                    self.stop_recording_wav()
-
-
-            # Is it speech or not?
-            if self.detect_speech:
-                amplitudes = np.abs(np.fft.fft(channel_data[:,0]))[1:]
-                energies = amplitudes**2
-
-                # Compute total energy
-                energy_per_freq = {}
-                for (i, freq) in enumerate(self.freq_bins):
-                    if abs(freq) not in energy_per_freq:
-                        energy_per_freq[abs(freq)] = energies[i] * 2
-                total_energy = sum(energy_per_freq.values())
-
-                # Compute voice energy
-                voice_energy = 0
-                for f in energy_per_freq.keys():
-                    if 300 < f < 3000:                      # Human voice range
-                        voice_energy += energy_per_freq[f]
-
-                # Compute speech ratio
-                speech_ratio = voice_energy/total_energy
-
-                # Is there speaking now?
-                if(speech_ratio > 0.25):
-                    self.no_speech_since = 0
-                else:
-                    self.no_speech_since += 1
-
-                # Is there speaking recently?
-                if self.no_speech_since > 10:
-                    self.speech = False
-                else:
-                    self.speech = True
-
-        # Shutdown thread
+    # Stop streaming
+    def stop(self):
         self.stream.stop_stream()
         self.stream.close()
         self.pya.terminate()
-
-    # Read sound method
-    def read(self):
-        num_valid_samples = self.valid_samples
-        self.valid_samples = 0
-        return np.copy(self.sound[:num_valid_samples])
-
-    # Read most recent samples method
-    def read_latest(self, num_samples):
-        if(self.valid_samples < num_samples):
-            return np.copy(self.sound[:num_samples, :])
-        else:
-            return np.copy(self.sound[(self.valid_samples-num_samples):self.valid_samples, :])
 
     # Reset sound input
     def reset(self):
@@ -168,45 +80,32 @@ class microphone:
         return
 
     # Start saving WAV
-    def start_recording_wav(self, wav_path, wav_max_samples):
-        self.wav_path = wav_path
-        self.wav_max_samples = wav_max_samples
+    def save_wav(self, wav_path, wav_max_samples):
 
-        # Prepare a WAV file
-        self.wav_file = wave.open(wav_path, 'wb')
-        self.wav_file.setnchannels(self.num_channels)
-        self.wav_file.setsampwidth(2)
-        self.wav_file.setframerate(self.sample_rate)
+        # Prepare WAV file
+        wav_file = wave.open(wav_path, 'wb')
+        wav_file.setnchannels(self.num_channels)
+        wav_file.setsampwidth(2)
+        wav_file.setframerate(self.sample_rate)
 
-        # Start recording
-        self.wav_current_duration = 0
-        self.wav_recording = True
+        # Determine WAV range (in samples)
+        if wav_max_samples < self.valid_samples:
+            wav_start_sample = self.valid_samples - wav_max_samples
+            wav_stop_sample = self.valid_samples
+        else:
+            wav_start_sample = 0
+            wav_stop_sample = self.valid_samples
 
-        return
+        # Convert sound to frame data
+        frames = np.reshape(self.sound[wav_start_sample:wav_stop_sample,:], -1)
 
-    # Stop saving WAV
-    def stop_recording_wav(self):
-        
+        # Write to WAV
+        wav_file.writeframes(frames)
+
         # Close WAV file
-        self.wav_file.close()
-
-        # Stop recording
-        self.wav_current_duration = 0
-        self.wav_recording = False
+        wav_file.close()
 
         return
-
-    # Recording?
-    def is_recording(self):
-        return self.wav_recording
-
-    # Speaking?
-    def is_speaking(self):
-        return self.speech
-
-    # Stop thread method
-    def stop(self):
-        self.streaming = False
 
 #
 # Sound output thread (speaker)
@@ -220,26 +119,35 @@ class speaker:
         self.current_sample = 0
         self.max_samples = 0
 
+        # Create empty sound buffer
+        self.empty = np.zeros((self.buffer_size_samples, self.num_channels), dtype=np.int16)
+        self.sound = np.zeros((self.max_samples, self.num_channels), dtype=np.int16)
+
+        # Configure callback
+        def callback(input_data, frame_count, time_info, status):
+
+            # Extract sound or silence from buffer and play frame_counts worth
+
+            # Debug
+            #print(np.mean(np.abs(channel_data), 0))
+
+            return (output_data, pyaudio.paContinue)
+
         # Get pyaudio object
         self.pya = pyaudio.PyAudio()
 
         # Open audio output stream (from default device)
-        self.stream = self.pya.open(output_device_index=device, format=self.format, channels=num_channels, rate=sample_rate, input=False, output=True, frames_per_buffer=buffer_size_samples)
-
-        # Set Stream params
-        self.streaming = False
-
-        # Create WAV parameters
-        self.wav_path = ''
-
-        # Configure thread
-        self.thread = Thread(target=self.update, args=())
-        self.thread.daemon = True
+        self.stream = self.pya.open(output_device_index=device, format=self.format, channels=num_channels, rate=sample_rate, input=False, output=True, frames_per_buffer=buffer_size_samples, start=False, stream_callback=self.callback)
         
-    # Start thread method
+    # Start streaming
     def start(self):
-        self.streaming = True
-        self.thread.start()
+        self.stream.start_stream()
+
+    # Stop streaming
+    def stop(self):
+        self.stream.stop_stream()
+        self.stream.close()
+        self.pya.terminate()
 
     # Update thread method
     def update(self):

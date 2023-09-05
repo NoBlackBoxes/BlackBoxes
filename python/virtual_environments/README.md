@@ -26,7 +26,7 @@ source _tmp/NBB/bin/activate
 ## Install useful packages
 
 ```bash
-pip install numpy matplotlib pyaudio
+pip install numpy matplotlib pyaudio wave
 ```
 
 ## Add local (NBB) libray paths
