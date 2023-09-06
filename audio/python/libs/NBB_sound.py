@@ -1,6 +1,8 @@
+import os
 import numpy as np
 import pyaudio
 import wave
+from threading import Lock
 
 #
 # Utilities
@@ -33,27 +35,28 @@ class microphone:
         self.buffer_size_samples = buffer_size_samples
         self.max_samples = max_samples
         self.valid_samples = 0
+        self.mutex = Lock()
 
         # Create rolling buffer (assumes 16-bit signed int samples)
         self.sound = np.zeros((self.max_samples, self.num_channels), dtype=np.int16)
 
-        # Configure callback
+        # Define callback
         def callback(input_data, frame_count, time_info, status):
             output_data= np.zeros((0))
 
-            # Seperate channel data
-            channel_data = np.reshape(np.frombuffer(input_data, dtype=np.int16).transpose(), (-1,self.num_channels))
+            # Lock thread
+            with self.mutex:
 
-            # Fill buffer...and then concat
-            if self.valid_samples < self.max_samples:
-                self.sound[self.valid_samples:(self.valid_samples + self.buffer_size_samples), :] = channel_data
-                self.valid_samples = self.valid_samples + self.buffer_size_samples
-            else:
-                self.sound = np.vstack([self.sound[self.buffer_size_samples:, :], channel_data])
-                self.valid_samples = self.max_samples
+                # Seperate channel data
+                channel_data = np.reshape(np.frombuffer(input_data, dtype=np.int16).transpose(), (-1,self.num_channels))
 
-            # Debug
-            #print(np.mean(np.abs(channel_data), 0))
+                # Fill buffer...and then concat
+                if self.valid_samples < self.max_samples:
+                    self.sound[self.valid_samples:(self.valid_samples + self.buffer_size_samples), :] = channel_data
+                    self.valid_samples = self.valid_samples + self.buffer_size_samples
+                else:
+                    self.sound = np.vstack([self.sound[self.buffer_size_samples:, :], channel_data])
+                    self.valid_samples = self.max_samples
 
             return (output_data, pyaudio.paContinue)
 
@@ -62,7 +65,7 @@ class microphone:
 
         # Open audio input stream
         self.stream = self.pya.open(input_device_index=device, format=self.format, channels=num_channels, rate=sample_rate, input=True, output=False, frames_per_buffer=buffer_size_samples, start=False, stream_callback=callback)
-        
+
     # Start streaming
     def start(self):
         self.stream.start_stream()
@@ -78,6 +81,14 @@ class microphone:
         self.sound = np.zeros((self.max_samples, self.num_channels), dtype=np.int16)
         self.valid_samples = 0
         return
+
+    # Copy latest sound data
+    def latest(self, num_samples):
+        if num_samples < self.valid_samples:
+            latest = np.copy(self.sound[(self.valid_samples-num_samples):self.valid_samples])
+        else:
+            latest = np.copy(self.sound[0:self.valid_samples])
+        return latest
 
     # Start saving WAV
     def save_wav(self, wav_path, wav_max_samples):
@@ -118,6 +129,7 @@ class speaker:
         self.buffer_size_samples = buffer_size_samples
         self.current_sample = 0
         self.max_samples = 0
+        self.mutex = Lock()
 
         # Create empty sound buffer
         self.empty = np.zeros((self.buffer_size_samples, self.num_channels), dtype=np.int16)
@@ -126,10 +138,27 @@ class speaker:
         # Configure callback
         def callback(input_data, frame_count, time_info, status):
 
-            # Extract sound or silence from buffer and play frame_counts worth
+            # Lock thread
+            with self.mutex:
 
-            # Debug
-            #print(np.mean(np.abs(channel_data), 0))
+                # How many samples remain to output?
+                remaining_samples = self.max_samples - self.current_sample
+                
+                # Output a full buffer, partial buffer, or empty buffer
+                if remaining_samples >= self.buffer_size_samples:
+                    output_start_sample = self.current_sample
+                    output_stop_sample = self.current_sample + self.buffer_size_samples
+                    output_data = np.reshape(self.sound[output_start_sample:output_stop_sample, :], -1)
+                    self.current_sample += self.buffer_size_samples
+                elif remaining_samples > 0:
+                    output_start_sample = self.current_sample
+                    output_stop_sample = self.max_samples
+                    final_buffer  = np.copy(self.empty)
+                    final_buffer[0:remaining_samples, :] = self.sound[output_start_sample:output_stop_sample, :]
+                    output_data = np.reshape(final_buffer, -1)
+                    self.current_sample += remaining_samples
+                else:
+                    output_data = np.reshape(self.empty, -1)
 
             return (output_data, pyaudio.paContinue)
 
@@ -137,39 +166,15 @@ class speaker:
         self.pya = pyaudio.PyAudio()
 
         # Open audio output stream (from default device)
-        self.stream = self.pya.open(output_device_index=device, format=self.format, channels=num_channels, rate=sample_rate, input=False, output=True, frames_per_buffer=buffer_size_samples, start=False, stream_callback=self.callback)
-        
+        self.stream = self.pya.open(output_device_index=device, format=self.format, channels=num_channels, rate=sample_rate, input=False, output=True, frames_per_buffer=buffer_size_samples, start=False, stream_callback=callback)
+
+
     # Start streaming
     def start(self):
         self.stream.start_stream()
 
     # Stop streaming
     def stop(self):
-        self.stream.stop_stream()
-        self.stream.close()
-        self.pya.terminate()
-
-    # Update thread method
-    def update(self):
-        empty_buffer = np.zeros((self.buffer_size_samples, self.num_channels), dtype=np.int16)
-        while True :
-            # End?
-            if self.streaming is False :
-                break
-            
-            # Playing?
-            if self.current_sample < self.max_samples:
-                # Write sound data buffer
-                channel_data = np.copy(self.sound[self.current_sample:(self.current_sample + self.buffer_size_samples), :])
-                raw_data = channel_data.flatten('C')
-                self.stream.write(raw_data, self.buffer_size_samples, exception_on_underflow=False)
-
-                # Increment buffer position
-                self.current_sample = self.current_sample + self.buffer_size_samples
-            else:
-                self.stream.write(empty_buffer, self.buffer_size_samples, exception_on_underflow=False)
-        
-        # Shutdown thread
         self.stream.stop_stream()
         self.stream.close()
         self.pya.terminate()
@@ -232,6 +237,4 @@ class speaker:
         else:
             return False
 
-    # Stop thread method
-    def stop(self):
-        self.streaming = False
+# FIN

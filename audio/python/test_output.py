@@ -1,7 +1,13 @@
 import os
-import wave
 import time
-import pyaudio
+import numpy as np
+
+# Locals libs
+import NBB_sound as sound
+
+# Reimport
+import importlib
+importlib.reload(sound)
 
 # Get user name
 username = os.getlogin()
@@ -11,32 +17,28 @@ repo_path = '/home/' + username + '/NoBlackBoxes/LastBlackBox'
 box_path = repo_path + '/boxes/audio'
 wav_path = box_path + '/_data/sounds/Bach_prelude_C_major.wav'
 
-with wave.open(wav_path, 'rb') as wf:
+# Specify params
+output_device = 20
+num_channels = 2
+sample_rate = 44100
+buffer_size = int(sample_rate / 10)
+max_samples = int(sample_rate * 10)
 
-    # Define callback for playback (1)
-    def callback(in_data, frame_count, time_info, status):
-        data = wf.readframes(frame_count)
-        # If len(data) is less than requested frame_count, PyAudio automatically
-        # assumes the stream is finished, and the stream stops.
-        return (data, pyaudio.paContinue)
+# List available sound devices
+sound.list_devices()
 
-    # Instantiate PyAudio and initialize PortAudio system resources (2)
-    p = pyaudio.PyAudio()
+# Initialize speaker
+speaker = sound.speaker(output_device, num_channels, sample_rate, buffer_size)
+speaker.start()
 
-    # Open stream using callback (3)
-    stream = p.open(output_device_index=1,
-                    format=p.get_format_from_width(wf.getsampwidth()),
-                    channels=wf.getnchannels(),
-                    rate=wf.getframerate(),
-                    output=True,
-                    stream_callback=callback)
+# Play WAV file
+speaker.play_wav(wav_path)
 
-    # Wait for stream to finish (4)
-    while stream.is_active():
-        time.sleep(0.1)
+# Wait for finish
+while speaker.is_playing():
+    time.sleep(0.01)
 
-    # Close the stream (5)
-    stream.close()
+# Shutdown speaker
+speaker.stop()
 
-    # Release PortAudio system resources (6)
-    p.terminate()
+#FIN

@@ -19,7 +19,9 @@ wav_path = box_path + '/_tmp/test.wav'
 
 # Specify params
 input_device = 0
-num_channels = 1
+output_device = 20
+num_input_channels = 1
+num_output_channels = 1
 sample_rate = 48000
 buffer_size = int(sample_rate / 10)
 max_samples = int(sample_rate * 10)
@@ -28,25 +30,27 @@ max_samples = int(sample_rate * 10)
 sound.list_devices()
 
 # Initialize microphone
-microphone = sound.microphone(input_device, num_channels, sample_rate, buffer_size, max_samples)
+microphone = sound.microphone(input_device, num_input_channels, sample_rate, buffer_size, max_samples)
 microphone.start()
+
+# Initialize speaker
+speaker = sound.speaker(output_device, num_output_channels, sample_rate, buffer_size)
+speaker.start()
 
 # Clear error ALSA/JACK messages from terminal
 os.system('cls' if os.name == 'nt' else 'clear')
 
-# Wait to save recording
-input("Press Enter to save recording...")
-
-# Save recording
-microphone.save_wav(wav_path, sample_rate*3)
-
-# Live processing
+# Live input/output (FEEDBACK!)
 for i in range(100):
     latest = microphone.latest(buffer_size)
-    print("{0:.2f}".format(np.mean(np.abs(latest[:,0]))))
+    speaker.write(latest)
     time.sleep(0.1)
 
 # Shutdown microphone
 microphone.stop()
+
+# Shutdown speaker
+speaker.stop()
+
 
 # FIN
