@@ -18,7 +18,7 @@ box_path = repo_path + '/boxes/audio'
 wav_path = box_path + '/_tmp/test.wav'
 
 # Specify params
-input_device = 1
+input_device = 4
 num_channels = 2
 sample_rate = 48000
 buffer_size = int(sample_rate / 10)
@@ -28,7 +28,7 @@ max_samples = int(sample_rate * 10)
 sound.list_devices()
 
 # Initialize microphone
-microphone = sound.microphone(input_device, num_channels, sample_rate, buffer_size, max_samples)
+microphone = sound.microphone(input_device, num_channels, 'int16', sample_rate, buffer_size, max_samples)
 microphone.start()
 
 # Clear error ALSA/JACK messages from terminal
@@ -41,9 +41,14 @@ input("Press Enter to save recording...")
 microphone.save_wav(wav_path, sample_rate*3)
 
 # Live processing
-for i in range(10):
+for i in range(100):
     latest = microphone.latest(buffer_size)
-    print("{0:.2f}".format(np.mean(np.abs(latest[:,0]))))
+    left_volume = np.mean(np.abs(latest[:,0]))
+    right_volume = np.mean(np.abs(latest[:,1]))
+    if num_channels == 2:
+        print("{0:.2f} {1:.2f}".format(left_volume, right_volume))
+    else:
+        print("{0:.2f}".format(left_volume))
     time.sleep(0.1)
 
 # Shutdown microphone

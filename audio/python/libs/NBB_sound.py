@@ -28,17 +28,30 @@ def list_devices():
 # Sound thread (microphone)
 #
 class microphone:
-    def __init__(self, device, num_channels, sample_rate, buffer_size_samples, max_samples):        
+    def __init__(self, device, num_channels, format, sample_rate, buffer_size_samples, max_samples):        
         self.num_channels = num_channels
+        self.format = format
         self.sample_rate = sample_rate
-        self.format = pyaudio.paInt32
         self.buffer_size_samples = buffer_size_samples
         self.max_samples = max_samples
         self.valid_samples = 0
         self.mutex = Lock()
 
-        # Create rolling buffer (assumes 16-bit signed int samples)
-        self.sound = np.zeros((self.max_samples, self.num_channels), dtype=np.int32)
+        # Set format
+        if format == 'int16':
+            self.format = pyaudio.paInt16
+            self.dtype = np.int16
+            self.sample_width = 2
+        elif (format == 'int32'):
+            self.format = pyaudio.paInt32
+            self.dtype = np.int32
+            self.sample_width = 4
+        else:
+            print("(NBB_sound) Unsupported input sample format")
+            exit(-1)
+
+        # Create rolling buffer
+        self.sound = np.zeros((self.max_samples, self.num_channels), dtype=np.float32)
 
         # Define callback
         def callback(input_data, frame_count, time_info, status):
@@ -48,14 +61,20 @@ class microphone:
             with self.mutex:
 
                 # Seperate channel data
-                channel_data = np.reshape(np.frombuffer(input_data, dtype=np.int32).transpose(), (-1,self.num_channels))
+                channel_data = np.reshape(np.frombuffer(input_data, dtype=self.dtype).transpose(), (-1,self.num_channels))
+
+                # Convert to float
+                if self.sample_width == 2:
+                    float_data = np.float32(channel_data) / 2**15
+                else:
+                    float_data = np.float32(channel_data) / 2**31
 
                 # Fill buffer...and then concat
                 if self.valid_samples < self.max_samples:
-                    self.sound[self.valid_samples:(self.valid_samples + self.buffer_size_samples), :] = channel_data
+                    self.sound[self.valid_samples:(self.valid_samples + self.buffer_size_samples), :] = float_data
                     self.valid_samples = self.valid_samples + self.buffer_size_samples
                 else:
-                    self.sound = np.vstack([self.sound[self.buffer_size_samples:, :], channel_data])
+                    self.sound = np.vstack([self.sound[self.buffer_size_samples:, :], float_data])
                     self.valid_samples = self.max_samples
 
             return (output_data, pyaudio.paContinue)
@@ -78,16 +97,16 @@ class microphone:
 
     # Reset sound input
     def reset(self):
-        self.sound = np.zeros((self.max_samples, self.num_channels), dtype=np.int32)
+        self.sound = np.zeros((self.max_samples, self.num_channels), dtype=np.float32)
         self.valid_samples = 0
         return
 
     # Copy latest sound data
     def latest(self, num_samples):
         if num_samples < self.valid_samples:
-            latest = np.copy(self.sound[(self.valid_samples-num_samples):self.valid_samples])
+            latest = np.copy(self.sound[(self.valid_samples-num_samples):self.valid_samples, :])
         else:
-            latest = np.copy(self.sound[0:self.valid_samples])
+            latest = np.copy(self.sound[0:self.valid_samples, :])
         return latest
 
     # Start saving WAV
@@ -96,7 +115,7 @@ class microphone:
         # Prepare WAV file
         wav_file = wave.open(wav_path, 'wb')
         wav_file.setnchannels(self.num_channels)
-        wav_file.setsampwidth(4)
+        wav_file.setsampwidth(2)    # int16 WAV
         wav_file.setframerate(self.sample_rate)
 
         # Determine WAV range (in samples)
@@ -107,8 +126,11 @@ class microphone:
             wav_start_sample = 0
             wav_stop_sample = self.valid_samples
 
+        # Convert to integer (16-bit)
+        integer_data = np.int16(self.sound[wav_start_sample:wav_stop_sample,:] * 2**15)
+
         # Convert sound to frame data
-        frames = np.reshape(self.sound[wav_start_sample:wav_stop_sample,:], -1)
+        frames = np.reshape(integer_data, -1)
 
         # Write to WAV
         wav_file.writeframes(frames)
@@ -122,18 +144,31 @@ class microphone:
 # Sound output thread (speaker)
 #
 class speaker:
-    def __init__(self, device, num_channels, sample_rate, buffer_size_samples):        
+    def __init__(self, device, num_channels, format, sample_rate, buffer_size_samples):        
         self.num_channels = num_channels
+        self.format = format
         self.sample_rate = sample_rate
-        self.format = pyaudio.paInt32
         self.buffer_size_samples = buffer_size_samples
         self.current_sample = 0
         self.max_samples = 0
         self.mutex = Lock()
 
+        # Set format
+        if format == 'int16':
+            self.format = pyaudio.paInt16
+            self.dtype = np.int16
+            self.sample_width = 2
+        elif (format == 'int32'):
+            self.format = pyaudio.paInt32
+            self.dtype = np.int32
+            self.sample_width = 4
+        else:
+            print("(NBB_sound) Unsupported output sample format")
+            exit(-1)
+
         # Create empty sound buffer
-        self.empty = np.zeros((self.buffer_size_samples, self.num_channels), dtype=np.int32)
-        self.sound = np.zeros((self.max_samples, self.num_channels), dtype=np.int32)
+        self.empty = np.zeros((self.buffer_size_samples, self.num_channels), dtype=np.float32)
+        self.sound = np.zeros((self.max_samples, self.num_channels), dtype=np.float32)
 
         # Configure callback
         def callback(input_data, frame_count, time_info, status):
@@ -143,6 +178,7 @@ class speaker:
 
                 # How many samples remain to output?
                 remaining_samples = self.max_samples - self.current_sample
+                print(remaining_samples)
                 
                 # Output a full buffer, partial buffer, or empty buffer
                 if remaining_samples >= self.buffer_size_samples:
@@ -160,7 +196,13 @@ class speaker:
                 else:
                     output_data = np.reshape(self.empty, -1)
 
-            return (output_data, pyaudio.paContinue)
+            # Convert from float to sample format
+            if self.sample_width == 2:
+                integer_data = np.int16(output_data * 2**15)
+            else:
+                integer_data = np.int16(output_data * 2**31)
+
+            return (integer_data, pyaudio.paContinue)
 
         # Get pyaudio object
         self.pya = pyaudio.PyAudio()
@@ -183,7 +225,7 @@ class speaker:
     def write(self, sound):
         num_samples = np.shape(sound)[0]
         max_samples = num_samples - (num_samples % self.buffer_size_samples)
-        self.sound = np.zeros((max_samples, self.num_channels), dtype=np.int32)
+        self.sound = np.zeros((max_samples, self.num_channels), dtype=np.float32)
         self.sound = np.copy(sound[:max_samples,:])
         self.current_sample = 0
         self.max_samples = max_samples
@@ -220,9 +262,17 @@ class speaker:
         wav_data = wav_file.readframes(wav_num_samples)
         wav_file.close()
 
-        # Seperate channel data
-        channel_data = np.reshape(np.frombuffer(wav_data, dtype=np.int32).transpose(), (-1,self.num_channels))
-        self.sound = channel_data
+        # Seperate channel data and convert to float
+        if wav_sample_width == 2:
+            channel_data = np.reshape(np.frombuffer(wav_data, dtype=np.int16).transpose(), (-1,self.num_channels))
+            float_data = np.float32(channel_data) / 2**15
+        elif wav_sample_width == 4:
+            channel_data = np.reshape(np.frombuffer(wav_data, dtype=np.int32).transpose(), (-1,self.num_channels))
+            float_data = np.float32(channel_data) / 2**31
+        else:
+            print("(NBB_sound) Unsupported WAV output sample format")
+            exit(-1)
+        self.sound = np.copy(float_data)
 
         # Start recording
         self.current_sample = 0

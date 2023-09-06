@@ -18,10 +18,10 @@ box_path = repo_path + '/boxes/audio'
 wav_path = box_path + '/_tmp/test.wav'
 
 # Specify params
-input_device = 1
-output_device = 1
-num_input_channels = 1
-num_output_channels = 1
+input_device = 4
+output_device = 4
+num_input_channels = 2
+num_output_channels = 2
 sample_rate = 48000
 buffer_size = int(sample_rate / 100)
 max_samples = int(sample_rate * 10)
@@ -30,11 +30,11 @@ max_samples = int(sample_rate * 10)
 sound.list_devices()
 
 # Initialize microphone
-microphone = sound.microphone(input_device, num_input_channels, sample_rate, buffer_size, max_samples)
+microphone = sound.microphone(input_device, num_input_channels, 'int16', sample_rate, buffer_size, max_samples)
 microphone.start()
 
 # Initialize speaker
-speaker = sound.speaker(output_device, num_output_channels, sample_rate, buffer_size)
+speaker = sound.speaker(output_device, num_output_channels,  'int16', sample_rate, buffer_size)
 speaker.start()
 
 # Clear error ALSA/JACK messages from terminal

@@ -18,8 +18,8 @@ box_path = repo_path + '/boxes/audio'
 wav_path = box_path + '/_data/sounds/Bach_prelude_C_major.wav'
 
 # Specify params
-output_device = 1
-num_channels = 1
+output_device = 4
+num_channels = 2
 sample_rate = 44100
 buffer_size = int(sample_rate / 10)
 max_samples = int(sample_rate * 10)
@@ -28,15 +28,16 @@ max_samples = int(sample_rate * 10)
 sound.list_devices()
 
 # Initialize speaker
-speaker = sound.speaker(output_device, num_channels, sample_rate, buffer_size)
+speaker = sound.speaker(output_device, num_channels, 'int16', sample_rate, buffer_size)
 speaker.start()
+time.sleep(0.1)
 
 # Play WAV file
 speaker.play_wav(wav_path)
 
 # Wait for finish
 while speaker.is_playing():
-    time.sleep(0.01)
+    time.sleep(0.1)
 
 # Shutdown speaker
 speaker.stop()
