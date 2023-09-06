@@ -18,8 +18,8 @@ box_path = repo_path + '/boxes/audio'
 wav_path = box_path + '/_tmp/test.wav'
 
 # Specify params
-input_device = 0
-num_channels = 1
+input_device = 1
+num_channels = 2
 sample_rate = 48000
 buffer_size = int(sample_rate / 10)
 max_samples = int(sample_rate * 10)
@@ -41,7 +41,7 @@ input("Press Enter to save recording...")
 microphone.save_wav(wav_path, sample_rate*3)
 
 # Live processing
-for i in range(100):
+for i in range(10):
     latest = microphone.latest(buffer_size)
     print("{0:.2f}".format(np.mean(np.abs(latest[:,0]))))
     time.sleep(0.1)

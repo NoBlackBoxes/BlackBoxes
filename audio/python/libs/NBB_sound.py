@@ -31,14 +31,14 @@ class microphone:
     def __init__(self, device, num_channels, sample_rate, buffer_size_samples, max_samples):        
         self.num_channels = num_channels
         self.sample_rate = sample_rate
-        self.format = pyaudio.paInt16
+        self.format = pyaudio.paInt32
         self.buffer_size_samples = buffer_size_samples
         self.max_samples = max_samples
         self.valid_samples = 0
         self.mutex = Lock()
 
         # Create rolling buffer (assumes 16-bit signed int samples)
-        self.sound = np.zeros((self.max_samples, self.num_channels), dtype=np.int16)
+        self.sound = np.zeros((self.max_samples, self.num_channels), dtype=np.int32)
 
         # Define callback
         def callback(input_data, frame_count, time_info, status):
@@ -48,7 +48,7 @@ class microphone:
             with self.mutex:
 
                 # Seperate channel data
-                channel_data = np.reshape(np.frombuffer(input_data, dtype=np.int16).transpose(), (-1,self.num_channels))
+                channel_data = np.reshape(np.frombuffer(input_data, dtype=np.int32).transpose(), (-1,self.num_channels))
 
                 # Fill buffer...and then concat
                 if self.valid_samples < self.max_samples:
@@ -78,7 +78,7 @@ class microphone:
 
     # Reset sound input
     def reset(self):
-        self.sound = np.zeros((self.max_samples, self.num_channels), dtype=np.int16)
+        self.sound = np.zeros((self.max_samples, self.num_channels), dtype=np.int32)
         self.valid_samples = 0
         return
 
@@ -96,7 +96,7 @@ class microphone:
         # Prepare WAV file
         wav_file = wave.open(wav_path, 'wb')
         wav_file.setnchannels(self.num_channels)
-        wav_file.setsampwidth(2)
+        wav_file.setsampwidth(4)
         wav_file.setframerate(self.sample_rate)
 
         # Determine WAV range (in samples)
@@ -125,15 +125,15 @@ class speaker:
     def __init__(self, device, num_channels, sample_rate, buffer_size_samples):        
         self.num_channels = num_channels
         self.sample_rate = sample_rate
-        self.format = pyaudio.paInt16
+        self.format = pyaudio.paInt32
         self.buffer_size_samples = buffer_size_samples
         self.current_sample = 0
         self.max_samples = 0
         self.mutex = Lock()
 
         # Create empty sound buffer
-        self.empty = np.zeros((self.buffer_size_samples, self.num_channels), dtype=np.int16)
-        self.sound = np.zeros((self.max_samples, self.num_channels), dtype=np.int16)
+        self.empty = np.zeros((self.buffer_size_samples, self.num_channels), dtype=np.int32)
+        self.sound = np.zeros((self.max_samples, self.num_channels), dtype=np.int32)
 
         # Configure callback
         def callback(input_data, frame_count, time_info, status):
@@ -183,7 +183,7 @@ class speaker:
     def write(self, sound):
         num_samples = np.shape(sound)[0]
         max_samples = num_samples - (num_samples % self.buffer_size_samples)
-        self.sound = np.zeros((max_samples, self.num_channels), dtype=np.int16)
+        self.sound = np.zeros((max_samples, self.num_channels), dtype=np.int32)
         self.sound = np.copy(sound[:max_samples,:])
         self.current_sample = 0
         self.max_samples = max_samples
@@ -221,7 +221,7 @@ class speaker:
         wav_file.close()
 
         # Seperate channel data
-        channel_data = np.reshape(np.frombuffer(wav_data, dtype=np.int16).transpose(), (-1,self.num_channels))
+        channel_data = np.reshape(np.frombuffer(wav_data, dtype=np.int32).transpose(), (-1,self.num_channels))
         self.sound = channel_data
 
         # Start recording

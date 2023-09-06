@@ -18,12 +18,12 @@ box_path = repo_path + '/boxes/audio'
 wav_path = box_path + '/_tmp/test.wav'
 
 # Specify params
-input_device = 0
-output_device = 20
+input_device = 1
+output_device = 1
 num_input_channels = 1
 num_output_channels = 1
 sample_rate = 48000
-buffer_size = int(sample_rate / 10)
+buffer_size = int(sample_rate / 100)
 max_samples = int(sample_rate * 10)
 
 # List available sound devices
@@ -41,10 +41,10 @@ speaker.start()
 os.system('cls' if os.name == 'nt' else 'clear')
 
 # Live input/output (FEEDBACK!)
-for i in range(100):
+for i in range(1000):
     latest = microphone.latest(buffer_size)
     speaker.write(latest)
-    time.sleep(0.1)
+    time.sleep(0.01)
 
 # Shutdown microphone
 microphone.stop()

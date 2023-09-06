@@ -35,6 +35,9 @@ You can include custom Python libraries by adding a ".pth" file to the *site-pac
 ```bash
 # From repo root, insert the path (first bit of text) into (>) a *.pth file
 echo "/home/${USER}/NoBlackBoxes/LastBlackBox/boxes/audio/python/libs" > _tmp/NBB/lib/python3.11/site-packages/NBB_sound.pth
+
+# On NB3
+echo "/home/${USER}/NoBlackBoxes/LastBlackBox/boxes/audio/python/libs" > _tmp/NBB/lib/python3.9/site-packages/NBB_sound.pth
 ```
 
 ---
