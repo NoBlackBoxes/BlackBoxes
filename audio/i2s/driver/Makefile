@@ -1,4 +1,4 @@
-MOD_NAME	:= nb3-ear-module
+MOD_NAME	:= nb3-audio-module
 
 ifneq ($(KERNELRELEASE),)
 
@@ -6,10 +6,10 @@ ifneq ($(KERNELRELEASE),)
 
 all:
 	@echo "Building from the kernel build system"
-	@echo "Module build: $(CONFIG_NB3_EAR_MODULE)"
+	@echo "Module build: $(CONFIG_NB3_AUDIO_MODULE)"
 	@echo "Name: $(MOD_NAME)"
 
-obj-$(CONFIG_NB3_EAR_MODULE) := $(MOD_NAME).o
+obj-$(CONFIG_NB3_AUDIO_MODULE) := $(MOD_NAME).o
 
 else
 # external module build
@@ -29,7 +29,7 @@ KDIR	?= /lib/modules/$(shell uname -r)/build
 MDIR	?= /lib/modules/$(shell uname -r)
 PWD	:= $(shell pwd)
 
-export CONFIG_NB3_EAR_MODULE := m
+export CONFIG_NB3_AUDIO_MODULE := m
 
 all:
 	$(MAKE) -C $(KDIR) M=$(PWD) modules
@@ -40,7 +40,7 @@ clean:
 help:
 	$(MAKE) -C $(KDIR) M=$(PWD) help
 
-install: nb3-ear-module.ko
+install: nb3-audio-module.ko
 	rm -f ${MDIR}/kernel/sound/drivers/$(MOD_NAME).ko
 	install -m644 -b -D $(MOD_NAME).ko ${MDIR}/kernel/sound/drivers/$(MOD_NAME).ko
 	depmod -a

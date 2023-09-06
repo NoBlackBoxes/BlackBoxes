@@ -1,4 +1,4 @@
-# hearing : i2s : driver
+# audio : i2s : driver
 
 ## Installation (Software)
 
@@ -32,7 +32,7 @@ dtparam=i2s=on
 
 ### Driver module
 
-The NB3 Ear board needs a special driver that is not included by default in the Raspberry Pi Linux kernel. Thus you will have to build (compile and link) the driver as a "kernel module" and then install it in your system. Here are the steps.
+The NB3 Ear and NB3 mouth boards need a special driver that is not included by default in the Raspberry Pi Linux kernel. Thus you will have to build (compile and link) the driver as a "kernel module" and then install it in your system. Here are the steps.
 
 ```bash
 # Clone the LastBlackBox repo (if you have not done so already)
@@ -43,13 +43,13 @@ cd LastBlackBox/boxes/audio/i2s/driver
 
 # Run the Makefile
 make all
-# - this will build the kernel module (*.ko) file from the nb3-ear-module.c source file.
+# - this will build the kernel module (*.ko) file from the nb3-audio-module.c source file.
 
 # Install the module
 sudo make install
 
 # Insert the module into the kernel
-sudo insmod nb3-ear-module.ko
+sudo insmod nb3-audio-module.ko
 ```
 
 You will have to insert the module each time you reboot (run the insmod command above). If you want to have it load automatically then you need to add its name to this file: "/etc/modules".
@@ -61,7 +61,7 @@ sudo nano /etc/modules
 and add...
 
 ```txt
-nb3-ear-module
+nb3-audio-module
 ```
 
 ***After this, it is useful to reboot your Raspberry Pi to continue.***
@@ -78,7 +78,7 @@ Should output something like this...
 
 ```txt
 **** List of CAPTURE Hardware Devices ****
-card 1: NB3earcard [NB3_ear_card], device 0: simple-card_codec_link snd-soc-dummy-dai-0 [simple-card_codec_link snd-soc-dummy-dai-0]
+card 1: NB3audiocard [NB3_audio_card], device 0: simple-card_codec_link snd-soc-dummy-dai-0 [simple-card_codec_link snd-soc-dummy-dai-0]
   Subdevices: 1/1
   Subdevice #0: subdevice #0
 ```

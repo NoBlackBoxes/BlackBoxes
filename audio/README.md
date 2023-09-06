@@ -1,6 +1,6 @@
-# Hearing
+# Audio
 
-Listen up.
+Listen up, speak up.
 
 ----
 
@@ -33,7 +33,6 @@ M2.5 nut|regular M2.5 nut|2|[-D-](-)|[-L-](https://www.accu.co.uk/hexagon-nuts/4
 
 1. Sound (clap) localizer
 
-
 ----
 
 ## NB3
@@ -41,7 +40,7 @@ M2.5 nut|regular M2.5 nut|2|[-D-](-)|[-L-](https://www.accu.co.uk/hexagon-nuts/4
 This box will contribute the following (red) components to your NB3
 
 <p align="center">
-<img src="_data/images/NB3_hearing.png" alt="NB3 stage" width="400" height="400">
+<img src="_data/images/NB3_audio.png" alt="NB3 stage" width="400" height="400">
 <p>
 
 ----

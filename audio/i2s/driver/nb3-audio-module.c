@@ -18,7 +18,7 @@ void device_release_callback(struct device *dev) { /*  do nothing */ };
  * Setup the card info
  */
 static struct asoc_simple_card_info default_card_info = {
-  .card = "NB3_ear_card",       // -> snd_soc_card.name
+  .card = "NB3_audio_card",       // -> snd_soc_card.name
   .name = "simple-card_codec_link", // -> snd_soc_dai_link.name
   .codec = "snd-soc-dummy",         // "dmic-codec", // -> snd_soc_dai_link.codec_name
   .platform = "not-set.i2s",
@@ -56,11 +56,11 @@ int i2s_mic_rpi_init(void)
   int ret;
 
   // Report
-  printk(KERN_INFO "NB3_ear: Version 0.0.1");
+  printk(KERN_INFO "NB3_audio: Version 0.0.1");
 
   // Set platform
   card_platform = "fe203000.i2s";
-  printk(KERN_INFO "NB3_ear: Setting platform to %s\n", card_platform);
+  printk(KERN_INFO "NB3_audio: Setting platform to %s\n", card_platform);
 
   // Request DMA engine module
   ret = request_module(dmaengine);
