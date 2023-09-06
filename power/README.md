@@ -8,10 +8,11 @@ Power for your bot.
 
 Contents|Description| # |Data|Link|
 :-------|:----------|:-:|:--:|:--:|
-NB3 Power Board|Regulated DC-DC power supply (5 Volts - 4 Amps)|1|[-D-](NB3_power)|-
-M2.5 standoffs (7)| (w/UPS 7 mm brass M2.5 standoffs male-to-female|4|[-D-](https://wiki.52pi.com/index.php/UPS_for_Raspberry_Pi_4B/3B+/3B_SKU:_EP-0114)|-
-M2 nut| M2 nut|4|-|-
-12V DC Power Supply|12 V AC-DC transformer (UK/EU/USA plugs)|1|-|-
+NB3 Power Board|Regulated DC-DC power supply (5 Volts - 4 Amps)|1|[-D-](NB3_power)|[-L-](VK)
+M2.5 standoff (6/PS)|6 mm long plug-to-socket M2.5 standoff|4|-|[-L-](https://uk.farnell.com/wurth-elektronik/971060151/standoff-hex-male-female-6mm-m2/dp/2884368)
+M2.5 bolt (6)| 6 mm long M2.5 bolt|4|-|[-L-](https://www.accu.co.uk/pozi-pan-head-screws/9255-SPP-M2-5-6-A2)
+M2.5 nut|regular M2.5 nut|4|[-D-](-)|[-L-](https://www.accu.co.uk/hexagon-nuts/456430-HPN-M2-5-C8-Z)
+12V DC Power Supply|12 V AC-DC transformer (UK/EU/USA plugs)|1|-|[-L-](https://www.amazon.co.uk/gp/product/B09QG4R1R4)
 
 </p></details>
 
