@@ -19,7 +19,7 @@ LM386N-4/NOPB|Audio-Amp|2|[-D-](_data/datasheets/IRF510.pdf)|[-L-](https://uk.fa
 
 ### Grey
 
-1. Amplifier photodiode signal
+1. Amplify photodiode signal
 2. (Sound) controlled motor
 
 ### White

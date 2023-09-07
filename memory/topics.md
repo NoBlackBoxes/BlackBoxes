@@ -8,7 +8,3 @@
 - SRAM
 - DRAM
 - Flash
-
-#### Tools
-
-- Components (NAND gates for SR latch)

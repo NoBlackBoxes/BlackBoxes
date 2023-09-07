@@ -1,9 +1,7 @@
 ### Topics
 
 - Transducers...
-- Pizeoeletric
-- Etc.
-
-#### Tools
-
-- Components (LDR, thermistor, piezo)
+    - Light
+    - Heat
+    - Pressure (sound)
+- Pizeoeletric effect

@@ -5,7 +5,3 @@
 - Regulated power.
 - Switch mode power supply. (buck and boost)
   - Buck: Intuition? Look at PCB...
-
-#### Tools
-
-- DC-DC switching power supply PCB.

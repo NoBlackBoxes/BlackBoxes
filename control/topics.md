@@ -6,7 +6,3 @@
 - Engine - Watt's Govenor
 - P..I..D
 - brain?
-
-#### Tools
-
-- Components (H-bridge)

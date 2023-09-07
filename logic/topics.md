@@ -5,7 +5,3 @@
 - Rules for simplifying and solving
 - Math with Logic
 - (Not open drain)
-
-#### Tools
-
-- Components (AND, OR, XOR, NOT gates)

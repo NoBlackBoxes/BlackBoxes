@@ -1,6 +1,6 @@
 ### Grey
 
-1. Amplifier photodiode signal
+1. Amplify photodiode signal
 2. (Sound) controlled motor
 
 ### White

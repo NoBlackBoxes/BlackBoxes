@@ -1,13 +1,9 @@
 ### Topics
 
 - Silicon
-- Semicondictors
+- Semiconductors
 - Doping
-- PN junction
+- PN junction - equilibrium
 - Diodes (LEDs, Photodiodes)
 - Transistors
-- Switch vs Amp
-
-#### Tools
-
-- Components (Diode, LEDs, Photodioes, MOSFET/Bipolar)
+- Switch vs Amplifier

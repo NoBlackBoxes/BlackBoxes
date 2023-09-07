@@ -6,8 +6,3 @@
   - Caveats: threshold noise...need hysterisis (Schmitt-Trigger)
 - What about analog signals? simple ADC (4-level)...need logic to turn this into 2-bit binary
 - Comparaotr is OPEN DRAIN...exaplin or find another comparator
-
-
-#### Tools
-
-- Components (LM339, resistor ladder, LEDs)
