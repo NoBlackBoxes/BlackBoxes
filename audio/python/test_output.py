@@ -18,7 +18,7 @@ box_path = repo_path + '/boxes/audio'
 wav_path = box_path + '/_data/sounds/Bach_prelude_C_major.wav'
 
 # Specify params
-output_device = 20
+output_device = 1
 num_channels = 2
 sample_rate = 44100
 buffer_size = int(sample_rate / 10)

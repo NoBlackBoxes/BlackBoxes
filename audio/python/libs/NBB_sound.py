@@ -26,7 +26,7 @@ def list_devices():
     return
 
 #
-# Sound thread (microphone)
+# Sound input (microphone)
 #
 class microphone:
     def __init__(self, device, num_channels, format, sample_rate, buffer_size_samples, max_samples):        
@@ -73,9 +73,9 @@ class microphone:
 
             # Convert to float
             if self.sample_width == 2:
-                self.float_data = np.float32(self.channel_data) / 2**15
+                self.float_data = np.float32(self.channel_data) * 3.0517578125e-05
             else:
-                self.float_data = np.float32(self.channel_data) / 2**31
+                self.float_data = np.float32(self.channel_data) * 4.656612873077393e-10
 
             # Lock thread
             with self.mutex:
@@ -160,7 +160,7 @@ class microphone:
         return
 
 #
-# Sound output thread (speaker)
+# Sound output (speaker)
 #
 class speaker:
     def __init__(self, device, num_channels, format, sample_rate, buffer_size_samples):        
@@ -301,10 +301,10 @@ class speaker:
         # Seperate channel data and convert to float
         if wav_sample_width == 2:
             channel_data = np.reshape(np.frombuffer(wav_data, dtype=np.int16).transpose(), (-1,self.num_channels))
-            float_data = np.float32(channel_data) / 2**15
+            float_data = np.float32(channel_data) * 3.0517578125e-05
         elif wav_sample_width == 4:
             channel_data = np.reshape(np.frombuffer(wav_data, dtype=np.int32).transpose(), (-1,self.num_channels))
-            float_data = np.float32(channel_data) / 2**31
+            float_data = np.float32(channel_data) * 4.656612873077393e-10
         else:
             print("(NBB_sound) Unsupported WAV output sample format")
             exit(-1)
