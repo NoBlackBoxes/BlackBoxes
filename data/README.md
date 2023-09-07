@@ -19,6 +19,17 @@ Resistor|330 &Omega;/0.25 W|6|[-D-](_data/datsheets/resistor.pdf)|[-L-](https://
 
 ----
 
+## Topics
+
+- Why digital? - noise, simplicity, speed
+  - Can still represent any value (count in binary)
+- How digital? Comparator (op-amp with posiitve feedback)
+  - Caveats: threshold noise...need hysterisis (Schmitt-Trigger)
+- What about analog signals? simple ADC (4-level)...need logic to turn this into 2-bit binary
+- Comparaotr is OPEN DRAIN...exaplin or find another comparator
+
+----
+
 ## Goals
 
 ### Grey

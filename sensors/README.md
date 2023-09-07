@@ -17,6 +17,16 @@ Breadboards (170)|170-tie solderless breadboard|4|[-D-](_data/datasheets/breadbo
 
 ----
 
+## Topics
+
+- Transducers...
+    - Light
+    - Heat
+    - Pressure (sound)
+- Pizeoeletric effect
+
+----
+
 ## Goals
 
 ### Grey

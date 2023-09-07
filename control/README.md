@@ -14,6 +14,17 @@ H-bridge|H-bridge motor driver (SN754410NE)|2|[-D-](_data/datasheets/sn754410.pd
 
 ----
 
+## Topics
+
+- (introduce H-bridge) - N and P MOSFETS in an H to control direction of current flowing through motor (and braking)
+- (introduce encoders)
+- How to control?
+- Engine - Watt's Govenor
+- P..I..D
+- brain?
+
+----
+
 ## Goals
 
 ### Grey

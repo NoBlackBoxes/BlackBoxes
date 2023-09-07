@@ -18,6 +18,16 @@ M2.5 nut|regular M2.5 nut|4|[-D-](-)|[-L-](https://www.accu.co.uk/hexagon-nuts/4
 
 ----
 
+## Topics
+
+- Why stable voltage? Other uses?
+- AC to DC (diode rectifiers, bridge-rectifier).
+- Regulated power.
+- Switch mode power supply. (buck and boost)
+  - Buck: Intuition? Look at PCB...
+
+----
+
 ## Goals
 
 ### Grey

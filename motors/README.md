@@ -17,6 +17,15 @@ Motor Mount|Mount for TT Gearbox DC Motors - L-Bracket Type|2|-|[-L-](https://ww
 
 ----
 
+## Topics
+
+- Electromotive force
+- Steppers
+- Commutation (brushed vs brushless)
+- Gears
+
+----
+
 ## Goals
 
 ### Grey

@@ -17,6 +17,16 @@ Gate (XOR)|4xXOR gate|1|[-D-](_data/datasheets/XOR_gates.pdf)|[-L-](https://uk.f
 
 ----
 
+## Topics
+
+- Logic (Boole is cool)
+- Logic from MOSFETs: Not, AND, etc.
+- Rules for simplifying and solving
+- Math with Logic
+- (Not open drain)
+
+----
+
 ## Goals
 
 ### Grey

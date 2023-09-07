@@ -14,6 +14,12 @@ Laptop| Any laptop with a text editor|1|-|-
 
 ----
 
+## Topics
+
+- To Do
+
+----
+
 ## Goals
 
 ### Grey

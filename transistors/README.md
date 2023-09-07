@@ -19,6 +19,18 @@ LED (IR)|Low power IR light emitting diode|2|-|[-L-](https://uk.farnell.com/vish
 
 ----
 
+## Topics
+
+- Silicon
+- Semiconductors
+- Doping
+- PN junction - equilibrium
+- Diodes (LEDs, Photodiodes)
+- Transistors
+- Switch vs Amplifier
+
+----
+
 ## Goals
 
 ### Grey

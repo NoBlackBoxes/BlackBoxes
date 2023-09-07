@@ -15,6 +15,15 @@ LM386N-4/NOPB|Audio-Amp|2|[-D-](_data/datasheets/IRF510.pdf)|[-L-](https://uk.fa
 
 ----
 
+## Topics
+
+- Problem: Common mode noise
+- Differential Amplifier (long-tailed pair)
+- Comparator
+- Op-Amps (comparator with feedback...ideal)
+
+----
+
 ## Goals
 
 ### Grey

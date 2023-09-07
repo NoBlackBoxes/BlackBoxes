@@ -14,6 +14,19 @@ Gate (NAND)|4xNAND gate|2|[-D-](_data/datasheets/NAND_gates.pdf)|[-L-](https://u
 
 ----
 
+## Topics
+
+- State, stable bits
+- (Explain NOR latch first, 0 - 0 input is bistable... 1 - 1 is bistable for NAND latch...more confusing to consider from power up state)
+- Latch (bi-stable via feedback)
+- Flip-Flop
+- Shift register
+- SRAM
+- DRAM
+- Flash
+
+----
+
 ## Goals
 
 ### Grey

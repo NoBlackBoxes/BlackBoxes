@@ -31,6 +31,21 @@ Rubber feet|Adhesive rubber standoffs (1421T6CL)|4|[-D-](_data/datasheets/rubber
 
 ----
 
+## Topics
+
+- Electric field
+- Voltage (potential difference)
+- Current
+- Conductors and resistors
+- Batteries (different chemistries) - series vs paralell
+- Circuits
+- Ohm's Law
+- Voltage dividers
+- Power (dissapation)
+- *Capacitors*
+
+----
+
 ## Goals
 
 ### Grey
