@@ -18,8 +18,8 @@ box_path = repo_path + '/boxes/audio'
 wav_path = box_path + '/_tmp/test.wav'
 
 # Specify params
-input_device = 4
-num_channels = 2
+input_device = 0
+num_channels = 1
 sample_rate = 48000
 buffer_size = int(sample_rate / 10)
 max_samples = int(sample_rate * 10)
@@ -43,15 +43,19 @@ microphone.save_wav(wav_path, sample_rate*3)
 # Live processing
 for i in range(100):
     latest = microphone.latest(buffer_size)
-    left_volume = np.mean(np.abs(latest[:,0]))
-    right_volume = np.mean(np.abs(latest[:,1]))
     if num_channels == 2:
+        left_volume = np.mean(np.abs(latest[:,0]))
+        right_volume = np.mean(np.abs(latest[:,1]))
         print("{0:.2f} {1:.2f}".format(left_volume, right_volume))
     else:
-        print("{0:.2f}".format(left_volume))
+        volume = np.mean(np.max(latest[:]))
+        print("{0:.2f}".format(volume))
     time.sleep(0.1)
 
 # Shutdown microphone
 microphone.stop()
+
+# Report
+print("Profiling:\n- Avg (Max) Callback Duration (us): {0:.2f} ({1:.2f})".format(microphone.callback_accum/microphone.callback_count*1000000.0, microphone.callback_max*1000000.0))
 
 # FIN
