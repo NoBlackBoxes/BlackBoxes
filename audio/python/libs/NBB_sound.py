@@ -37,6 +37,7 @@ class microphone:
         self.max_samples = max_samples
         self.valid_samples = 0
         self.mutex = Lock()
+        self.freq_bins = np.fft.fftfreq(self.buffer_size_samples, 1.0/self.sample_rate)[1:]
 
         # Set format
         if format == 'int16':
@@ -127,6 +128,43 @@ class microphone:
         else:
             latest = np.copy(self.sound[0:self.valid_samples, :])
         return latest
+
+    # Speaking?
+    def is_speech(self):
+        # Is there data for speech detection?
+        if self.valid_samples < self.buffer_size_samples:
+            return False
+
+        # Get latest
+        latest = np.copy(self.sound[(self.valid_samples-self.buffer_size_samples):self.valid_samples, :])
+
+        # Compute amps and enrgies
+        amplitudes = np.abs(np.fft.fft(latest[:,0]))[1:]
+        energies = amplitudes**2
+
+        # Compute total energy
+        energy_per_freq = {}
+        for (i, freq) in enumerate(self.freq_bins):
+            if abs(freq) not in energy_per_freq:
+                energy_per_freq[abs(freq)] = energies[i] * 2
+        total_energy = sum(energy_per_freq.values())
+
+        # Compute voice energy
+        voice_energy = 0
+        for f in energy_per_freq.keys():
+            if 300 < f < 3000:                      # Human voice range
+                voice_energy += energy_per_freq[f]
+
+        # Compute speech ratio
+        speech_ratio = voice_energy/total_energy
+
+        # Is there speaking now?
+        if(speech_ratio > 0.5):
+            speech = True
+        else:
+            speech = False
+        
+        return speech
 
     # Start saving WAV
     def save_wav(self, wav_path, wav_max_samples):
