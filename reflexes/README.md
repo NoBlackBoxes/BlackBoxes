@@ -1,4 +1,20 @@
 # Reflexes
+
+Simple sensory-motor loops can accomplish quite a bit.
+
+----
+
+<details><summary><b>Materials</b></summary><p>
+
+Contents|Description| # |Data|Link|
+:-------|:----------|:-:|:--:|:--:|
+Caster|¾” metal ball caster|1|[-D-](https://www.pololu.com/product/955)|[-L-](https://www.hobbytronics.co.uk/ball-caster-metal?keyword=caster)
+Spacer|NB3 spacer 3 mm spacer for mounting ball caster|5|[-D-](NB3_spacer)|-
+
+</p></details>
+
+----
+
 ## Topics
 
 - To Do
@@ -18,23 +34,12 @@
 2. Build a Braitenberg verhicle that responds to sound
 
 
-### NOTES
+#### NOTES
 
 - Careful mounting/aligning motors. If the encoder wheel is contacted, the wheels won't spin due to gear ratio.
 - Screws for bearings are imperial....don't lose nut
 - The cables have a funky long purple wire...by mistake
 - Could build comparator for alternating left-right follower-bot using Op-Amp with positve feedback?
-
-----
-
-<details><summary><b>Materials</b></summary><p>
-
-Contents|Description| # |Data|Link|
-:-------|:----------|:-:|:--:|:--:|
-Caster|¾” metal ball caster|1|[-D-](https://www.pololu.com/product/955)|[-L-](https://www.hobbytronics.co.uk/ball-caster-metal?keyword=caster)
-Spacer|NB3 spacer 3 mm spacer for mounting ball caster|5|[-D-](NB3_spacer)|-
-
-</p></details>
 
 ----
 

@@ -13,7 +13,7 @@ Heatsinks|Heatsinks for RPi 4b chips|1|[-D-](_data/datasheets/rpi4b_heatsinks.jp
 SD card|16 GB micro SD card|1|[-D-](_data/datasheets/SanDisk-SDSQUAR-016G-GN6MA-datasheet.pdf)|[-L-](https://uk.farnell.com/sandisk/sdsquar-016g-gn6ma/memory-card-microsdhc-uhs-i-16gb/dp/2931924)
 USB SD card IO| SD card reader/writer|1|-|[-L-](https://www.amazon.co.uk/Beikell-High-speed-Adapter-Supports-MMC-Compatible-Windows/dp/B07L9VT8YY)
 M2.5 bolt (6)|6 mm long M2.5 bolt|4|-|[-L-](https://www.accu.co.uk/pozi-pan-head-screws/9255-SPP-M2-5-6-A2)
-M2.5 standoff (12/SS)|12 mm long socket-to-socket M2.5 standoff|4|-|[-L-](https://uk.farnell.com/wurth-elektronik/970120151/standoff-hex-female-female-12mm/dp/2884528)
+M2.5 standoff (20/SS)|20 mm long socket-to-socket M2.5 standoff|4|-|[-L-](https://uk.farnell.com/wurth-elektronik/970200154/standoff-hex-female-female-20mm/dp/2987903)
 M2.5 standoff (20/PS)|20 mm long plug-to-socket M2.5 standoff|4|-|[-L-](https://uk.farnell.com/wurth-elektronik/971200151/standoff-hex-male-female-20mm/dp/2884418)
 
 </p></details>

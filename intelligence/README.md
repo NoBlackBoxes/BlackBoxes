@@ -9,9 +9,6 @@
 Contents|Description| # |Data|Link|
 :-------|:----------|:-:|:--:|:--:|
 NPU|Coral EdgeTPU USB Type-C|1|[-D-](_data/datasheets/Coral-USB-Accelerator-datasheet.pdf)|[-L-](https://coral.ai/products/accelerator/)
-Cortex Mount|Custom laser cut holder for NPU|1|[-D-](NB3_cortex_mount)|[-L-](VK)
-M2.5 standoff (15/PS)|15 mm long plug-to-socket M2.5 standoff|4|-|[-L-](https://uk.farnell.com/ettinger/05-20-215/spacer-m2-5-d2-5-15/dp/1466873)
-M2.5 bolt (6)|6 mm long M2.5 bolt|4|-|[-L-](https://www.accu.co.uk/pozi-pan-head-screws/9255-SPP-M2-5-6-A2)
 M3 screw (16)|16 mm long M3 screw with phillips socket|4|-|-
 M3 nut|regular M3 nut|4|-|-
 
