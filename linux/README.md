@@ -1,6 +1,6 @@
-# Servers
+# Linux
 
-Serving HTML files to who ever requests them (via HTTP)
+Let's learn Linux.
 
 ----
 
@@ -14,13 +14,20 @@ Laptop||1|-|-
 
 ----
 
+## Topics
+
+- To Do
+
+----
+
 ## Goals
 
 ### Grey
 
-1. Run a server
+1. Use Linux
 
 ### White
 
-1. Cloud website
-2. Port forwarding
+1. Understand Linux
+
+----
