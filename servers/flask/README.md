@@ -12,3 +12,10 @@ pip install Flask
 - Request context (request and session)
 - Application context
 
+- Request hooks
+  - before_request, before_first, after, etc.
+
+- redirects (response that tells the browser to navigate to a new location)
+
+- Templates
+  - Jinja2 template engine (for rendering)
