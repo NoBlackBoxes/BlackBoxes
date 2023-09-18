@@ -1,5 +1,5 @@
 /*
-  Controller
+  Serial Controller
 */
 
 // Globals
@@ -11,6 +11,8 @@ int pin_right_A = 4;
 int pin_right_B = 5;
 
 void setup() {
+  // Initialize serial port
+  Serial.begin(19200);
 
   // LED Feedback
   pinMode(LED_BUILTIN, OUTPUT);
@@ -36,25 +38,35 @@ void setup() {
 
 void loop() {
   
-  // Forward
-  forward();
-  delay(500);
+  // Check for any incoming bytes
+  if (Serial.available() > 0) {
+    char newChar = Serial.read();
 
-  // Respond to command "b"
-  backward();
-  delay(500);
+    // Respond to command "f"
+    if(newChar == 'f') {
+      forward();
+    }
 
-  // Respond to command "l"
-  left();
-  delay(500);
+    // Respond to command "b"
+    if(newChar == 'b') {
+      backward();
+    }
 
-  // Respond to command "r"
-  right();
-  delay(500);
+    // Respond to command "l"
+    if(newChar == 'l') {
+      left();
+    }
 
-  // Respond to command "x"
-  stop();
-  delay(500);
+    // Respond to command "r"
+    if(newChar == 'r') {
+      right();
+    }
+
+    // Respond to command "x"
+    if(newChar == 'x') {
+      stop();
+    }
+  }
 
   // Wait a bit
   delay(10);
