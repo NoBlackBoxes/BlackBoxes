@@ -22,7 +22,7 @@ input_wav_path = box_path + '/_tmp/input.wav'
 output_wav_path = box_path + '/_tmp/output.wav'
 
 # Set OpenAI API Key (secret!!!)
-openai.api_key = "<secret-key>"
+openai.api_key = "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"
 
 # Initialize conversation history
 conversation = [
@@ -30,8 +30,8 @@ conversation = [
 ]
 
 # Specify params
-input_device = 0
-output_device = 0
+input_device = 4
+output_device = 4
 num_input_channels = 2
 num_output_channels = 1
 sample_rate = 16000
@@ -106,7 +106,7 @@ try:
         conversation.append({'role': 'assistant', 'content': f'{reply}'})
 
         # Speak reply
-        cmd = "echo \"{0}\" | piper --model en_US-lessac-low.onnx --output_file {1}".format(reply, output_wav_path)
+        cmd = "echo \"{0}\" | piper --model _tmp/en_US-lessac-low.onnx --output_file {1}".format(reply, output_wav_path)
         result = os.system(cmd)
         speaker.play_wav(output_wav_path)
         screen.addstr(8, 0, "NB3: {0}\n".format(reply), curses.A_NORMAL)
