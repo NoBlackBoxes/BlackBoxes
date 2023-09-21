@@ -1,13 +1,29 @@
+import os
 import sys
+import time
 import openai
 import pyttsx3
-import pyaudio
-import wave
 import numpy as np
 import curses
 
+# Locals libs
+import libs.NBB_sound as sound
+
+# Reimport
+import importlib
+importlib.reload(sound)
+
+# Get user name
+username = os.getlogin()
+
+# Specify paths
+repo_path = '/home/' + username + '/NoBlackBoxes/LastBlackBox'
+box_path = repo_path + '/boxes/intelligence/llms/chatNB3'
+input_wav_path = box_path + '/_tmp/input.wav'
+output_wav_path = box_path + '/_tmp/output.wav'
+
 # Set OpenAI API Key (secret!!!)
-openai.api_key = "<secret>"
+openai.api_key = "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"
 
 # Initialize conversation history
 conversation = [
@@ -17,24 +33,30 @@ conversation = [
 # Initialize speech engine
 engine = pyttsx3.init()
 
-# Set sound recording format
-CHUNK = 1600                # Buffer size
-FORMAT = pyaudio.paInt16    # Data type
-CHANNELS = 1                # Number of channels
-RATE = 16000                # Sample rate (Hz)
-MAX_DURATION = 5            # Max recording duration
-WAVE_OUTPUT_FILENAME = "speech.wav"
+# Specify params
+input_device = 1
+output_device = 1
+num_input_channels = 2
+num_output_channels = 1
+input_sample_rate = 44100
+output_sample_rate = 22050
+input_buffer_size = int(input_sample_rate / 100)
+output_buffer_size = int(output_sample_rate / 100)
+max_samples = int(output_sample_rate * 10)
 
-# Get pyaudio object
-pya = pyaudio.PyAudio()
+# List available sound devices
+sound.list_devices()
 
-# Open audio stream (from default device)
-stream = pya.open(format=FORMAT,
-            channels=CHANNELS,
-            rate=RATE,
-            input=True,
-            start=False,
-            frames_per_buffer=CHUNK)
+# Initialize microphone
+microphone = sound.microphone(input_device, num_input_channels, 'int16', input_sample_rate, input_buffer_size, max_samples)
+microphone.start()
+
+# Initialize speaker
+speaker = sound.speaker(output_device, num_output_channels,  'int16', output_sample_rate, output_buffer_size)
+speaker.start()
+
+# Clear error ALSA/JACK messages from terminal
+os.system('cls' if os.name == 'nt' else 'clear')
 
 # Setup the curses screen window
 screen = curses.initscr()
@@ -42,47 +64,6 @@ curses.noecho()
 curses.cbreak()
 screen.nodelay(True)
  
-# --------------------------------------------------------------------------------
-# HELPER FUNCTIONS
-# --------------------------------------------------------------------------------
-
-# Function to record speech snippets to a WAV file
-def record_speech(stream):
-
-    # Prepare a WAV file
-    wf = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
-    wf.setnchannels(CHANNELS)
-    wf.setsampwidth(2)
-    wf.setframerate(RATE)
-
-    # Start streaming audio
-    stream.start_stream()
-
-    # Append frames of data until key (spacebar) is pressed
-    frames = []
-    for i in range(0, int(RATE / CHUNK * MAX_DURATION)):
-        # Read raw data and append
-        raw_data = stream.read(CHUNK)
-        frames.append(raw_data)
-    
-        # Check for key press ('z')
-        char = screen.getch()
-        if char == ord('z'):
-            break
-
-    # Stop stream
-    stream.stop_stream()
-
-    # Write to WAV file
-    wf.writeframes(b''.join(frames))
-    
-    # Close WAV file
-    wf.close()
-
-    return
-# --------------------------------------------------------------------------------
-
-
 # --------------------------------------------------------------------------------
 # Chat Loop
 # --------------------------------------------------------------------------------
@@ -101,11 +82,18 @@ try:
 
         # Start recording
         screen.addstr("...press 'z' again to stop speaking.", curses.A_UNDERLINE)
-        record_speech(stream)
+        microphone.reset()
+        while True:
+            char = screen.getch()
+            if char == ord('q'):
+                sys.exit()
+            elif char == ord('z'):
+                break
+        microphone.save_wav(input_wav_path, max_samples)
         screen.erase()        
 
         # Get transcription from Whisper
-        audio_file= open("speech.wav", "rb")
+        audio_file= open(input_wav_path, "rb")
         transcription = openai.Audio.transcribe("whisper-1", audio_file)['text']
         conversation.append({'role': 'user', 'content': f'{transcription}'})
         screen.addstr(4, 0, "You: {0}\n".format(transcription), curses.A_STANDOUT)
@@ -123,15 +111,22 @@ try:
         conversation.append({'role': 'assistant', 'content': f'{reply}'})
 
         # Speak reply
-        engine.say(reply)
+        engine.save_to_file(reply, output_wav_path)
         engine.runAndWait()
+        speaker.play_wav(output_wav_path)
         screen.addstr(8, 0, "NB3: {0}\n".format(reply), curses.A_NORMAL)
+        while speaker.is_playing():
+            time.sleep(0.1)
         screen.refresh()
 
 finally:
-    # shut down
-    stream.close()
-    pya.terminate()
+    # Shutdown microphone
+    microphone.stop()
+
+    # Shutdown speaker
+    speaker.stop()
+
+    # Shutdown curses
     curses.nocbreak()
     screen.keypad(0)
     curses.echo()

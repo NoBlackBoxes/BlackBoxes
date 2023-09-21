@@ -3,7 +3,7 @@ import time
 import numpy as np
 
 # Locals libs
-import NBB_sound as sound
+import libs.NBB_sound as sound
 
 # Reimport
 import importlib

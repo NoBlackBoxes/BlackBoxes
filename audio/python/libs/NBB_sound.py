@@ -325,7 +325,7 @@ class speaker:
         if wav_num_channels != self.num_channels:
             print("WAV file has inconsistent number of channels for output device.")
         if wav_sample_rate != self.sample_rate:
-            print("WAV file has inconsistent sample rate for output device.")
+            print("WAV file has inconsistent sample rate for output device.{0}".format(wav_sample_rate))
         if wav_sample_width != 2:
             print("WAV file has inconsistent sample width for output device.")
 
