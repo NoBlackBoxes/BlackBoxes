@@ -23,7 +23,7 @@ input_wav_path = box_path + '/_tmp/input.wav'
 output_wav_path = box_path + '/_tmp/output.wav'
 
 # Set OpenAI API Key (secret!!!)
-openai.api_key = "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"
+openai.api_key = "<secret-message>"
 
 # Initialize conversation history
 conversation = [
