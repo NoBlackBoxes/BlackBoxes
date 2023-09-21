@@ -10,13 +10,27 @@ Is your speaker working? If so, then you should be ready to go!
 
 ## Install required Python packages
 ```bash
-pip3 install openai
-pip3 install pyttsx3
+pip install openai
+pip install piper-tts
 ```
 
-## Install text-to-speech library
+## Test text-to-speech (and download voice models)
 ```bash
-sudo apt install espeak
+mkdir _tmp
+cd _tmp
+
+# If pip install piper-tts fails, then you can donwload the binary here:
+# wget https://github.com/rhasspy/piper/releases/download/v1.2.0/piper_arm64.tar.gz
+
+# Download some voices (model and json)
+wget https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/it/it_IT/riccardo/x_low/it_IT-riccardo-x_low.onnx
+wget https://huggingface.co/rhasspy/piper-voices/raw/v1.0.0/it/it_IT/riccardo/x_low/it_IT-riccardo-x_low.onnx.json
+
+# Synthesize speech (to WAV file)
+echo "Congratulazioni per aver vinto il robot d'oro!" | piper --model it_IT-riccardo-x_low.onnx --output_file ciao.wav
+
+# Play it
+aplay -D plughw:1 -c2 -r 16000 -f S16_LE -t wav -V stereo -v ciao.wav
 ```
 
 ### OpenAI API Key
