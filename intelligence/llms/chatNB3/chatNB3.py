@@ -30,8 +30,8 @@ conversation = [
 ]
 
 # Specify params
-input_device = 4
-output_device = 4
+input_device = 1
+output_device = 1
 num_input_channels = 2
 num_output_channels = 1
 sample_rate = 16000
@@ -43,11 +43,11 @@ max_samples = int(sample_rate * 10)
 sound.list_devices()
 
 # Initialize microphone
-microphone = sound.microphone(input_device, num_input_channels, 'int16', sample_rate, buffer_size, max_samples)
+microphone = sound.microphone(input_device, num_input_channels, 'int32', sample_rate, buffer_size, max_samples)
 microphone.start()
 
 # Initialize speaker
-speaker = sound.speaker(output_device, num_output_channels,  'int16', sample_rate, buffer_size)
+speaker = sound.speaker(output_device, num_output_channels, 'int16', sample_rate, buffer_size)
 speaker.start()
 
 # Clear error ALSA/JACK messages from terminal
@@ -106,7 +106,7 @@ try:
         conversation.append({'role': 'assistant', 'content': f'{reply}'})
 
         # Speak reply
-        cmd = "echo \"{0}\" | piper --model _tmp/en_US-lessac-low.onnx --output_file {1}".format(reply, output_wav_path)
+        cmd = "echo \"{0}\" | piper --model _tmp/en_GB-southern_english_female-low.onnx --output_file {1}".format(reply, output_wav_path)
         result = os.system(cmd)
         speaker.play_wav(output_wav_path)
         screen.addstr(8, 0, "NB3: {0}\n".format(reply), curses.A_NORMAL)
