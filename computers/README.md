@@ -9,7 +9,7 @@ Let's put it all together.
 Contents|Description| # |Data|Link|
 :-------|:----------|:-:|:--:|:--:|
 Microcontroller|Arduino Nano (rev.3)|1|[-D-](_data/datasheets/arduino_nano_rev3.pdf)|[-L-](https://uk.farnell.com/arduino/a000005/arduino-nano-evaluation-board/dp/1848691)
-Piezo Buzzer|Piezoelectric speaker/buzzer|1|[-D-](_data/datasheets/piezo_buzzer.pdf)|[-L-](https://uk.farnell.com/kingstate/kpeg110/piezo-transducer/dp/1193641)
+Piezo Buzzer|Piezoelectric speaker/transducer|1|[-D-](_data/datasheets/piezo_buzzer.pdf)|[-L-](https://uk.farnell.com/tdk/ps1240p02bt/piezoelectric-buzzer-4khz-70dba/dp/3267212)
 Cable (MiniUSB-1m)|Mini-USB to Type-A cable (1 m)|1|-|[-L-](https://uk.farnell.com/molex/88732-8602/usb-cable-2-0-plug-plug-1m/dp/1221071)
 
 </p></details>
