@@ -1,12 +1,19 @@
-// Counter (4-bit)
+// Counter (32-bit)
 `timescale 1ns / 1ps
-module counter(clock, reset, count);
+module counter(clock, reset, left_leds, right_leds);
  
     // Declarations
     input clock;
     input reset;
-    output reg[3:0] count;
+    output wire[7:0] left_leds;
+    output wire[7:0] right_leds;
     
+    reg[31:0] count;
+
+
+assign left_leds = count[31:24];
+assign right_leds = count[31:24];
+
 // Initialize
 initial
     begin
@@ -17,9 +24,12 @@ initial
     always @(posedge clock)
         begin
             if(reset)
-                count <= 0;
+                begin
+                    count <= 0;
+                end
             else
-                count <= count + 1;
+                begin
+                    count <= count + 1;
+                end
         end
-         
 endmodule

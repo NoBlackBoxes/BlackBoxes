@@ -25,3 +25,25 @@ sudo apt-get install gtkwave
 We will use an (amazing) open source sythesis (yosys) and FPGA "programming" toolchain (IceStorm) developed by reverse-engineering the proprietary "bitstream" formats of an FPGA vendor (Lattice). *Note: Lattice has been quite supportive of these efforts. Kudos*
 
 ### Install WaveTrace (VScode extension) to view VCD files
+
+
+### Custom Board (NB3 Hindrbain)
+
+Add to API0 boards.json
+
+```txt
+  "NB3_hindbrain": {
+    "name": "NB3 Hindbrain v0",
+    "fpga": "iCE40-UP5K-SG48",
+    "programmer": {
+      "type": "iceprog"
+    },
+    "usb": {
+      "vid": "0403",
+      "pid": "6010"
+    },
+    "ftdi": {
+      "desc": "Dual RS232-HS"
+    }
+  },
+```
