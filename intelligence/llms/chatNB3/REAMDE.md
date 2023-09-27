@@ -12,6 +12,8 @@ Is your speaker working? If so, then you should be ready to go!
 ```bash
 pip install openai
 pip install piper-tts
+pip install --upgrade google-cloud-texttospeech
+pip install python-dotenv
 ```
 
 ## Test text-to-speech (and download voice models)
