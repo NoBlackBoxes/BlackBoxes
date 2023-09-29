@@ -66,3 +66,24 @@ LOD |C:1100|*load data at address x into z*      |LOD x 0 z|
 STR |D:1101|*store data in y at address x*       |STR x y 0|
 SEL |E:1110|*set lower byte of z*                |SEL 8'b z|
 SEU |F:1111|*set upper byte of z*                |SEU 8'b z|
+
+
+### From GPT-4
+| Name | OpCode | Description                                     | Example         |
+|------|--------|-------------------------------------------------|-----------------|
+| ADD  | 0000   | addition: x + y => z                            | ADD x y z       |
+| SUB  | 0001   | subtraction: x - y => z                         | SUB x y z       |
+| AND  | 0010   | logical "and": x & y => z                       | AND x y z       |
+| IOR  | 0011   | logical "inclusive or": x \| y => z             | IOR x y z       |
+| XOR  | 0100   | logical "exclusive or": x ^ y => z              | XOR x y z       |
+| SHR  | 0101   | shift x right by y-bits: x >> y => z            | SHR x y z       |
+| SHL  | 0110   | shift x left by y-bits: x << y => z             | SHL x y z       |
+| CMP  | 0111   | compare: x > y result in z                      | CMP x y z       |
+| JMP  | 1000   | jump to x, store next PC in y (if y != 0)       | JMP x y 0       |
+| BRZ  | 1001   | branch to x if y == 0                           | BRZ x y 0       |
+| BRN  | 1010   | branch to x if y != 0                           | BRN x y 0       |
+| RET  | 1011   | return from subroutine, pop PC from stack       | RET 0 0 0       |
+| LOD  | 1100   | load data at address x into z                   | LOD x 0 z       |
+| STR  | 1101   | store data in y at address x                    | STR x y 0       |
+| SEL  | 1110   | set lower byte of z with 8-bit immediate value  | SEL 8'b z       |
+| SEU  | 1111   | set upper byte of z with 8-bit immediate value  | SEU 8'b z       |
