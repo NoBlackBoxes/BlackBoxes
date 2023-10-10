@@ -1,5 +1,7 @@
 # audio : i2s : driver
 
+***Important***: Please complete the software installation steps below. Then power down your robot and complete the hardware installation (NB3 Ear and Mouth connections and Raspberry Pi to NB3 wiring.)
+
 ## Installation (Software)
 
 ### Install Kernal Headers
@@ -27,8 +29,6 @@ Then use the text editor to change the following (just uncomment the line):
 ```txt
 dtparam=i2s=on
 ```
-
-***After this, you must reboot your Raspberry Pi to continue.***
 
 ### Driver module
 
@@ -64,7 +64,7 @@ and add...
 nb3-audio-module
 ```
 
-***After this, it is useful to reboot your Raspberry Pi to continue.***
+***After this, power down your NB3 and complete the hardware installation.***
 
 ## Testing
 
