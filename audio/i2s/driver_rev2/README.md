@@ -24,8 +24,46 @@ dtparam=i2s=on
 dtoverlay=max98357a,sdmode-pin=16
 ```
 
-### ADD DETAILS ABOUT BUILDING THE DRIVER! (?)
+### Install Kernal Headers
 
+```bash
+# Download the Linux kernel headers (for RPi's current kernel version) - after running update/upgrade
+sudo apt-get install raspberrypi-kernel-headers
+```
+
+### Driver module
+
+The NB3 Ear and NB3 mouth boards need a special driver that is not included by default in the Raspberry Pi Linux kernel. Thus you will have to build (compile and link) the driver as a "kernel module" and then install it in your system. Here are the steps.
+
+```bash
+# Clone the LastBlackBox repo (if you have not done so already)
+git clone https://github.com/NoBlackBoxes/LastBlackBox
+
+# Navigate to the i2s/driver folder
+cd LastBlackBox/boxes/audio/i2s/driver_rev2
+
+# Run the Makefile
+make all
+# - this will build the kernel module (*.ko) file from the nb3-audio-module.c source file.
+
+# Install the module
+sudo make install
+
+# Insert the module into the kernel
+sudo insmod nb3-audio-module.ko
+```
+
+You will have to insert the module each time you reboot (run the insmod command above). If you want to have it load automatically then you need to add its name to this file: "/etc/modules".
+
+```bash
+sudo nano /etc/modules
+```
+
+and add...
+
+```txt
+nb3-audio-module
+```
 
 ***After this, power down your NB3 and complete the hardware installation.***
 
@@ -49,11 +87,11 @@ card 1: NB3audiocard [NB3_audio_card], device 0: simple-card_codec_link snd-soc-
 To make a test recording.
 
 ```bash
-arecord -D plughw:1 -c2 -r 48000 -f S32_LE -t wav -V stereo -v file_stereo.wav
+arecord -D plughw:1 -c2 -r 44100 -f S32 -t wav -V stereo -v file_stereo.wav
 ```
 
 To test playback.
 
 ```bash
-aplay -D plughw:1 -c2 -r 48000 -f S32_LE -t wav -V stereo -v file_stereo.wav
+aplay -D plughw:1 -c2 -r 44100 -f S32 -t wav -V stereo -v file_stereo.wav
 ```
