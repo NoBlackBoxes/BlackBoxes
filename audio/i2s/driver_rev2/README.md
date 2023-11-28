@@ -95,3 +95,5 @@ To test playback.
 ```bash
 aplay -D plughw:1 -c2 -r 44100 -f S32 -t wav -V stereo -v file_stereo.wav
 ```
+
+***NOTE***: The card number might change each reboot. I am currently working on this.
