@@ -68,18 +68,35 @@ void drawPixel(int x, int y, unsigned char attr)
     *((unsigned int*)(fb + offs)) = vgapal[attr & 0x0f];
 }
 
+void fillBackground(unsigned char attr)
+{
+    // Takes about 500 ms per full frame!
+    for (int i = 0; i < 1920*1080*4; i+=4)
+    {
+        *((unsigned int*)(fb + i)) = vgapal[attr & 0x0f];
+    }        
+}
+
 void drawRect(int x1, int y1, int x2, int y2, unsigned char attr, int fill)
 {
     int y=y1;
 
-    while (y <= y2) {
-       int x=x1;
-       while (x <= x2) {
-	  if ((x == x1 || x == x2) || (y == y1 || y == y2)) drawPixel(x, y, attr);
-	  else if (fill) drawPixel(x, y, (attr & 0xf0) >> 4);
-          x++;
-       }
-       y++;
+    while (y <= y2)
+    {
+        int x=x1;
+        while (x <= x2)
+        {
+            if ((x == x1 || x == x2) || (y == y1 || y == y2))
+            {
+                drawPixel(x, y, attr);
+            }
+	        else if (fill)
+            {
+                drawPixel(x, y, (attr & 0xf0) >> 4);
+                x++;
+            }
+        }
+        y++;
     }
 }
 
