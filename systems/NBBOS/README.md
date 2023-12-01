@@ -15,6 +15,15 @@ cd _tmp
 tar -xhf gcc-arm*
 ```
 
+- Clone and build usbboot (to write to eMMC on CM4)
+```bash
+git clone --depth=1 https://github.com/raspberrypi/usbboot
+cd usbboot
+make
+```
+
+- Use rpiboot to mount boot partition and copy a new kernel image
+
 ## Basic
 
 - UART

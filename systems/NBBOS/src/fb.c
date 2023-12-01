@@ -4,6 +4,7 @@
 
 unsigned int width, height, pitch, isrgb;
 unsigned char *fb;
+extern void *__memset_aarch64(void *dst, int val, int count);
 
 void fb_init()
 {
@@ -62,127 +63,13 @@ void fb_init()
     }
 }
 
-void drawPixel(int x, int y, unsigned char attr)
+void clear()
 {
-    int offs = (y * pitch) + (x * 4);
-    *((unsigned int*)(fb + offs)) = vgapal[attr & 0x0f];
+    __memset_aarch64(fb,  0xFF000000, 1920*1080*4);
 }
 
-void fillBackground(unsigned char attr)
+void fill(char r, char g, char b)
 {
-    // Takes about 500 ms per full frame!
-    for (int i = 0; i < 1920*1080*4; i+=4)
-    {
-        *((unsigned int*)(fb + i)) = vgapal[attr & 0x0f];
-    }        
-}
-
-void drawRect(int x1, int y1, int x2, int y2, unsigned char attr, int fill)
-{
-    int y=y1;
-
-    while (y <= y2)
-    {
-        int x=x1;
-        while (x <= x2)
-        {
-            if ((x == x1 || x == x2) || (y == y1 || y == y2))
-            {
-                drawPixel(x, y, attr);
-            }
-	        else if (fill)
-            {
-                drawPixel(x, y, (attr & 0xf0) >> 4);
-                x++;
-            }
-        }
-        y++;
-    }
-}
-
-void drawLine(int x1, int y1, int x2, int y2, unsigned char attr)  
-{  
-    int dx, dy, p, x, y;
-
-    dx = x2-x1;
-    dy = y2-y1;
-    x = x1;
-    y = y1;
-    p = 2*dy-dx;
-
-    while (x<x2) {
-       if (p >= 0) {
-          drawPixel(x,y,attr);
-          y++;
-          p = p+2*dy-2*dx;
-       } else {
-          drawPixel(x,y,attr);
-          p = p+2*dy;
-       }
-       x++;
-    }
-}
-
-void drawCircle(int x0, int y0, int radius, unsigned char attr, int fill)
-{
-    int x = radius;
-    int y = 0;
-    int err = 0;
- 
-    while (x >= y) {
-	if (fill) {
-	   drawLine(x0 - y, y0 + x, x0 + y, y0 + x, (attr & 0xf0) >> 4);
-	   drawLine(x0 - x, y0 + y, x0 + x, y0 + y, (attr & 0xf0) >> 4);
-	   drawLine(x0 - x, y0 - y, x0 + x, y0 - y, (attr & 0xf0) >> 4);
-	   drawLine(x0 - y, y0 - x, x0 + y, y0 - x, (attr & 0xf0) >> 4);
-	}
-	drawPixel(x0 - y, y0 + x, attr);
-	drawPixel(x0 + y, y0 + x, attr);
-	drawPixel(x0 - x, y0 + y, attr);
-        drawPixel(x0 + x, y0 + y, attr);
-	drawPixel(x0 - x, y0 - y, attr);
-	drawPixel(x0 + x, y0 - y, attr);
-	drawPixel(x0 - y, y0 - x, attr);
-	drawPixel(x0 + y, y0 - x, attr);
-
-	if (err <= 0) {
-	    y += 1;
-	    err += 2*y + 1;
-	}
- 
-	if (err > 0) {
-	    x -= 1;
-	    err -= 2*x + 1;
-	}
-    }
-}
-
-void drawChar(unsigned char ch, int x, int y, unsigned char attr)
-{
-    unsigned char *glyph = (unsigned char *)&font + (ch < FONT_NUMGLYPHS ? ch : 0) * FONT_BPG;
-
-    for (int i=0;i<FONT_HEIGHT;i++) {
-	for (int j=0;j<FONT_WIDTH;j++) {
-	    unsigned char mask = 1 << j;
-	    unsigned char col = (*glyph & mask) ? attr & 0x0f : (attr & 0xf0) >> 4;
-
-	    drawPixel(x+j, y+i, col);
-	}
-	glyph += FONT_BPL;
-    }
-}
-
-void drawString(int x, int y, char *s, unsigned char attr)
-{
-    while (*s) {
-       if (*s == '\r') {
-          x = 0;
-       } else if(*s == '\n') {
-          x = 0; y += FONT_HEIGHT;
-       } else {
-	  drawChar(*s, x, y, attr);
-          x += FONT_WIDTH;
-       }
-       s++;
-    }
+    int color = (0xFF << 24) | (r << 16) | (g << 8) | (b);
+    __memset_aarch64(fb,  color, 1920*1080*4);
 }
