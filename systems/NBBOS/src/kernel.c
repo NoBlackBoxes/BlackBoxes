@@ -5,7 +5,7 @@
 /** GPIO Register set */
 volatile unsigned int* gpio = (unsigned int*)GPIO_BASE;
 
-void main()
+void kernel_main()
 {
     uart_init();
     fb_init();
