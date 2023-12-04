@@ -1,10 +1,10 @@
-#include "io.h"
+#include "peripherals/base.h"
 
 // The buffer must be 16-byte aligned as only the upper 28 bits of the address can be passed via the mailbox
 volatile unsigned int __attribute__((aligned(16))) mbox[36];
 
 enum {
-    VIDEOCORE_MBOX = (PERIPHERAL_BASE + 0x0000B880),
+    VIDEOCORE_MBOX = (PBASE + 0x0000B880),
     MBOX_READ      = (VIDEOCORE_MBOX + 0x0),
     MBOX_POLL      = (VIDEOCORE_MBOX + 0x10),
     MBOX_SENDER    = (VIDEOCORE_MBOX + 0x14),
@@ -15,6 +15,17 @@ enum {
     MBOX_FULL      = 0x80000000,
     MBOX_EMPTY     = 0x40000000
 };
+
+
+void mmio_write(long reg, unsigned int val) 
+{ 
+    *(volatile unsigned int *)reg = val;
+}
+
+unsigned int mmio_read(long reg)
+{
+    return *(volatile unsigned int *)reg;
+}
 
 unsigned int mbox_call(unsigned char ch)
 {

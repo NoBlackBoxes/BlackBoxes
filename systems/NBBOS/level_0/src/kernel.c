@@ -1,18 +1,16 @@
-#include "io.h"
+#include "uart.h"
+#include "fb.h"
 #include "gpio.h"
-
-/** GPIO Register set */
-volatile unsigned int* gpio = (unsigned int*)GPIO_BASE;
 
 void kernel_main()
 {
     uart_init();
     fb_init();
-    gpio[LED_GPFSEL] |= (1 << LED_GPFBIT); // Set as output
-    gpio[GPIO_GPFSEL1] |= (1 << 18); // Set as output
+	
+	gpio_pin_set_func(16, GFOutput);
 
     // Get processor speed
-    uart_writeText("TEST TEST");
+    uart_send_string("TEST TEST");
 
     char r,g,b;
     r = 0;
@@ -22,21 +20,19 @@ void kernel_main()
     int rg = 0;
     while (1)
     {
-        fill(r,g,b);
-        r += 2;
-        g += 5;
-        b += 9;
-
         if(rg == 1)
         {
-            gpio[LED_GPCLR] = (1 << LED_GPIO_BIT);
-            gpio[GPIO_GPCLR0] = (1 << 16);
+            gpio_pin_set(16);
+			fill(r,g,b);
+			r += 2;
+			g += 5;
+			b += 9;
             rg = 0;
         }
         else
         {
-            gpio[LED_GPSET] = (1 << LED_GPIO_BIT);
-            gpio[GPIO_GPSET0] = (1 << 16);
+            gpio_pin_clear(16);
+			clear();
             rg = 1;
         }
     }

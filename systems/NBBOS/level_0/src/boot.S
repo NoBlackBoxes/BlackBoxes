@@ -1,30 +1,65 @@
-.section ".text.boot"  // Make sure the linker puts this at the start of the kernel image
+#include "mm.h"
 
-.global _start  // Execution starts here
+.section ".text.boot"
 
-_start:
-    // Check processor ID is zero (executing on main core), else hang
-    mrs     x1, mpidr_el1
-    and     x1, x1, #3
-    cbz     x1, 2f
-    // We're not on the main core, so hang in an infinite wait loop
-1:  wfe
-    b       1b
-2:  // We're on the main core!
+.globl _start
+    _start:
+        mrs x0, mpidr_el1   // Check that we are on the mmain core
+    and x0, x0, #0xFF
+    cbz x0, master
+    b proc_hang
 
-    // Set stack to start below our code
-    ldr     x1, =_start
-    mov     sp, x1
+master:
+    //// Define memory attributes
+    //// Attr0 = Normal, Inner/Outer Write-back, Write-allocate, Cacheable
+    //LDR X0, =0xFF               // Set Attr0=0xFF (Normal Memory)
+    //MSR MAIR_EL3, X0            // Write to MAIR_EL1
+//
+    //LDR X0, =translation_table   // Load address of translation table
+    //MSR TTBR0_EL3, X0            // Set TTBR0_EL3
+//
+    //// Assuming translation tables and MAIR are already set up
+    //LDR X0, = translation_table  // Load the address of the translation table
+    //MSR TTBR0_EL3, X0            // Set Translation Table Base Register 0
+//
+    //// Example values: T0SZ=22 for 4GB address space, Inner/Outer Write-back, no allocation on write miss
+    //LDR X0, =0x80000000 | (22 << 16) 
+    //MSR TCR_EL3, X0             // Write to TCR_EL3
+//
+    //// Set up MAIR, TCR registers
+    //MRS X0, SCTLR_EL3            // Read SCTLR
+    //ORR X0, X0, #1               // Set M bit to enable MMU
+    //MSR SCTLR_EL3, X0            // Write back to SCTLR
+//
+    //DSB SY                       // Data Synchronization Barrier
+    //ISB                          // Instruction Synchronization Barrier
+//
+    //mrs X0, SCTLR_EL3      // Read SCTLR
+    //orr X0, X0, #(1 << 2)  // Set C bit for D-cache
+    //orr X0, X0, #(1 << 12) // Set I bit for I-cache
+    //msr SCTLR_EL3, X0      // Write back to SCTLR
+    //dsb SY                 // Data Synchronization Barrier
+    //isb                    // Instruction Synchronization Barrier
+//
+    adr x0, bss_begin       // Setup stack
+    adr x1, bss_end
+    sub x1, x1, x0          // Measure size of BSS section
+    bl memzero              // Clear
 
-    // Clean the BSS section
-    ldr     x1, =__bss_start     // Start address
-    ldr     w2, =__bss_size      // Size of the section
-3:  cbz     w2, 4f               // Quit loop if zero
-    str     xzr, [x1], #8
-    sub     w2, w2, #1
-    cbnz    w2, 3b               // Loop if non-zero
+    mov sp, #LOW_MEMORY     // Set stack pointer
 
-    // Jump to our main() routine in C (make sure it doesn't return)
-4:  bl      main
-    // In case it does return, halt the master core too
-    b       1b
+
+    bl kernel_main          // Start kernel
+    b  proc_hang            // Hang if code retruns
+
+proc_hang:
+    wfe                     // Hang
+    b proc_hang
+
+//.section .data
+//    .align 12                    // 4KB aligned
+//translation_table:
+//    .rept 512                    // Repeat 512 times for 1GB of memory
+//    // Each entry: Output address | AttrIdx (bits 2-4) | Access Flag, Shareable, Valid, and Type Flags
+//    .word 0x40000000 | (0 << 2) | 0x403         // Normal Memory, Read-Write, Outer Shareable
+//.endr
