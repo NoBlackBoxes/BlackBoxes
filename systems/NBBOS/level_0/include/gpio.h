@@ -27,10 +27,14 @@
 #define GPIO_GPAREN1    32
 #define GPIO_GPAFEN0    34
 #define GPIO_GPAFEN1    35
-#define GPIO_GPPUDREG0  37
-#define GPIO_GPPUDREG1  38
-#define GPIO_GPPUDREG2  39
-#define GPIO_GPPUDREG3  40
+#define GPIO_GPPUD      37
+#define GPIO_GPPUDCLK0  38
+#define GPIO_GPPUDCLK1  39
+
+#define GPIO_GPPUDREG0  57
+#define GPIO_GPPUDREG1  58
+#define GPIO_GPPUDREG2  59
+#define GPIO_GPPUDREG3  60
 
 typedef enum _GPIO_Function {
     GPIO_Function_Input     = 0,
