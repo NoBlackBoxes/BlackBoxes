@@ -1,41 +1,62 @@
 #include "gpio.h"
-#include "utils.h"
 
-#define GPIO_GPSET0     7
-#define GPIO_GPSET1     8
+/* GPIO Register set */
+volatile unsigned int* gpio = (unsigned int*)GPIO_BASE;
 
-#define GPIO_GPCLR0     10
-#define GPIO_GPCLR1     11
-
-/** GPIO Register set */
-volatile unsigned int* gpio = (unsigned int*)REGS_GPIO;
-
-void gpio_pin_set_func(u8 pinNumber, GpioFunc func) {
-    u8 bitStart = (pinNumber * 3) % 30;
-    u8 reg = pinNumber / 10;
-
-    u32 selector = REGS_GPIO->func_select[reg];
-    selector &= ~(7 << bitStart);
-    selector |= (func << bitStart);
-
-    REGS_GPIO->func_select[reg] = selector;
-}
-
-void gpio_pin_enable(u8 pinNumber) {
-    REGS_GPIO->pupd_enable = 0;
-    delay(150);
-    REGS_GPIO->pupd_enable_clocks[pinNumber / 32] = 1 << (pinNumber % 32);
-    delay(150);
-    REGS_GPIO->pupd_enable = 0;
-    REGS_GPIO->pupd_enable_clocks[pinNumber / 32] = 0;
-}
-
-void gpio_pin_set(u8 pinNumber) 
+// Set GPIO pin function
+void gpio_set_function(unsigned int pin, GPIO_Function function)
 {
-    gpio[GPIO_GPSET0] = (1 << pinNumber);
+    int selection_bank = pin / 10;                      // Determine function selection bank (groups of 10 pins)
+    int bit_offset = (pin * 3) % 30;                    // Determine bit offset of pin within bank
+    
+    unsigned int current_value = gpio[selection_bank];  // Retrieve current register value
+    current_value &= ~(7 << bit_offset);                // Clear 3 bits at offset
+    current_value |= (function << bit_offset);          // Store new bits at offset
+    gpio[selection_bank] = current_value;               // Set selection register
+
+    return;
 }
 
-void gpio_pin_clear(u8 pinNumber) 
+// Set GPIO pin pull resistor
+void gpio_set_pull(unsigned int pin, GPIO_Pull pull)
 {
-    gpio[GPIO_GPCLR0] = (1 << pinNumber);
+    int selection_bank = (pin / 16) + GPIO_GPPUDREG0;   // Determine pull selection bank (groups of 16 pins)
+    int bit_offset = (pin * 2) % 32;                    // Determine bit offset of pin within bank
+    
+    unsigned int current_value = gpio[selection_bank];  // Retrieve current register value
+    current_value &= ~(3 << bit_offset);                // Clear 2 bits at offset
+    current_value |= (pull << bit_offset);              // Store new bits at offset
+    gpio[selection_bank] = current_value;               // Set selection register
+
+    return;
+}
+
+// Set (True)
+void gpio_pin_set(unsigned int pin) 
+{
+    if(pin < 32)
+    {
+        gpio[GPIO_GPSET0] = (1 << pin);    
+    }
+    else if(pin < GPIO_MAXPIN)
+    {
+        gpio[GPIO_GPSET1] = (1 << (pin - 32));    
+
+    }    
+    return;
+}
+
+// Clear (False)
+void gpio_pin_clear(unsigned int pin) 
+{
+    if(pin < 32)
+    {
+        gpio[GPIO_GPCLR0] = (1 << pin);    
+    }
+    else if(pin < GPIO_MAXPIN)
+    {
+        gpio[GPIO_GPCLR1] = (1 << (pin - 32));    
+
+    }    
+    return;
 }

@@ -1,26 +1,36 @@
 .section ".text.boot"
 
+// The "start" of NBBOS
 .globl _start
 _start:
-    mrs x0, mpidr_el1       // Load the core ID
-    and x0, x0, #0xFF       // Isolate lowest byte
-    cbz x0, master          // If Zero, then we are on the main core
-    b hang
+    // Check that we are on the main core
+    mrs x0, mpidr_el1       // Load the core ID into x0
+    and x0, x0, #0xFF       // Isolate the lowest byte
+    cbz x0, setup           // If zero, then we are on the main core (branch to setup)
+    b hang                  // If not, then hang
 
-master:
-    ldr     x1, =_start
-    mov     sp, x1
+// Setup and clear the stack
+setup:
+    // Set the stack pointer
+    ldr x1, =_start         // Load the address of _start in x1
+    mov sp, x1              // Set the stack pointer to this address (stack will grow down)
 
-    adr x0, bss_begin       // Setup stack
-    adr x1, bss_end
-    sub x1, x1, x0          // Measure size of BSS section
-    bl memzero              // Clear
+    // Clear the BSS (stack) region
+    ldr x1, =__bss_start    // Load first address of BSS into x0
+    ldr w2, =__bss_size     // Load size of BSS into w2
+1:  cbz w2, code            // Check if w2 is zero, if so run our code
+    str xzr, [x1], #8       // Store zero (the xzr register, 64-bits/8-bytes) at address in x1 and then increment x1 by 8
+    sub w2, w2, #1          // Decrement w2
+    cbnz w2, 1b             // Loop (go to backward reference 1, 1b) if result w2 not zero
 
-    mov sp, #LOW_MEMORY     // Set stack pointer
+// Jump to code entry point
+code:
+    bl kernel_main
 
-    bl kernel_main          // Start kernel
-    b  hang                 // Hang if code retruns
+    // Hang if our code returns
+    b  hang
 
+// Hang (infinite loop)
 hang:
-    wfe                     // Hang
+    wfe                     // Wait for event (low-power)
     b hang
