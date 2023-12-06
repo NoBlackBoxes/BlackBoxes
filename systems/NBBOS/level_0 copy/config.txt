@@ -1,4 +1,0 @@
-core_freq_min=500
-
-[pi4]
-kernel=kernel8.img

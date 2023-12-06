@@ -6,11 +6,8 @@ void kernel_main()
     // Initialize UART
     uart_init();
 
-    //uart_init_2();
-    uart_writeText("Helloffffffffffffffffffffffffffffffffffqewfqwerthssht world!\n");
-
-    //// Say hello
-    //uart_send_string("Hello Everybody!\n");
+    // Say hello
+    uart_send_string("Hello Everybody!\n");
 
     // Select GPIO functions
 	gpio_set_function(GPIO_LEDPIN, GPIO_Function_Output);
