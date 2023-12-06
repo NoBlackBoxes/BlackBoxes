@@ -1,45 +1,10 @@
 #include "gpio.h"
 #include "uart.h"
 
-/* UART (AUX - minuart) Register set */
-volatile unsigned int* aux = (unsigned int*)AUX_BASE;
-
-void uart_init_2() {
-    mmio_write(AUX_BASE + 4, 1); //enable UART1
-    mmio_write(AUX_BASE + 68, 0);
-    mmio_write(AUX_BASE + 96, 0);
-    mmio_write(AUX_BASE + 76, 3); //8 bits
-    mmio_write(AUX_BASE + 80, 0);
-    mmio_write(AUX_BASE + 68, 0);
-    mmio_write(AUX_BASE + 72, 0xC6); //disable interrupts
-    mmio_write(AUX_BASE + 104, UART_BAUD(115200));
-    gpio_useAsAlt5(14);
-    gpio_useAsAlt5(15);
-    mmio_write(AUX_BASE + 96, 3); //enable RX/TX
-}
-
-
-unsigned int uart_isWriteByteReady() { return mmio_read(AUX_BASE + 84) & 0x20; }
-
-void uart_writeByteBlockingActual(unsigned char ch) {
-    while (!uart_isWriteByteReady());
-
-    // THESE ARE NOT THE SAME!!!!! WHYYYY!YY!Y!Y!Y!
-    //aux[16] = (unsigned int)ch;
-
-    *(volatile unsigned int *)(AUX_BASE + 64) = (unsigned int)ch;
-    //mmio_write(AUX_BASE + AUX_MU_IO_REG, (unsigned int)ch);
-}
-
-void uart_writeText(char *buffer) {
-    while (*buffer) {
-       if (*buffer == '\n') uart_writeByteBlockingActual('\r');
-       uart_writeByteBlockingActual(*buffer++);
-    }
-}
-
 void uart_init() {
     
+    *(volatile unsigned int *)(AUX_BASE + AUX_ENABLES) = 1;
+
     // Set UART (miniuart, UART1) registers
     aux[AUX_ENABLES] = 1;
     aux[AUX_MU_IER_REG] = 0;
