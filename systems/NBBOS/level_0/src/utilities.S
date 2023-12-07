@@ -1,14 +1,14 @@
-.globl PUT32
+.global PUT32
 PUT32:
 	str w1,[x0]
 	ret
 
-.globl GET32
+.global GET32
 GET32:
 	ldr w0,[x0]
 	ret
 
-.globl TICK
+.global TICK
 TICK:
 	subs x0, x0, #1
 	bne TICK

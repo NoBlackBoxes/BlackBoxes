@@ -1,3 +1,4 @@
+#include "defs.h"
 #include "uart.h"
 #include "gpio.h"
 
@@ -29,5 +30,6 @@ void kernel_main()
             gpio_pin_clear(16);
             rg = 1;
         }
+        TICK(10000);
     }
 }

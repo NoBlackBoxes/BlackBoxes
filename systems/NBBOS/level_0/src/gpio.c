@@ -1,35 +1,34 @@
+#include "defs.h"
 #include "gpio.h"
 
 // Set GPIO pin function
-void gpio_set_function(unsigned int pin, unsigned int function)
+void gpio_set_function(uint32_t pin, uint32_t function)
 {
-    int selection_bank = pin / 10;                      // Determine function selection bank (groups of 10 pins)
-    int bit_offset = (pin * 3) % 30;                    // Determine bit offset of pin within bank
-    
-    unsigned int current_value = GET32(selection_bank); // Retrieve current register value
-    current_value &= ~(7 << bit_offset);                // Clear 3 bits at offset
-    current_value |= (function << bit_offset);          // Store new bits at offset
-    PUT32(selection_bank, current_value);               // Set selection register
+    uint64_t address = GPFSEL0 + ((pin / 10) * 4);  // Determine function selection register (groups of 10 pins)
+    int32_t bit_offset = (pin * 3) % 30;            // Determine bit offset of pin within bank
+    uint32_t current_value = GET32(address);        // Retrieve current register value
+    current_value &= ~(7 << bit_offset);            // Clear 3 bits at offset
+    current_value |= (function << bit_offset);      // Store new bits at offset
+    PUT32(address, current_value);                  // Set selection register
 
     return;
 }
 
 // Set GPIO pin pull resistor
-void gpio_set_pull(unsigned int pin, unsigned int pull)
+void gpio_set_pull(uint32_t pin, uint32_t pull)
 {
-    int selection_bank = (pin / 16) + GPIO_PUP_PDN_CNTRL_REG0;  // Determine pull selection bank (groups of 16 pins)
-    int bit_offset = (pin * 2) % 32;                            // Determine bit offset of pin within bank
-    
-    unsigned int current_value = GET32(selection_bank);         // Retrieve current register value
-    current_value &= ~(3 << bit_offset);                        // Clear 2 bits at offset
-    current_value |= (pull << bit_offset);                      // Store new bits at offset
-    PUT32(selection_bank, current_value);                       // Set selection register
+    uint64_t address = GPIO_PUP_PDN_CNTRL_REG0 + ((pin / 16) * 4);    // Determine pull selection register (groups of 16 pins)
+    int32_t bit_offset = (pin * 2) % 32;                                        // Determine bit offset of pin within bank
+    uint32_t current_value = GET32(address);                 // Retrieve current register value
+    current_value &= ~(3 << bit_offset);                                    // Clear 2 bits at offset
+    current_value |= (pull << bit_offset);                                  // Store new bits at offset
+    PUT32(address, current_value);                               // Set selection register
 
     return;
 }
 
 // Set (True)
-void gpio_pin_set(unsigned int pin) 
+void gpio_pin_set(uint32_t pin) 
 {
     if(pin < 32)
     {
@@ -43,7 +42,7 @@ void gpio_pin_set(unsigned int pin)
 }
 
 // Clear (False)
-void gpio_pin_clear(unsigned int pin) 
+void gpio_pin_clear(uint32_t pin) 
 {
     if(pin < 32)
     {

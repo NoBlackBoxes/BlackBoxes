@@ -55,7 +55,7 @@
 #define GPIO_Pull_Reserved      3
 
 // Declarations
-void gpio_set_function(unsigned int pin, unsigned int function);
-void gpio_set_pull(unsigned int pin, unsigned int pull);
-void gpio_pin_set(unsigned int pin);
-void gpio_pin_clear(unsigned int pin);
+void gpio_set_function(uint32_t pin, uint32_t function);
+void gpio_set_pull(uint32_t pin, uint32_t pull);
+void gpio_pin_set(uint32_t pin);
+void gpio_pin_clear(uint32_t pin);
