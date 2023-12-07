@@ -29,6 +29,7 @@ void uart_init()
     uart_send('\n');
 }
 
+// Send character
 void uart_send(char c) 
 {
     while(!(GET32(AUX_MU_LSR_REG) & 0x20));
@@ -36,12 +37,14 @@ void uart_send(char c)
     PUT32(AUX_MU_IO_REG, c);
 }
 
+// Receive character
 char uart_recv() {
     while(!(GET32(AUX_MU_LSR_REG) & 1));
 
     return GET32(AUX_MU_IO_REG) & 0xFF;
 }
 
+// Send string
 void uart_send_string(char *str) {
     while(*str)
     {
