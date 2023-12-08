@@ -1,5 +1,6 @@
 #pragma once
-#include "defs.h"
+#include "common.h"
+#include "string.h"
 
 // Definitions (AUX Register Addresses)
 #define AUX_BASE            PERIPHERAL_BASE + 0x215000
@@ -29,3 +30,4 @@ void uart_init();
 char uart_recv();
 void uart_send(char c);
 void uart_send_string(char *str);
+void uart_report(char *name, int64_t value);

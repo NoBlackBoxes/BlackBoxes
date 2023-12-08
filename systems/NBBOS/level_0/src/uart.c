@@ -1,4 +1,4 @@
-#include "defs.h"
+#include "common.h"
 #include "gpio.h"
 #include "uart.h"
 
@@ -55,4 +55,14 @@ void uart_send_string(char *str) {
         uart_send(*str);
         str++;
     }
+}
+
+// Send report
+void uart_report(char *name, int64_t value)
+{
+    char buffer[MAX_STRING];
+    format(name, value, buffer);
+    uart_send_string(buffer);
+    uart_send_string("\n");
+    return;
 }

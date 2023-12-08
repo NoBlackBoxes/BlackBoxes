@@ -1,5 +1,5 @@
 #pragma once
-#include "defs.h"
+#include "common.h"
 
 // Definitions (Mailbox Registers)
 #define VIDEOCORE_MBOX  PERIPHERAL_BASE + 0x0000B880
@@ -33,6 +33,8 @@ enum {
 
 enum {
     MBOX_TAG_SETPOWER   = 0x28001,
+    MBOX_TAG_GETCLKRATE = 0x30002,
+    MBOX_TAG_GETCLKMAXM = 0x30004,
     MBOX_TAG_SETCLKRATE = 0x38002,
 
     MBOX_TAG_SETPHYWH   = 0x48003,
@@ -50,4 +52,4 @@ enum {
 extern volatile uint32_t mailbox[36];
 
 // Declarations
-uint32_t mailbox_call(unsigned char ch);
+uint32_t mailbox_call(uint8_t ch);

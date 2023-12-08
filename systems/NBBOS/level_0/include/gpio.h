@@ -1,5 +1,5 @@
 #pragma once
-#include "defs.h"
+#include "common.h"
 
 // Definitions (GPIO Registers)
 #define GPIO_BASE               PERIPHERAL_BASE + 0x00200000

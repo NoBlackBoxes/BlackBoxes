@@ -1,7 +1,7 @@
 #pragma once
-#include "defs.h"
+#include "common.h"
 
 // Declarations
 void framebuffer_init();
-void clear();
-void fill();
+void framebuffer_clear();
+void framebuffer_fill();

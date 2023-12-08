@@ -1,4 +1,4 @@
-#include "defs.h"
+#include "common.h"
 #include "gpio.h"
 
 // Set GPIO pin function

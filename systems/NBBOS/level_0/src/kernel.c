@@ -1,4 +1,5 @@
-#include "defs.h"
+#include "common.h"
+#include "utilities.h"
 #include "uart.h"
 #include "gpio.h"
 #include "framebuffer.h"
@@ -7,6 +8,13 @@ void kernel_main()
 {
     // Initialize UART
     uart_init();
+
+    // Update CPU Clocks
+    uint32_t current_rate = get_clock_rate();
+    uart_report("Initial Clock Rate (Hz)", current_rate);
+    set_clock_rate(1500000000);
+    current_rate = get_clock_rate();
+    uart_report("New Clock Rate (Hz)", current_rate);
 
     // Initialize framebuffer
     framebuffer_init();
@@ -26,7 +34,7 @@ void kernel_main()
 
     while (1)
     {
-        fill(r,g,b);
+        framebuffer_fill(r,g,b);
         r += 2;
         g += 5;
         b += 9;
@@ -43,8 +51,6 @@ void kernel_main()
             gpio_pin_clear(16);
             rg = 1;
         }
-        
-        
         // TICK(10000);
     }
 }

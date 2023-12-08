@@ -1,4 +1,4 @@
-#include "defs.h"
+#include "common.h"
 #include "mailbox.h"
 #include "uart.h"
 
@@ -51,20 +51,15 @@ void framebuffer_init()
 
     mailbox[34] = MBOX_TAG_LAST;
 
-    uint32_t result = mailbox_call(MBOX_CH_PROP);
-    if(result == 0)
-    {
-        uart_send_string("Mailbox call failed\n");
-    }
-
     // Check call is successful and we have a pointer with depth 32
+    uint32_t result = mailbox_call(MBOX_CH_PROP);
     if (result && mailbox[20] == 32 && mailbox[28] != 0) {
         mailbox[28] &= 0x3FFFFFFF; // Convert GPU address to ARM address
         width = mailbox[10];       // Actual physical width
         height = mailbox[11];      // Actual physical height
         pitch = mailbox[33];       // Number of bytes per line
         isrgb = mailbox[24];       // Pixel order
-        framebuffer = (uint32_t *)((long)mailbox[28]);
+        framebuffer = (uint32_t *)((uint64_t)mailbox[28]);
         uart_send_string("Got a framebuffer\n");
     }
     else
@@ -73,7 +68,7 @@ void framebuffer_init()
     }
 }
 
-void clear()
+void framebuffer_clear()
 {
     for (uint32_t i = 0; i < 1920*1080; i++)
     {
@@ -81,7 +76,7 @@ void clear()
     }    
 }
 
-void fill(char r, char g, char b)
+void framebuffer_fill(char r, char g, char b)
 {
     uint32_t color = (0xFF << 24) | (r << 16) | (g << 8) | (b);
     for (uint32_t i = 0; i < 1920*1080; i++)
