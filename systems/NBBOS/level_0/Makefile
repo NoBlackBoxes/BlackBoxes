@@ -4,7 +4,7 @@ OFILES = $(subst src,build/src,$(CFILES:.c=.o))
 OFILES += $(subst src,build/src,$(SFILES:.S=.o))
 $(info CFILES is $(CFILES))
 $(info OFILES is $(OFILES))
-GCCFLAGS = -Wall -O0 -ffreestanding -nostdlib -nostartfiles -Iinclude
+GCCFLAGS = -Wall -O2 -ffreestanding -nostdlib -nostartfiles -Iinclude
 GCCPATH = ../_tmp/gcc-arm-10.3-2021.07-x86_64-aarch64-none-elf/bin
 
 all: clean kernel8.img
