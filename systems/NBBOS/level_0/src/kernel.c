@@ -9,18 +9,18 @@ void kernel_main()
     // Initialize UART
     uart_init();
 
-    // Update CPU Clocks
-    uint32_t current_rate = get_clock_rate();
-    uart_report("Initial Clock Rate (Hz)", current_rate);
+    // Say hello
+    uart_send_string("Hello Everybody!\n");
+
+    // Update CPU Clocks (this sequence breaks for O3 and O4 compiliation)
+    uint32_t initial_rate = get_clock_rate();
+    uart_report("Initial Clock Rate (Hz)", initial_rate);
     set_clock_rate(1500000000);
-    current_rate = get_clock_rate();
-    uart_report("New Clock Rate (Hz)", current_rate);
+    uint32_t new_rate = get_clock_rate();
+    uart_report("New Clock Rate (Hz)", new_rate);
 
     // Initialize framebuffer
     framebuffer_init();
-
-    // Say hello
-    uart_send_string("Hello Everybody!\n");
 
     // Select GPIO functions
 	gpio_set_function(GPIO_LEDPIN, GPIO_Function_Output);

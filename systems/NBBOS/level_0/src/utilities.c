@@ -20,7 +20,7 @@ uint32_t get_clock_rate()
     return 0;
 }
 
-uint32_t set_clock_rate(unsigned int rate)
+uint32_t set_clock_rate(uint32_t rate)
 {
     mailbox[0] = 9*4;  // Length of message in bytes
     mailbox[1] = MBOX_REQUEST;
