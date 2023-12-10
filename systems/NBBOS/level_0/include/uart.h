@@ -30,4 +30,4 @@ void uart_init();
 char uart_recv();
 void uart_send(char c);
 void uart_send_string(char *str);
-void uart_report(char *name, int64_t value);
+void uart_report(const char *name, int64_t value);

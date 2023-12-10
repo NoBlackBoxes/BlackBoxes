@@ -58,9 +58,10 @@ void uart_send_string(char *str) {
 }
 
 // Send report
-void uart_report(char *name, int64_t value)
+void uart_report(const char *name, int64_t value)
 {
     char buffer[MAX_STRING];
+    buffer[(MAX_STRING-1)] = '\0';    
     format(name, value, buffer);
     uart_send_string(buffer);
     uart_send_string("\n");

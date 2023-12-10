@@ -13,11 +13,11 @@ void kernel_main()
     uart_send_string("Hello Everybody!\n");
 
     // Update CPU Clocks (this sequence breaks for O3 and O4 compiliation)
-    uint32_t initial_rate = get_clock_rate();
-    uart_report("Initial Clock Rate (Hz)", initial_rate);
+    uint32_t clock_rate = get_clock_rate();
+    uart_report("Initial Clock Rate (Hz)", clock_rate);
     set_clock_rate(1500000000);
-    uint32_t new_rate = get_clock_rate();
-    uart_report("New Clock Rate (Hz)", new_rate);
+    clock_rate = get_clock_rate();
+    uart_report("New Clock Rate (Hz)", clock_rate);
 
     // Initialize framebuffer
     framebuffer_init();

@@ -32,7 +32,8 @@ void itoa(int64_t n, char *s)
 {
     int64_t i, sign;
 
-    if ((sign = n) < 0) /* record sign */
+    sign = n;
+    if (n < 0)          /* record sign */
         n = -n;         /* make n positive */
     i = 0;
     do
@@ -46,16 +47,17 @@ void itoa(int64_t n, char *s)
 }
 
 /* format: format report of named value */
-void format(char *name, int64_t value, char *s)
+void format(const char *name, int64_t value, char *s)
 {
     uint32_t n = strlen(name);
     uint32_t i = 0;
     for (i = 0; i < n; i++)
     {
-        s[i] = name[i];
+        s[i] = name[i];     /// This breaks at O3 and O4 optimizationlevels!
     }
     s[i++] = ':';
     s[i++] = ' ';
     itoa(value, &(s[i]));
+    
     return;
 }
