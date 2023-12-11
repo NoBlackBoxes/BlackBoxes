@@ -70,17 +70,19 @@ void framebuffer_init()
 
 void framebuffer_clear()
 {
-    for (uint32_t i = 0; i < 1920*1080; i++)
-    {
-        framebuffer[i] = 0xFF000000;
-    }    
+    //for (uint32_t i = 0; i < 1920*1080; i++)
+    //{
+    //    framebuffer[i] = 0xFF000000;
+    //}
+    __memset_aarch64(framebuffer,  0xFF000000, 1920*1080*4);
 }
 
 void framebuffer_fill(char r, char g, char b)
 {
     uint32_t color = (0xFF << 24) | (r << 16) | (g << 8) | (b);
-    for (uint32_t i = 0; i < 1920*1080; i++)
-    {
-        framebuffer[i] = color;
-    }    
+    //for (uint32_t i = 0; i < 1920*1080; i++)
+    //{
+    //    framebuffer[i] = color;
+    //}
+    __memset_aarch64(framebuffer,  color, 1920*1080*4);
 }

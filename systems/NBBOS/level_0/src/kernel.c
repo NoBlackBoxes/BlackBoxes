@@ -1,5 +1,6 @@
 #include "common.h"
 #include "utilities.h"
+#include "mmu.h"
 #include "uart.h"
 #include "gpio.h"
 #include "framebuffer.h"
@@ -8,6 +9,9 @@ void kernel_main()
 {
     // Initialize UART
     uart_init();
+
+    // MMU init
+    mmu_init();
 
     // Say hello
     uart_send_string("Hello Everybody!\n");
@@ -18,6 +22,10 @@ void kernel_main()
     set_clock_rate(1500000000);
     clock_rate = get_clock_rate();
     uart_report("New Clock Rate (Hz)", clock_rate);
+
+    // Get current exception level
+    uint32_t el = GETEL();
+    uart_report("Current Exception Level", el);
 
     // Initialize framebuffer
     framebuffer_init();
