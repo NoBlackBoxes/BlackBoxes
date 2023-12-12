@@ -21,7 +21,7 @@
 // Definitions (UART Parameters)
 #define UART_TXD            14
 #define UART_RXD            15
-#define UART_CLOCK          540000000
+#define UART_CLOCK          500000000
 #define UART_MAX_QUEUE      16 * 1024
 #define UART_BAUD(baud)     ((UART_CLOCK/(baud*8))-1)
 
