@@ -1,6 +1,5 @@
 #include "common.h"
 #include "utilities.h"
-#include "mmu.h"
 #include "uart.h"
 #include "gpio.h"
 #include "framebuffer.h"
@@ -9,9 +8,6 @@ void kernel_main()
 {
     // Initialize UART
     uart_init();
-
-    // MMU init
-    mmu_init();
 
     // Say hello
     uart_send_string("Hello Everybody!\n");
@@ -35,19 +31,37 @@ void kernel_main()
 	gpio_set_function(16, GPIO_Function_Output);
 
     int rg = 0;
-    char r,g,b;
+    int r,g,b;
     r = 0;
     g = 55;
     b = 77;
+    int dr = 2;
+    int dg = 5;
+    int db = 11;
 
     while (1)
     {
         framebuffer_fill(r,g,b);
-        r += 2;
-        g += 5;
-        b += 9;
+        r += dr;
+        g += dg;
+        b += db;
+        if(r > 255 || r < 0)
+        {
+            dr = -dr;
+            r += dr;
+        }
+        if(g > 255 || g < 0)
+        {
+            dg = -dg;
+            g += dg;
+        }
+        if(b > 255 || b < 0)
+        {
+            db = -db;
+            b += db;
+        }
 
-        if(rg == 1)
+        if (rg == 1)
         {
             gpio_pin_set(GPIO_LEDPIN);
             gpio_pin_set(16);
