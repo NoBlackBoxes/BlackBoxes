@@ -41,6 +41,7 @@ void kernel_main()
 
     while (1)
     {
+        //framebuffer_fill_naive(r,g,b);
         framebuffer_fill(r,g,b);
         r += dr;
         g += dg;

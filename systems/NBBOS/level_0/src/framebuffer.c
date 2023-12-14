@@ -77,12 +77,17 @@ void framebuffer_clear()
     __memset_aarch64(framebuffer,  0xFF000000, 1920*1080*4);
 }
 
+void framebuffer_fill_naive(char r, char g, char b)
+{
+    uint32_t color = (0xFF << 24) | (r << 16) | (g << 8) | (b);
+    for (uint32_t i = 0; i < 1920*1080; i++)
+    {
+        framebuffer[i] = color;
+    }
+}
+
 void framebuffer_fill(char r, char g, char b)
 {
     uint32_t color = (0xFF << 24) | (r << 16) | (g << 8) | (b);
-    //for (uint32_t i = 0; i < 1920*1080; i++)
-    //{
-    //    framebuffer[i] = color;
-    //}
     __memset_aarch64(framebuffer,  color, 1920*1080*4);
 }

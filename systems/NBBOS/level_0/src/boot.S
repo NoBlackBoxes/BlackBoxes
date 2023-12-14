@@ -81,6 +81,12 @@ loop:
     b cache
 
 cache:
+    // Set the SMPEN bit
+    mrs x0, S3_1_C15_C2_1
+    orr x0, x0, #(0x1 << 6)     // The SMP bit.
+    msr S3_1_C15_C2_1, x0
+
+    // Turn on Cache and MMU
 	mrs	x0, sctlr_el2
 	orr x0, x0, #(0x1 << 2)     // The C bit on (data cache). 
 	orr x0, x0, #(0x1 << 12)    // The I bit on (instruction cache)
