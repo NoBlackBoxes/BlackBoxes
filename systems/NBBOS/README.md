@@ -15,7 +15,7 @@ Also, my MMU and Cache activation assembly is a very light mod of Arm's [Baremet
 
 ## Prerequisites
 
-- Download cross-compile toolchain: https://developer.arm.com/downloads/-/gnu-a
+- Download cross-compile toolchain: https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads
 - Extract it to a temporary folder within the LBB repo (boxes/systems/NBBOS) tree
 
 ```bash

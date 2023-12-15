@@ -5,13 +5,14 @@ AFILES = $(subst src,build/src,$(CFILES:.c=.S))
 OFILES += $(subst src,build/src,$(SFILES:.S=.o))
 $(info CFILES is $(CFILES))
 $(info OFILES is $(OFILES))
-GCCFLAGS = -Wall -Wextra -O2 -ffreestanding -nostdlib -nostartfiles -Iinclude # -fsanitize-undefined-trap-on-error
-GCCPATH = ../_tmp/gcc-arm-10.3-2021.07-x86_64-aarch64-none-elf/bin
+GCCFLAGS = -mcpu=cortex-a72 -mtune=cortex-a72 -O2 -Wall -Wextra -ffreestanding -nostdlib -nostartfiles -Iinclude # -fsanitize-undefined-trap-on-error
+ASMFLAGS = -mcpu=cortex-a72 -mtune=cortex-a72 -O4 -Iinclude
+GCCPATH = ../_tmp/arm-gnu-toolchain-13.2.Rel1-x86_64-aarch64-none-elf/bin
 
 all: clean kernel8.img
 
 build/%.o: %.S
-	$(GCCPATH)/aarch64-none-elf-gcc -Iinclude -O4 -c $< -o $@
+	$(GCCPATH)/aarch64-none-elf-gcc $(GCCFLAGS) -c $< -o $@
 
 build/%.o: %.c
 	$(GCCPATH)/aarch64-none-elf-gcc $(GCCFLAGS) -c $< -o $@
