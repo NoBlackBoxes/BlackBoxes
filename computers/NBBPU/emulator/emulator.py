@@ -1,6 +1,14 @@
 import os
 import sys
+import numpy as np
 from libs.opcodes import OpCodes
+from libs.operations import operation
+
+# Define state
+pc = 0
+registers = np.zeros(16, dtype=np.int16)
+ram = np.zeros(256, dtype=np.int16)
+state  = {'pc' : pc, 'registers' : registers, 'ram' : ram}
 
 # Check for program to emulate
 if len(sys.argv) != 2:
@@ -25,17 +33,26 @@ while emulating:
         emulating = False
         continue
 
-    # Seperate code bytes
+    # Seperate instrution nibbles
     op = line[0]
-    x = line[1]
-    y = line[2]
-    z = line[3]
+    x = int(line[1], 16)
+    y = int(line[2], 16)
+    z = int(line[3], 16)
+
+    # Run operation
+    operation(OpCodes[op], x, y, z, state)
 
     # Report
-    print("{0} {1} {2} {3}".format(OpCodes[op], x, y, z))
+    print("{0:03d}: {1} {2} {3} {4}".format(instruction_count, OpCodes[op], x, y, z))
+    print("{0}".format(state['registers']))
 
     # Increment instruction count
     instruction_count = instruction_count + 1
+
+    # DEBUG
+    if instruction_count > 5:
+        print(instruction_count)
+        break
 
 # Shutdown
 input_file.close()
