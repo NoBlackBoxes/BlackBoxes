@@ -1,14 +1,10 @@
-import os
 import sys
-import numpy as np
 from libs.opcodes import OpCodes
+from libs.system import State
 from libs.operations import operation
 
 # Define state
-pc = 0
-registers = np.zeros(16, dtype=np.int16)
-ram = np.zeros(256, dtype=np.int16)
-state  = {'pc' : pc, 'registers' : registers, 'ram' : ram}
+state = State()
 
 # Check for program to emulate
 if len(sys.argv) != 2:
@@ -21,42 +17,40 @@ input_path = sys.argv[1]
 # Open files
 input_file = open(input_path, 'r')
 
+# Load program
+instructions = input_file.readlines()
+
 # Emulate
 emulating = True
-instruction_count = 0
+state.pc = 0
+count = 0
 while emulating:
-    # Read line
-    line = input_file.readline()
-
-    # Is finished? Stop.
-    if not line:
-        emulating = False
-        continue
+    # Fetch instruction
+    instruction = instructions[state.pc]
 
     # Seperate instrution nibbles
-    op = line[0]
-    x = int(line[1], 16)
-    y = int(line[2], 16)
-    z = int(line[3], 16)
+    op = instruction[0]
+    x = int(instruction[1], 16)
+    y = int(instruction[2], 16)
+    z = int(instruction[3], 16)
+
+    # Report instruction
+    #print("{0:03d}: {1} {2} {3} {4}".format(state.pc, OpCodes[op], x, y, z))
 
     # Run operation
     operation(OpCodes[op], x, y, z, state)
 
-    # Report
-    print("{0:03d}: {1} {2} {3} {4}".format(instruction_count, OpCodes[op], x, y, z))
-    print("{0}".format(state['registers']))
-
-    # Increment instruction count
-    instruction_count = instruction_count + 1
+    # Report registers
+    #print("\t{0}".format(state.registers))
 
     # DEBUG
-    if instruction_count > 5:
-        print(instruction_count)
+    if count > 10000000:
+        print("\t{0}".format(state.registers))
         break
+    else:
+        count = count + 1
 
 # Shutdown
 input_file.close()
 
 #FIN
-
-
