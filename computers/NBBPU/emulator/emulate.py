@@ -8,13 +8,13 @@ state = State()
 
 # Check for program to emulate
 if len(sys.argv) != 2:
-    print("Usage: python emmulator.py <executable.rom>")
+    print("Usage: python emulate.py <executable.rom>")
     exit()
 
 # Extract input file to emulate
 input_path = sys.argv[1]
 
-# Open files
+# Open file
 input_file = open(input_path, 'r')
 
 # Load program

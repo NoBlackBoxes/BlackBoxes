@@ -1,12 +1,25 @@
 # computers : NBBPU : compiler
 
-The NBBPU compiler
+The NBBPU compiler for a simple NBB programming language (*.nbb)
+
+## NBB "C-style" programming language
+
+- Single type: Signed 16-bit integers (int)
+
+Keyword:
+int|for|return
+
+Operators:
++, -, =, ==, !=, !, 
+
 
 ## Overview
 
-Perhaps a C compiler?
+A Super simple C compiler
 
-### Notes
+1. Lexer
+2. Syntax Analysis (construct tree)
+3. Generate imtermediate code from tree
 
-LLVM backend?
+
 
