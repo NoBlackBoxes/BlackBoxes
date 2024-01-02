@@ -1,20 +1,28 @@
 import sys
-import libs.lexer
+import libs.lexer as lexer
 
 # Check for program to compile
 if len(sys.argv) != 2:
     print("Usage: python compile.py <program.nbb>")
     exit()
 
-# Extract input file to compile
-input_path = sys.argv[1]
-
-# Open file
-input_file = open(input_path, 'r')
+# Extract program file to compile
+program_path = sys.argv[1]
 
 # Load program
-lines = input_file.readlines()
+with open(program_path) as f:
+    program = f.read()
+
+# Lex program
+tokens = lexer.tokenize(program)
+
+# Report tokens
+for t in tokens:
+    print(t)
+#    if t[0] == 'KEYWORD':
+#        print(t)
 
 # Debug
-print(lines)
+#print(program)
+#print(tokens)
 
