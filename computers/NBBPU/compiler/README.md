@@ -17,8 +17,8 @@ Operators:
 
 A Super simple C compiler
 
-1. Lexer
-2. Syntax Analysis (construct tree)
+1. Lexer (extract tokens and values)
+2. Syntax Analysis: Use grammar rules to top-down descend from full program text...
 3. Generate imtermediate code from tree
 
 
