@@ -1,182 +1,137 @@
-# To Do:
-# - Preserve line numbers (and columns?)
-# - Refactor to make super clear
-# - ASSIGN!
+from languages.nbbc import *
+from libs.token import Token
 
-# Letters List
-lower_case = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-upper_case = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-_Letters = ['_'] + lower_case + upper_case
-
-# Digits
-Digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-
-# Keyword (reserved) list
-Keywords = {
-    "int",
-    "for",
-    "return",
-}
-
-# Single Operator dictionary
-Single_Operators = {
-    '+'             : "BINARYOP",
-    '-'             : "BINARYOP",
-    '='             : "ASSIGN",
-    '!'             : "BINARYOP",
-    '<'             : "BINARYOP",
-    '>'             : "BINARYOP",
-}
-
-# Double Operator dictionary
-Double_Operators = {
-    '++'            : "BINARYOP",
-    '+='            : "BINARYOP",
-    '=='            : "BINARYOP",
-    '!='            : "BINARYOP",
-}
-
-# Single Seperator dictionary
-Single_Seperators = {
-    "("             : "LEFT_PARENT",
-    ")"             : "RIGHT_PARENT",
-    "["             : "LEFT_BRACKET",
-    "]"             : "RIGHT_BRACKET",
-    "{"             : "LEFT_BRACE",
-    "}"             : "RIGHT_BRACE",
-    ";"             : "SEMICOLON",
-}
-
-# Double Seperator dictionary
-Double_Seperators = {
-    "/*"            : "LEFT_COMMENT",
-    "*/"            : "RIGHT_COMMENT",
-    "//"            : "LINE_COMMENT",
-}
-
-# Whitspace dictionary
-Whitespaces = {
-    ' '             : "WHITESPACE",
-    '\t'            : "WHITESPACE",
-    '\n'            : "WHITESPACE",
-}
-
-# FSM States
+# Lexer FSM States
 SEEK = 0
 TOKEN = 1
-COMMENT = 2
-QUOTE = 3
+LINE_COMMENT = 2
+BLOCK_COMMENT = 3
 
-# Sets
-Operators = Single_Operators | Double_Operators
-Seperators = Single_Seperators | Double_Seperators
+# Lexer Class
+class Lexer:
+    def __init__(self, characters):
+        self.characters = characters
+        self.num_characters = len(characters)
+        self.tokens = []
 
-# Tokenize character array
-def tokenize(characters):
+        # Build "line number" array for debugging
+        self.lines = []
+        count = 1
+        for c in self.characters:
+            self.lines.append(count)
+            if c == '\n':
+                count += 1
+        
+        # Append '#' character to avoid out-of-bounds
+        self.characters += '#'
 
-    # Number of characters to tokenize
-    num_characters = len(characters)
+    def tokenize(self):
+        lexeme = ''
+        index = 0
+        state = SEEK
 
-    # Append extra character to avoid out-of-bounds when checking "double-sized" patterns
-    characters += '#'
+        # Lexer FSM
+        while(True):
 
-    # Initialize
-    tokens = []
-    lexeme = ''
-    index = 0
-    state = SEEK
+            # Check for end of characters
+            if index >= self.num_characters:
+                break
 
-    # FSM
-    while(True):
+            # Get current character and next doublet
+            c = self.characters[index]
+            cc = c + self.characters[index + 1]
 
-        # Check for end of characters
-        if index >= num_characters:
-            break
+            # SEEK State
+            if SEEK == state:
+                if c in Whitespaces:
+                    index += 1
+                else:
+                    state = TOKEN
 
-        # Get current character and next doublet
-        c = characters[index]
-        cc = c + characters[index + 1]
-
-        # SEEK State
-        if SEEK == state:
-            if c in Whitespaces:
-                index += 1
-            else:
-                state = TOKEN
-
-        # TOKEN State
-        elif TOKEN == state:
-            # If lexeme is complete, then tokenize it...
-            if (c in Whitespaces | Single_Seperators | Single_Operators) or (cc in Double_Seperators | Double_Operators):
-                if lexeme:
-                    # Tokenize lexeme (Keyword, Number, or Identifier?)
-                    if lexeme in Keywords:
-                        tokens.append(('KEYWORD', lexeme))
-                    elif (lexeme[0] in Digits) or (lexeme[0] == '-'):
-                        for l in lexeme[1:]:
-                            if l in Digits:
-                                continue
-                            else:
-                                print("Lex Error: Invalid ID ({0})".format(lexeme))
-                                exit(-1)
-                        tokens.append(('NUMBER', int(lexeme)))                              
-                    else:
-                        tokens.append(('ID', lexeme))
-                lexeme = ''
-                state = SEEK
-            # ...otherwise concat character and continue
-            else:
-                lexeme += c
-                index += 1
-                continue
-
-            # Handle Seperators and Operators
-            if c in Single_Seperators:
-                tokens.append((Single_Seperators[c], c))
-                index += 1
-                state = SEEK
-            elif c in Single_Operators:
-                if (c == '-') and (cc[1] in Digits):
+            # TOKEN State
+            elif TOKEN == state:
+                # If lexeme is complete, then tokenize it...
+                if (c in Whitespaces | Single_Seperators | Single_Operators) or (cc in Double_Seperators | Double_Operators):
+                    if lexeme:
+                        # Tokenize lexeme (Keyword, Number, or Identifier?)
+                        if lexeme in Keywords:
+                            self.tokens.append(Token('KEYWORD', lexeme, None, self.lines[index]))
+                        elif (lexeme[0] in Digits) or (lexeme[0] == '-'):
+                            for l in lexeme[1:]:
+                                if l in Digits:
+                                    continue
+                                else:
+                                    print(f"Lexer Error: Invalid ID ({lexeme} at Line: {self.lines[index]})")
+                                    exit(-1)
+                            self.tokens.append(Token('NUMBER', 'integer', int(lexeme), self.lines[index]))
+                        else:
+                            self.tokens.append(Token('ID', lexeme, None, self.lines[index]))
+                    lexeme = ''
+                    state = SEEK
+                # ...otherwise concat character and continue
+                else:
                     lexeme += c
                     index += 1
-                    continue                 
-                else:
-                    tokens.append((Single_Operators[c], c))
+                    continue
+                # Handle Seperators and Operators
+                if c in Single_Seperators:
+                    self.tokens.append(Token('SEPERATOR', Single_Seperators[c], c, self.lines[index]))
                     index += 1
                     state = SEEK
-            elif cc in Double_Seperators:
-                if cc == '//':
+                elif c in Single_Operators:
+                    if (c == '-') and (cc[1] in Digits):
+                        lexeme += c
+                        index += 1
+                        continue                 
+                    else:
+                        self.tokens.append(Token('OPERATOR', Single_Operators[c], c, self.lines[index]))
+                        index += 1
+                        state = SEEK
+                elif cc in Double_Seperators:
+                    if cc == '//':
+                        lexeme = ''
+                        index += 2
+                        state = LINE_COMMENT
+                    elif cc == '/*':
+                        lexeme = ''
+                        index += 2
+                        state = BLOCK_COMMENT
+                    else:
+                        lexeme = ''                   
+
+#                elif cc in Double_Seperators:
+#                    if cc == '//':
+#                        lexeme = ''
+#                        index += 2
+#                        state = LINE_COMMENT
+#                    elif cc == '/*':
+#                        lexeme = ''
+#                        index += 2
+#                        state = BLOCK_COMMENT
+#                    else:
+#                        lexeme = ''                   
+
+            # LINE_COMMENT State
+            elif LINE_COMMENT == state:
+                if c == '\n':
+                    self.tokens.append(Token('COMMENT', 'LINE', lexeme, self.lines[index]))
                     lexeme = ''
-                    index += 2
-                    state = COMMENT
-                elif cc == '/*':
-                    lexeme = ''
-                    index += 2
-                    state = QUOTE
+                    index += 1
+                    state = SEEK
                 else:
-                    lexeme = ''                   
+                    lexeme += c
+                    index += 1
 
-        # COMMENT State
-        elif COMMENT == state:
-            if c == '\n':
-                tokens.append(('COMMENT', lexeme))
-                lexeme = ''
-                index += 1
-                state = SEEK
-            else:
-                lexeme += c
-                index += 1
+            # BLOCK_COMMENT State
+            elif BLOCK_COMMENT == state:
+                if cc == '*/':
+                    self.tokens.append(Token('COMMENT', 'BLOCK', lexeme, self.lines[index]))
+                    lexeme = ''
+                    index += 2
+                    state = SEEK
+                else:
+                    lexeme += c
+                    index += 1
 
-        # QUOTE State
-        elif QUOTE == state:
-            if cc == '*/':
-                tokens.append(('QUOTE', lexeme))
-                lexeme = ''
-                index += 2
-                state = SEEK
-            else:
-                lexeme += c
-                index += 1
-
-    return tokens
+        return self.tokens
 

@@ -1,5 +1,6 @@
 import sys
-import libs.lexer as lexer
+from libs.token import Token
+from libs.lexer import Lexer
 
 # Check for program to compile
 if len(sys.argv) != 2:
@@ -13,8 +14,9 @@ program_path = sys.argv[1]
 with open(program_path) as f:
     program = f.read()
 
-# Lex program
-tokens = lexer.tokenize(program)
+# Lex source code
+lexer = Lexer(program)
+tokens = lexer.tokenize()
 
 # Report tokens
 for t in tokens:

@@ -54,3 +54,31 @@
 
 # Simple: Calc Parser
 
+# Program
+def Program(tokens, index):
+    return Declarations(tokens, index)
+
+# Declarations
+def Declarations(tokens, index):
+    current = tokens[index]
+    declarations = []
+    while current is not None:
+        declarations.append(Declaration())
+    return declarations
+
+# Declaration
+def Declaration(tokens, index):
+    current = tokens[index]
+    if current[1] = 'int':
+    
+
+
+    while current is not None:
+        declarations.append(Declaration())
+    return declarations
+
+
+def parse(tokens):
+    return Program(tokens, 0)
+
+#FIN
