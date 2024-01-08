@@ -8,6 +8,6 @@ class Token:
 
     def __repr__(self):
         if self.value is not None:
-            return f"Token({self.type}:{self.name}={repr(self.value)}):{self.line}"
+            return f"{self.line:04d}:Token({self.type}:{self.name}, {repr(self.value)})"
         else:
-            return f"Token({self.type}:{self.name}):{self.line}"
+            return f"{self.line:04d}:Token({self.type}:{self.name})"

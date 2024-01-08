@@ -74,11 +74,11 @@ class Lexer:
                     index += 1
                     continue
                 # Handle Seperators and Operators
-                if c in Single_Seperators:
+                if c in Single_Seperators and cc not in Double_Seperators:
                     self.tokens.append(Token('SEPERATOR', Single_Seperators[c], c, self.lines[index]))
                     index += 1
                     state = SEEK
-                elif c in Single_Operators:
+                elif c in Single_Operators and cc not in Double_Operators:
                     if (c == '-') and (cc[1] in Digits):
                         lexeme += c
                         index += 1
@@ -98,18 +98,10 @@ class Lexer:
                         state = BLOCK_COMMENT
                     else:
                         lexeme = ''                   
-
-#                elif cc in Double_Seperators:
-#                    if cc == '//':
-#                        lexeme = ''
-#                        index += 2
-#                        state = LINE_COMMENT
-#                    elif cc == '/*':
-#                        lexeme = ''
-#                        index += 2
-#                        state = BLOCK_COMMENT
-#                    else:
-#                        lexeme = ''                   
+                elif cc in Double_Operators:
+                        self.tokens.append(Token('OPERATOR', Double_Operators[cc], cc, self.lines[index]))
+                        index += 2
+                        state = SEEK
 
             # LINE_COMMENT State
             elif LINE_COMMENT == state:
@@ -135,3 +127,10 @@ class Lexer:
 
         return self.tokens
 
+    def save(self, path):
+        f = open(path, 'w+')
+        for t in self.tokens:
+            print(t)
+            print(t,  file=f)
+        f.close()
+        return

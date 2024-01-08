@@ -2,7 +2,7 @@
 int g = 42;
 int neg_g = -42;
 
-int main()
+void main()
 {
     int cycles = 11;            // Blink cycles
     int period = 1000;          // Blink period
@@ -18,5 +18,5 @@ int main()
         state = !state;
     }
 
-    return 0; 
+    return; 
 }
