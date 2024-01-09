@@ -1,5 +1,72 @@
-# Grammar for NBB language
-# ------------------------
+# Keyword (reserved) dictionary
+Keywords = {
+    "void"          : "VOID",
+    "int"           : "INT",
+    "for"           : "FOR",
+    "return"        : "RETURN",
+}
+
+# Single Operator dictionary
+Single_Operators = {
+    '='             : "ASSIGN",
+    '+'             : "PLUS",
+    '-'             : "MINUS",
+    '!'             : "NOT",
+    '<'             : "LESS",
+    '>'             : "GREATER",
+}
+
+# Double Operator dictionary
+Double_Operators = {
+    '--'            : "DECREMENT",
+    '++'            : "INCREMENT",
+    '+='            : "ASSIGN_PLUS",
+    '-='            : "ASSIGN_MINUS",
+    '=='            : "EQUAL",
+    '!='            : "NOTEQUAL",
+}
+
+# Single Seperator dictionary
+Single_Seperators = {
+    "("             : "LEFT_PARENT",
+    ")"             : "RIGHT_PARENT",
+    "["             : "LEFT_BRACKET",
+    "]"             : "RIGHT_BRACKET",
+    "{"             : "LEFT_BRACE",
+    "}"             : "RIGHT_BRACE",
+    ","             : "COMMA",
+    ";"             : "SEMICOLON",
+}
+
+# Double Seperator dictionary
+Double_Seperators = {
+    "/*"            : "LEFT_COMMENT",
+    "*/"            : "RIGHT_COMMENT",
+    "//"            : "LINE_COMMENT",
+}
+
+# Whitspace dictionary
+Whitespaces = {
+    ' '             : "SPACE",
+    '\t'            : "TAB",
+    '\n'            : "NEWLINE",
+}
+
+# Sets
+Singles = Single_Seperators | Single_Operators
+Doubles = Double_Seperators | Double_Operators
+
+# Letters
+lower_case = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+upper_case = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+_Letters = ['_'] + lower_case + upper_case
+
+# Digits
+Digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+
+
+# Grammar for NBB "C" language
+# ----------------------------
 #
 # Program
 # └── Declarations
