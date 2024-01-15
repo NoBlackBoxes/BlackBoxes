@@ -8,7 +8,6 @@ Creating a wesbite, from simple to complex.
 
 Contents|Description| # |Data|Link|
 :-------|:----------|:-:|:--:|:--:|
-Laptop| Any laptop with a text editor|1|-|-
 
 </p></details>
 

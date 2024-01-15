@@ -8,8 +8,6 @@ Seting up a python environment
 
 Contents|Description| # |Data|Link|
 :-------|:----------|:-:|:--:|:--:|
-Laptop||1|-|-
-Camera (USB webcam or built-in)||1|-|-
 
 </p></details>
 

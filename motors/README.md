@@ -8,14 +8,13 @@ Computers and brains work with voltages. In order for either to affect the envir
 
 Contents|Description| # |Data|Link|
 :-------|:----------|:-:|:--:|:--:|
-DC brushed motor|6V Brushed DC motor|1|-|[-L-](https://www.amazon.co.uk/Gikfun-1V-6V-Hobby-Arduino-EK1894/dp/B07BHHP2BT)
-Propeller|Motor shaft attachment|1|-|[-L-](https://www.amazon.co.uk/Winterworm-Propeller-Project-Science-Accessories/dp/B07D8SZHZ8)
-DC Gearbox Motor|TT Gearbox DC Motor - 200RPM - 3 to 6VDC and wheel|2|-|[-L-](https://www.adafruit.com/product/3777#technical-details)
-Motor Mount|Mount for TT Gearbox DC Motors - L-Bracket Type with hardware|2|-|[-L-](https://www.adafruit.com/product/3768)
-*Servo Mount|Mount for servo motor|2|-|[-L-](VK)
-*Servos|FS90R Micro Continuous Rotation Servo w/Wheel|2|-|[-L-](https://www.rapidonline.com/feetech-fs90r-servo-and-wheel-37-1336)
-*M2.5 bolt (6)|6 mm long M2.5 bolt|8|-|[-L-](https://www.accu.co.uk/pozi-pan-head-screws/9255-SPP-M2-5-6-A2)
-*M2.5 standoff (12/SS)|12 mm long socket-to-socket M2.5 standoff|4|-|[-L-](https://uk.farnell.com/wurth-elektronik/970120151/standoff-hex-female-female-12mm/dp/2884528)
+DC brushed motor|6V Brushed DC motor|1|-|[-L-](https://www.amazon.co.uk/Gikfun-1V-6V-Hobby-Arduino-EK1894/dp/B07BHHP2BT)|Loose|20|30|20
+DC Gearbox Motor|TT Gearbox DC Motor - 200RPM - 3 to 6VDC and wheel|2|-|[-L-](https://www.adafruit.com/product/3777#technical-details)|Loose|30|15|15
+Motor Mount|Mount for TT Gearbox DC Motors - L-Bracket Type with hardware|2|-|[-L-](https://www.adafruit.com/product/3768)|Mounts|15|15|15
+*Servo Mount|Mount for servo motor|2|-|[-L-](VK)|Mounts|30|15|5
+*Servos|FS90R Micro Continuous Rotation Servo w/Wheel|2|-|[-L-](https://www.rapidonline.com/feetech-fs90r-servo-and-wheel-37-1336)|Mounts|20|30|10
+*M2.5 bolt (6)|6 mm long M2.5 bolt|8|-|[-L-](https://www.accu.co.uk/pozi-pan-head-screws/9255-SPP-M2-5-6-A2)|Hardware|5|5|6
+*M2.5 standoff (12/SS)|12 mm long socket-to-socket M2.5 standoff|4|-|[-L-](https://uk.farnell.com/wurth-elektronik/970120151/standoff-hex-female-female-12mm/dp/2884528)|Hardware|5|5|12
 
 </p></details>
 

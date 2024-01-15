@@ -8,7 +8,7 @@ Stuff
 
 Contents|Description| # |Data|Link|
 :-------|:----------|:-:|:--:|:--:|
-Periodic Table|Periodic Table business card|1|[-D-](card)|-
+Periodic Table|Periodic Table business card|1|[-D-](card)|[-L-](VK)|Loose|40|60|0.5
 
 </p></details>
 

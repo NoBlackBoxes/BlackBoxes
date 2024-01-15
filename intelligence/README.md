@@ -8,9 +8,9 @@
 
 Contents|Description| # |Data|Link|
 :-------|:----------|:-:|:--:|:--:|
-NPU|Coral EdgeTPU USB Type-C|1|[-D-](_data/datasheets/Coral-USB-Accelerator-datasheet.pdf)|[-L-](https://coral.ai/products/accelerator/)
-M3 screw (16)|16 mm long M3 screw with phillips socket|4|-|-
-M3 nut|regular M3 nut|4|-|-
+NPU|Coral EdgeTPU USB Type-C|1|[-D-](_data/datasheets/Coral-USB-Accelerator-datasheet.pdf)|[-L-](https://coral.ai/products/accelerator/)|Loose|100|90|20
+M3 screw (16)|16 mm long M3 screw with phillips socket|4|-|-|Hardware|5|5|16
+M3 nut|regular M3 nut|4|-|-|Hardware|5|5|4
 
 </p></details>
 

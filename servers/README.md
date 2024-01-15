@@ -8,7 +8,6 @@ Serving HTML files to who ever requests them (via HTTP)
 
 Contents|Description| # |Data|Link|
 :-------|:----------|:-:|:--:|:--:|
-Laptop||1|-|-
 
 </p></details>
 

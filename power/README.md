@@ -8,12 +8,12 @@ Power for your bot.
 
 Contents|Description| # |Data|Link|
 :-------|:----------|:-:|:--:|:--:|
-NB3 Power Board|Regulated DC-DC power supply (5 Volts - 4 Amps)|1|[-D-](NB3_power)|[-L-](VK)
-Power Cable|Custom 4 pin NB3 power connector cable|1|-|[-L-](VK)
-M2.5 standoff (7/PS)|7 mm long plug-to-socket M2.5 standoff|4|-|[-L-](https://uk.farnell.com/wurth-elektronik/971070151/standoff-hex-male-female-7mm-m2/dp/2884371)
-M2.5 bolt (6)|6 mm long M2.5 bolt|4|-|[-L-](https://www.accu.co.uk/pozi-pan-head-screws/9255-SPP-M2-5-6-A2)
-M2.5 nut|regular M2.5 nut|4|[-D-](-)|[-L-](https://www.accu.co.uk/hexagon-nuts/456430-HPN-M2-5-C8-Z)
-12V DC Power Supply|12 V AC-DC transformer (UK/EU/USA plugs)|1|-|[-L-](https://www.amazon.co.uk/gp/product/B09QG4R1R4)
+NB3 Power Board|Regulated DC-DC power supply (5 Volts - 4 Amps)|1|[-D-](NB3_power)|[-L-](VK)|Power|50|50|20
+Power Cable|Custom 4 pin NB3 power connector cable|1|-|[-L-](VK)|Power|30|10|4
+M2.5 standoff (7/PS)|7 mm long plug-to-socket M2.5 standoff|4|-|[-L-](https://uk.farnell.com/wurth-elektronik/971070151/standoff-hex-male-female-7mm-m2/dp/2884371)|Hardware|5|5|7
+M2.5 bolt (6)|6 mm long M2.5 bolt|4|-|[-L-](https://www.accu.co.uk/pozi-pan-head-screws/9255-SPP-M2-5-6-A2)|Hardware|5|5|6
+M2.5 nut|regular M2.5 nut|4|[-D-](-)|[-L-](https://www.accu.co.uk/hexagon-nuts/456430-HPN-M2-5-C8-Z)|Hardware|5|5|3
+12V DC Power Supply|12 V AC-DC transformer (UK/EU/USA plugs)|1|-|[-L-](https://www.amazon.co.uk/gp/product/B09QG4R1R4)|Loose|100|80|80
 
 </p></details>
 

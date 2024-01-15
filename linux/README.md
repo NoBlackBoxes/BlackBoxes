@@ -8,7 +8,6 @@ Let's learn Linux.
 
 Contents|Description| # |Data|Link|
 :-------|:----------|:-:|:--:|:--:|
-Laptop||1|-|-
 
 </p></details>
 
