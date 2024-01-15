@@ -119,8 +119,28 @@ class Parser:
             self.variable_declaration(identifier)
         elif self.current.type == 'FOR':
             self.match('FOR')
-            self.generate(f"For Loop!")
+            self.generate(f"For Loop...")
+            self.for_loop()
         else:
             self.error("Syntax Error: Invalid Declaration")
+        return
 
+    # For Loop
+    def for_loop(self):
+        self.match('LEFT_PARENT')
+        if self.current.type == 'ID':
+            identifier = self.current.value
+            self.match('ID')
+            self.match('ASSIGN')
+            self.generate(f"Assign {identifier} = {self.current.value}")
+            self.match('INTEGER')
+            self.match('SEMICOLON')
+        elif self.current.type == 'INT':
+            self.match('INT')
+            identifier = self.current.value
+            self.match('ID')
+            self.variable_declaration(identifier)
+        else:
+            self.error(f"Syntax Error: For Loop - expected an intializer assignment or declaration")
+        return
 #FIN
