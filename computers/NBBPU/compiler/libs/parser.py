@@ -2,6 +2,7 @@
 # - IMPLEMENT all statements (for, while, if, return, etc.)
 # - IMPLEMENT expressions ((a + 2), !b, etc.))
 # - Boolean Expressions?
+# - Expressions!
 
 from libs.language import *
 from libs.token import Token
@@ -128,6 +129,7 @@ class Parser:
     # For Loop
     def for_loop(self):
         self.match('LEFT_PARENT')
+        # Intializer
         if self.current.type == 'ID':
             identifier = self.current.value
             self.match('ID')
@@ -142,5 +144,19 @@ class Parser:
             self.variable_declaration(identifier)
         else:
             self.error(f"Syntax Error: For Loop - expected an intializer assignment or declaration")
+        # Condition
+        self.boolean_expression()
         return
+
+    # Boolean Expression
+    def boolean_expression(self):
+        # Parse boolean expression
+        self.generate(f"...parsing Boolean expression")
+        identifier = self.current.value
+        self.match('ID')
+        if self.current.type == 'LESS':
+            self.generate(f"Less Than comparison")
+            self.match('LESS')
+        return
+
 #FIN
