@@ -8,7 +8,7 @@ Computers and brains work with voltages. In order for either to affect the envir
 
 Contents|Description| # |Data|Link|
 :-------|:----------|:-:|:--:|:--:|
-DC brushed motor|6V Brushed DC motor|1|-|[-L-](https://www.amazon.co.uk/Gikfun-1V-6V-Hobby-Arduino-EK1894/dp/B07BHHP2BT)|Loose|20|30|20
+DC Brushed Motor|6V Brushed DC motor|1|-|[-L-](https://www.amazon.co.uk/Gikfun-1V-6V-Hobby-Arduino-EK1894/dp/B07BHHP2BT)|Loose|20|30|20
 DC Gearbox Motor|TT Gearbox DC Motor - 200RPM - 3 to 6VDC and wheel|2|-|[-L-](https://www.adafruit.com/product/3777#technical-details)|Loose|30|15|15
 Motor Mount|Mount for TT Gearbox DC Motors - L-Bracket Type with hardware|2|-|[-L-](https://www.adafruit.com/product/3768)|Mounts|15|15|15
 *Servo Mount|Mount for servo motor|2|-|[-L-](VK)|Mounts|30|15|5
