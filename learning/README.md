@@ -8,7 +8,7 @@ Supervised, unsupervised, and reinforcement learning
 
 Contents|Description| # |Data|Link|
 :-------|:----------|:-:|:--:|:--:|
-Clicker|Loud sound maker (and whistle)|1|-|[-L-](https://www.amazon.co.uk/gp/product/B07HD3RDMK)|Loose|50|25|40
+Clicker|Loud sound maker (and whistle)|1|-|[-L-](https://www.amazon.co.uk/gp/product/B07HD3RDMK)|Loose|70|20|30
 
 </p></details>
 

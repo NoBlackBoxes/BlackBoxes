@@ -8,8 +8,8 @@ Field-programmable-gate-arrays-are-awesome.
 
 Contents|Description| # |Data|Link|
 :-------|:----------|:-:|:--:|:--:|
-NB3 Hindbrain|ICE40UP5K dev board with ADC/DAC|1|[-D-](NB3_hindbrain)|[-L-](VK)|Hindbrain|60|40|20
-Cable (MicroUSB-1m)|Micro-USB to Type-A cable (1 m)|1|-|-|Loose|120|30|15
+NB3 Hindbrain|ICE40UP5K dev board with ADC/DAC|1|[-D-](NB3_hindbrain)|[-L-](VK)|Hindbrain|60|30|20
+Cable (MicroUSB-1m)|Micro-USB to Type-A cable (1 m)|1|-|-|Loose|100|50|15
 
 </p></details>
 

@@ -9,8 +9,8 @@ Mid-brain does most of it.
 Contents|Description| # |Data|Link|
 :-------|:----------|:-:|:--:|:--:|
 Cable (Mini-USB/20cm)|Short mini-USB to Type-A cable (20 cm)|1|-|[-L-](https://www.amazon.co.uk/LINDY-0-2-Type-Mini-B-Cable/dp/B01IZ4VFCO)|Loose|100|25|10
-Battery|NiMH 9.6V 8-cell 2000 mAh battery|1|-|[-L-](https://www.amazon.co.uk/BAKTH-Capacity-Rechargeable-Discharge-Customized/dp/B08VRC8KL7)|Loose|60|140|10
-Battery Charger|NiMH battery charger (UK plug)|1|-|[-L-](https://www.amazon.co.uk/dp/B089VRXKWY?psc=1&smid=AOVA4BIXU2O7J&ref_=chk_typ_imgToDp)|Loose|80|80|60
+Battery|NiMH 9.6V 8-cell 2000 mAh battery|1|-|[-L-](https://www.amazon.co.uk/BAKTH-Capacity-Rechargeable-Discharge-Customized/dp/B08VRC8KL7)|Loose|100|60|15
+Battery Charger|NiMH battery charger (UK plug)|1|-|[-L-](https://www.amazon.co.uk/dp/B089VRXKWY?psc=1&smid=AOVA4BIXU2O7J&ref_=chk_typ_imgToDp)|Loose|90|90|70
 Velcro Patch| Velcro adhesive|1|-|-|Loose|50|75|4
 
 </p></details>

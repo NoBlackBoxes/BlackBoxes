@@ -10,7 +10,7 @@ In this box, we will learn about electricity...how to measure it and how to **co
 
 Contents|Description| # |Data|Link|
 :-------|:----------|:-:|:--:|:--:|
-NB3 Body|NB3 robot base PCB|1|[-D-](NB3_body)|[-L-](VK)|Loose|200|200|10
+NB3 Body|NB3 robot base PCB|1|[-D-](NB3_body)|[-L-](VK)|Loose|200|200|15
 Resistor (330)|330 &Omega;/0.25 W|2|[-D-](_data/datsheets/resistor.pdf)|[-L-](https://uk.farnell.com/multicomp/mf25-330r/res-330r-1-250mw-axial-metal-film/dp/9341730)|Passive|50|5|3
 Resistor (470)|470 &Omega;/0.25 W|1|[-D-](_data/datsheets/resistor.pdf)|[-L-](https://uk.farnell.com/multicomp/mf25-470r/res-470r-1-250mw-axial-metal-film/dp/9341943)|Passive|50|5|3
 Resistor (1k)|1 k&Omega;/0.25 W|1|[-D-](_data/datsheets/resistor.pdf)|[-L-](https://uk.farnell.com/multicomp/mf25-1k/res-1k-1-250mw-axial-metal-film/dp/9341102)|Passive|50|5|3
@@ -19,12 +19,12 @@ Capacitor (small)|0.1 uF ceramic capacitor|1|[-D-](_data/datasheets/capacitor_ce
 Capacitor (large)|100 uF aluminum electrolytic capacitor|1|[-D-](_data/datsheets/capacitor_electrolytic.pdf)|[-L-](https://uk.farnell.com/rubycon/16zlh100mefc5x11/cap-100-f-16v-20/dp/8126283)|Passive|50|5|3
 Button|Tactile switch|2|[-D-](_data/datasheets/button.pdf)|[-L-](https://uk.farnell.com/omron/b3f-1000/switch-spno-0-05a-24v-tht-0-98n/dp/176432)|Passive|5|5|3
 Potentiometer|2.2 k&Omega; variable resistor|2|[-D-](_data/datasheets/pot_2k2.pdf)|[-L-](https://uk.farnell.com/bourns/3362p-1-222lf/trimmer-pot-2-2kohm-10-1turn-th/dp/2328599)|Passive|5|5|3
-Breadboard (400)|400-tie solderless breadboard|1|[-D-](_data/datasheets/breadboard_400.pdf)|[-L-](https://www.amazon.co.uk/gp/product/B0739XRX8F)|Loose|100|60|8
-Batteries (AA)|AA 1.5 V alkaline battery|4|-|-|Loose|60|80|10
-Battery holder|4xAA battery holder with ON-OFF switch|1|-|[-L-](https://www.amazon.co.uk/gp/product/B0814ZH68F)|Loose|80|100|15
-Jumper Kit|Kit of multi-length 22 AWG breadboard jumpers|1|[-D-](_data/datasheets/jumper_kit.pdf)|[-L-](https://uk.farnell.com/multicomp/mc001810/hard-jumper-wire-22awg-140pc/dp/2770338)|Loose|200|50|15
-Jumper Wires|Assorted 22 AWG jumper wire leads (male/female)|1|[-D-](_data/datasheets/jumper_wires.pdf)|[-L-](https://www.amazon.co.uk/240pcs-Solderless-Breadboard-Arduino-Project/dp/B08PJSTS3C)|Loose|250|75|5
-Test Lead|Alligator clip to 0.64 mm pin (20 cm)|2|-|[-L-](https://www.amazon.co.uk/gp/product/B096JR15JW)|Loose|250|30|10
+Breadboard (400)|400-tie solderless breadboard|1|[-D-](_data/datasheets/breadboard_400.pdf)|[-L-](https://www.amazon.co.uk/gp/product/B0739XRX8F)|Loose|85|60|10
+Batteries (AA)|AA 1.5 V alkaline battery|4|-|-|Loose|60|15|15
+Battery holder|4xAA battery holder with ON-OFF switch|1|-|[-L-](https://www.amazon.co.uk/gp/product/B0814ZH68F)|Loose|65|70|20
+Jumper Kit|Kit of multi-length 22 AWG breadboard jumpers|1|[-D-](_data/datasheets/jumper_kit.pdf)|[-L-](https://uk.farnell.com/multicomp/mc001810/hard-jumper-wire-22awg-140pc/dp/2770338)|Loose|170|55|15
+Jumper Wires|Assorted 22 AWG jumper wire leads (male/female)|1|[-D-](_data/datasheets/jumper_wires.pdf)|[-L-](https://www.amazon.co.uk/240pcs-Solderless-Breadboard-Arduino-Project/dp/B08PJSTS3C)|Loose|200|40|10
+Test Lead|Alligator clip to 0.64 mm pin (20 cm)|2|-|[-L-](https://www.amazon.co.uk/gp/product/B096JR15JW)|Loose|220|20|10
 Rubber feet|Adhesive rubber standoffs (1421T6CL)|4|[-D-](_data/datasheets/rubber_feet.pdf)|[-L-](https://uk.farnell.com/hammond/1421t6cl/feet-stick-on-pk24/dp/1876522)|Passive|20|20|4
 
 </p></details>

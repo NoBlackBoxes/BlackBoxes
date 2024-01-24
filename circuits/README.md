@@ -8,7 +8,7 @@ Simple sensory-motor loops can accomplish quite a bit.
 
 Contents|Description| # |Data|Link|
 :-------|:----------|:-:|:--:|:--:|
-Caster|¾” metal ball caster|1|[-D-](https://www.pololu.com/product/955)|[-L-](https://www.hobbytronics.co.uk/ball-caster-metal?keyword=caster)|Loose|30|30|25
+Caster|¾” metal ball caster|1|[-D-](https://www.pololu.com/product/955)|[-L-](https://www.hobbytronics.co.uk/ball-caster-metal?keyword=caster)|Loose|70|50|20
 Spacer|NB3 spacer 3 mm spacer for mounting ball caster|5|[-D-](NB3_spacer)|[-L-](VK)|Mounts|25|25|5
 
 </p></details>
