@@ -4,41 +4,49 @@ Electrons are sub-atomic particles with a negative electric charge. Their negati
 
 In this box, we will learn about electricity...how to measure it and how to **control** it.
 
-## Required Materials
+### Required Materials
 
-- LBB-K1(1)
-- LBB-K1(2)
-- LBB-K1(3)
+- {01}: LBB-K1, multimeter
+- {10}: LBB-K1, multimeter
+- {11}: LBB-K1, multimeter
 
-### Electric Fields
+## Electric Fields
 
-Electric fields describe the force a charged particle would feel when near an electron.
+Electric fields describe the force a charged particle feels when near another charged particle.
 
-- *Video*: [LBB:Electric Fields](https://vimeo.com/625820421)
+{01}
+- *Video*: [LBB:Electrons:Electric Fields](https://vimeo.com/625820421)
 
-**Task(1:photo)**:Draw the electric field around an electron (as experienced by another electron)
+{10}
+- *Video*: [NB3:Electrons:Dipoles](https://vimeo.com/843622939)
+  -  **Task**: Draw the electric field around and electron and a proton seperated by some distance (as experienced by another electon). Use the following image as a starting point.*(photo)*
 
-- *Video*:[NB3:Body](https://vimeo.com/843622939)
+<p align="center">
+<img src="_data/images/dipole_field_template.png" alt="dipole field template" height="250"/>
+</p>
 
-**Task(2:photo)**:Draw the electric field around and electron and a proton seperated by some distance (as experienced by another electon).
-
-- *Video*:[NB3:Body](https://vimeo.com/843622939)
-
-### Voltage
+## Voltage
 
 Voltage describes the difference in charge in one location versus another.
 
-- *Video*:[LBB:Voltage](https://vimeo.com/625820421)
+{01}
+- *Video*: [LBB:Electrons:Voltage](https://vimeo.com/625820421)
 
-- *Video*:[LBB:Batteries](https://vimeo.com/625820421)
+- *Video*: [LBB:Electrons:Batteries](https://vimeo.com/625820421)
 
-**Task(1:number)**:Measure the voltage of a AA battery. Enter your measurement.
+- *Video*: [NB3:Electrons:Measuring Voltage](https://vimeo.com/843622939)
+  - **Task**: Measure the voltage of a AA battery. Enter your measurement.*(number)*
+  - **Task**: Measure the voltage of 4xAA batteries in series (i.e. in your holder). Enter your measurement.*(number)*
 
-- *Video*:[NB3:Body](https://vimeo.com/843622939)
+{10}
+- *Video*: [NB3:Electrons:Household battery](https://vimeo.com/843622939)
+  - **Task**: Build a battery.*(photo)*
 
-### Current
+## Current
 
 Electrons moving in a conductor (pushed by a voltage) create a current.
 
-- *Video*:[LBB:Current](https://vimeo.com/625820421)
+{01}
+- *Video*: [LBB:Electrons:Current](https://vimeo.com/625820421)
+  - **Task**: Measure the current flowing across a resitor.*(number)*
 
