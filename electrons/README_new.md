@@ -19,11 +19,9 @@ Electric fields describe the force a charged particle feels when near another ch
 
 {10}
 - *Video*: [NB3:Electrons:Dipoles](https://vimeo.com/843622939)
-  -  **Task**: Draw the electric field around and electron and a proton seperated by some distance (as experienced by another electon). Use the following image as a starting point.*(photo)*
+  - **Task**: Draw the electric field around and electron and a proton seperated by some distance (as experienced by another electon). Use the following image as a starting point.*(photo)*
 
-<p align="center">
-<img src="_data/images/dipole_field_template.png" alt="dipole field template" height="250"/>
-</p>
+<img src="../electrons/_data/images/dipole_field_template.png" alt="dipole field template" height="250"/>
 
 ## Voltage
 
@@ -40,7 +38,7 @@ Voltage describes the difference in charge in one location versus another.
 
 {10}
 - *Video*: [NB3:Electrons:Household battery](https://vimeo.com/843622939)
-  - **Task**: Build a battery.*(photo)*
+  - **Task**: Build a battery. Upload a photo of your design and the voltage generated (as shown on the multimeter screen).*(photo)*
 
 ## Current
 
@@ -49,4 +47,13 @@ Electrons moving in a conductor (pushed by a voltage) create a current.
 {01}
 - *Video*: [LBB:Electrons:Current](https://vimeo.com/625820421)
   - **Task**: Measure the current flowing across a resitor.*(number)*
+
+## Capacitors
+
+Capacitors are cool.
+
+{10}
+- *Video*: [LBB:Electrons:Caps](https://vimeo.com/625820421)
+- *Video*: [NB3:Electrons:Caps](https://vimeo.com/625820421)
+  - **Task**: Measure the capacitance of your cap.*(number)*
 
