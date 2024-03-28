@@ -6,22 +6,24 @@ In this box, we will learn about electricity...how to measure it and how to **co
 
 ### Required Materials
 
-- {01}: LBB-K1, multimeter
-- {10}: LBB-K1, multimeter
-- {11}: LBB-K1, multimeter
+- {01}: NBB-11, multimeter
+- {10}: NBB-21, multimeter
+- {11}: NBB-31, multimeter, oscilliscope
 
 ## Electric Fields
 
 Electric fields describe the force a charged particle feels when near another charged particle.
 
 {01}
+Watch this video...closely.
 - *Video*: [LBB:Electrons:Electric Fields](https://vimeo.com/625820421)
 
 {10}
+Watch this video.
 - *Video*: [NB3:Electrons:Dipoles](https://vimeo.com/843622939)
-  - **Task**: Draw the electric field around and electron and a proton seperated by some distance (as experienced by another electon). Use the following image as a starting point.*(photo)*
+  - **Task**: Draw the electric field around and electron and a proton seperated by some distance (as experienced by another electon). Use the following image as a starting point.*(draw_a_dipole_field:photo)*
 
-<img src="../electrons/_data/images/dipole_field_template.png" alt="dipole field template" height="250"/>
+<img src="../electrons/_data/images/dipole_field_template.png" alt="dipole field template" height="250" style="border: 2px solid #000000;"/>
 
 ## Voltage
 
