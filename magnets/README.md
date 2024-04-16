@@ -8,11 +8,11 @@ In this box, we will learn about magnetism...how to create it and how to **use**
 
 Contents|Description| # |Data|Link|
 :-------|:----------|:-:|:--:|:--:|
-Inductor|1 mH torroidal inductor|1|[-D-](_data/datasheets/inductor_torroidal.pdf)|[-L-](https://uk.farnell.com/bourns/2124-v-rc/inductor-1000uh-15-1-3a-toroid/dp/1929753)|Passive|30|30|15
-Magnet Wire|Narrow gaurge epoxy insulated (1 m)|1|-|[-L-](https://www.amazon.co.uk/Enameled-Magnet-Soldering-Winding-Enamelled/dp/B07N65LRVD)|Passive|30|30|20
-Magnet|Neodymium disc (8 mm x 3 mm)|2|-|[-L-](https://uk.farnell.com/duratool/d01766/magnets-rare-earth-8-x-3mm-pk10/dp/1888095)|Magnets|20|20|5
-USB Sound Card|USB to 3.5 mm Audio out/in|1|-|[-L-](https://www.amazon.co.uk/UGREEN-Headphone-Microphone-Raspberry-Ultrabook/dp/B01N905VOY)|Loose|150|90|15
-Stereo Plug Terminal|3.5 mm plug to screw terminal|2|-|[-L-](https://www.amazon.co.uk/dp/B07MNYBFL9)|Loose|40|20|15
+Inductor|10|1 mH torroidal inductor|[-D-](1)|[-L-](_data/datasheets/inductor_torroidal.pdf)|https://uk.farnell.com/bourns/2124-v-rc/inductor-1000uh-15-1-3a-toroid/dp/1929753|Passive|30|30|15
+Magnet Wire|10|Narrow gaurge epoxy insulated (1 m)|[-D-](1)|-|https://www.amazon.co.uk/Enameled-Magnet-Soldering-Winding-Enamelled/dp/B07N65LRVD|Passive|30|30|20
+Magnet|10|Neodymium disc (8 mm x 3 mm)|[-D-](2)|-|https://uk.farnell.com/duratool/d01766/magnets-rare-earth-8-x-3mm-pk10/dp/1888095|Magnets|20|20|5
+USB Sound Card|10|USB to 3.5 mm Audio out/in|[-D-](1)|-|https://www.amazon.co.uk/UGREEN-Headphone-Microphone-Raspberry-Ultrabook/dp/B01N905VOY|Loose|150|90|15
+Stereo Plug Terminal|10|3.5 mm plug to screw terminal|[-D-](2)|-|https://www.amazon.co.uk/dp/B07MNYBFL9|Loose|40|20|15
 
 </p></details>
 

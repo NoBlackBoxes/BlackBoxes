@@ -8,7 +8,7 @@ ODHWI&TV"£*O&"^VRS"^VSOV&"
 
 Contents|Description| # |Data|Link|
 :-------|:----------|:-:|:--:|:--:|
-Secret Message|A SHA256 encrypted message (in HEX)|1|-|-|Loose|100|60|1
+Secret Message|10|A SHA256 encrypted message (in HEX)|[-D-](1)|-||Loose|100|60|1
 
 </p></details>
 

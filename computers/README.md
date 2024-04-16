@@ -8,9 +8,9 @@ Let's put it all together.
 
 Contents|Description| # |Data|Link|
 :-------|:----------|:-:|:--:|:--:|
-Microcontroller|Arduino Nano (rev.3)|1|[-D-](_data/datasheets/arduino_nano_rev3.pdf)|[-L-](https://uk.farnell.com/arduino/a000005/arduino-nano-evaluation-board/dp/1848691)|Loose|82|60|25
-Piezo Buzzer|Piezoelectric speaker/transducer|1|[-D-](_data/datasheets/piezo_buzzer.pdf)|[-L-](https://uk.farnell.com/tdk/ps1240p02bt/piezoelectric-buzzer-4khz-70dba/dp/3267212)|Passive|30|30|1
-Cable (MiniUSB-1m)|Mini-USB to Type-A cable (1 m)|1|-|[-L-](https://uk.farnell.com/molex/88732-8602/usb-cable-2-0-plug-plug-1m/dp/1221071)|Loose|100|50|15
+Microcontroller|01|Arduino Nano (rev.3)|[-D-](1)|[-L-](_data/datasheets/arduino_nano_rev3.pdf)|https://uk.farnell.com/arduino/a000005/arduino-nano-evaluation-board/dp/1848691|Loose|82|60|25
+Piezo Buzzer|01|Piezoelectric speaker/transducer|[-D-](1)|[-L-](_data/datasheets/piezo_buzzer.pdf)|https://uk.farnell.com/tdk/ps1240p02bt/piezoelectric-buzzer-4khz-70dba/dp/3267212|Passive|30|30|1
+Cable (MiniUSB-1m)|01|Mini-USB to Type-A cable (1 m)|[-D-](1)|-|https://uk.farnell.com/molex/88732-8602/usb-cable-2-0-plug-plug-1m/dp/1221071|Loose|100|50|15
 
 </p></details>
 
