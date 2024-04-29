@@ -21,7 +21,7 @@ Watch this video...closely.
 {10}
 Watch this video.
 - *Video*: [NB3:Electrons:Dipoles](https://vimeo.com/843622939)
-  - **Task**(draw_a_dipole_field): Draw the electric field around an electron and a proton seperated by some distance (as experienced by another electon). Upload a photo of your field drawing here [photo]. Use the following image as a starting point. 
+  - **Task**(draw_a_dipole_field): Draw the electric field around an electron and a proton seperated by some distance (as experienced by another electon). Upload a photo of your field drawing here [photo]. Use the following image as a starting point.
 
 <img src="../electrons/_data/images/dipole_field_template.png" alt="dipole field template" height="250" style="border: 2px solid #000000;"/>
 
@@ -30,32 +30,95 @@ Watch this video.
 Voltage describes the difference in net charge in one location versus another.
 
 {01}
-- *Video*: [LBB:Electrons:Voltage](https://vimeo.com/625820421)
+- *Video*: [LBB:Electrons:Voltage](https://vimeo.com/XXX)
 
-- *Video*: [LBB:Electrons:Batteries](https://vimeo.com/625820421)
+## Batteries
 
-- *Video*: [NB3:Electrons:Measuring Voltage](https://vimeo.com/843622939)
+Producing a stable voltage was hard, but very useful.
+
+{01}
+- *Video*: [LBB:Electrons:Batteries](https://vimeo.com/XXX)
+
+{10}
+- *Video*: [NB3:Electrons:Household Battery](https://vimeo.com/XXX)
+  - **Task**(build_a_battery): Build a battery. Upload a photo of your design and the voltage generated (as shown on the multimeter screen) here [photo].
+ 
+## Measuring Voltage
+
+We can measure voltage (and other electrical properties) with a multi-meter.
+
+{01}
+- *Video*: [NB3:Electrons:Measuring Voltage](https://vimeo.com/xXX)
   - **Task**: Measure the voltage of a AA battery. Enter your measurement.*(number)*
   - **Task**: Measure the voltage of 4xAA batteries in series (i.e. in your holder). Enter your measurement.*(number)*
 
+## Conductors
+
+Some materials have electrons that are very loosely connected to their atom's nucleus. In a material made up of many atom's of this type, then the electrons can hop from nucleus to nucleus. The electrons can "move". We call these materials conductors.
+
 {10}
-- *Video*: [NB3:Electrons:Household battery](https://vimeo.com/843622939)
-  - **Task**: Build a battery. Upload a photo of your design and the voltage generated (as shown on the multimeter screen).*(build_a_battery:photo)*
+- *Video*: [LBB:Electrons:Conductors](https://vimeo.com/XXX)
 
-## Current
+## Resistors
 
-Electrons moving in a conductor (pushed by a voltage) create a current.
+In other materials, some electrons are free and others are not. They can move, but not as well. They experience resistance. We call these materials resitors, and they will help us *control* electricity.
+
+{10}
+- *Video*: [LBB:Electrons:Resistors](https://vimeo.com/XXX)
+
+## Measuring Resistance
+
+We can measure resitance (and other electrical properties) with a multi-mteter.
+
+{10}
+- *Video*: [NB3:Electrons:Measuring Resistance](https://vimeo.com/XXX)
+
+## Circuit Diagrams
+
+We can draw simple schematics of electronic circuits using symbols for the real devices. We will draw and build *many* of these.
 
 {01}
-- *Video*: [LBB:Electrons:Current](https://vimeo.com/625820421)
+- *Video*: [LBB:Electrons:Circuit Diagrams](https://vimeo.com/XXX)
+  - **Task**: Draw a circuit with one battery and two resistors. Lbale the voltage and resistor values. Upload a picture of your circuit here [photo].
+
+## Prototyping
+
+Let's build a prototyping board for creating and testing our first circuits.
+
+{01}
+- *Video*: [NB3:Electrons:Assemble NB3 Body](https://vimeo.com/XXX)
+  - **Task**(assemble_nb3_body): Build your NB3 body [photo].
+
+## Printed Circuit Boards
+
+Let's have a look at a printed circuit board.
+
+{01}
+- *Video*: [NB3:Electrons:Assemble NB3 Body](https://vimeo.com/XXX)
+  - **Task**(assemble_nb3_body): Build your NB3 body [photo].
+  
+## Current
+
+Electrons, pushed by a voltage, moving in a conductor, or less so in a resistor create a current.
+
+{01}
+- *Video*: [LBB:Electrons:Current](https://vimeo.com/XXX)
   - **Task**(measure_current): Measure the current flowing across a resitor. Enter the votage you used here [number], the resistor value here [number], and the measured current here [number].
+
+## Measuring Current
+
+We can measure current (and other electrical properties) with a multi-mteter.
+
+{01}
+- *Video*: [LBB:Electrons:Measuring Current](https://vimeo.com/XXX)
+  - **Task**(measure_current): Measure the current flowing across a resistor. Enter the votage you used here [number], the resistor value here [number], and the measured current here [number].
 
 ## Ohm's Law
 
 A simple, linear, relationship between voltage, current, and resistance.
 
 {01}
-- *Video*: [LBB:Electrons:Ohms's Law](https://vimeo.com/625820421)
+- *Video*: [LBB:Electrons:Ohms's Law](https://vimeo.com/XXX)
   - **Task**: Measure the current flowing across a resitor.*(number)*
 
 ## Voltage Divider
@@ -71,6 +134,5 @@ Your first circuit.
 Capacitors are cool.
 
 {10}
-- *Video*: [LBB:Electrons:Caps](https://vimeo.com/625820421)
-- *Video*: [NB3:Electrons:Caps](https://vimeo.com/625820421)
+- *Video*: [LBB:Electrons:Capacitors](https://vimeo.com/625820421)
   - **Task**: Measure the capacitance of your cap.*(measure_capacitance:number)*

@@ -1,52 +1,64 @@
 # Atoms
 
-Stuff
+**"Everything is made of atoms."**
+> Richard Feynman's answer when asked for a single sentence to convey the most important scientific knowledge we possess.
 
 ----
 
-<details><summary><b>Materials</b></summary><p>
+### Required Materials
 
-Contents|Description| # |Data|Link|
-:-------|:----------|:-:|:--:|:--:|
-Periodic Table|01|Periodic Table business card|[-D-](1)|[-L-](card)|VK|Loose|40|60|0.5
-
-</p></details>
+- {01}: NBB-11
+- {10}: NBB-21
+- {11}: NBB-31
 
 ----
 
-## Topics
+## The Atom
 
-- Atoms
-  - Sub-atomic particles
-  - Electric charge
-  - What's up with Hydrogen? (no neutrons)
-  - What's up with Helium?
-  - Orbitals and Valence
-  - Fission and Fusion
-- Chemistry (periodic table)
-  - Bonds
+Atom's matter. They *are* matter.
 
-----
+{01}
+Watch this video.
+- *Video*: [LBB:Electrons:The Atom](https://vimeo.com/XXX)
+  - **Task**(draw_carbon): Carbon is pretty important atom for us (and all living things that we know of). Draw a Carbon atom (C12, 6 protons and 6 neutrons) using the "old-school" Bohr style. Upload a photo of your Carbon drawing here [photo].
 
-## Goals
+## Charge
 
-### Grey
+Electrons are negative. Protons are postive. Like repels like. Opposites attract.
 
-1. Elements
+{01}
+Watch this video.
+- *Video*: [LBB:Electrons:Charge](https://vimeo.com/XXX)
 
+## Orbitals
 
-### White
+Only a specific number of electrons can *fit* at each level (orbit) around the Nucleus. 2 can fit nearby. 8 can fit in the next ring. 18 in the next. Those closest to the Nucleus are the most strongly attached. Also, any atoms with in *incomplete* ring are "unhappy"...they'd prefer to have a full load.
 
-1. Chemistry
+{10}
+Watch this video.
+- *Video*: [LBB:Electrons:Orbitals](https://vimeo.com/XXX)
 
-----
+## Chemistry
 
-## NB3
+Atoms with incomplete outer (valence) orbitals will try to complete their set of electrons by sharing, donating, or stealing electrons from other Atoms. This is called chemistry.
 
-This box will contribute the following (red) components to your NB3
+{10}
+Watch this video.
+- *Video*: [LBB:Electrons:Chemistry](https://vimeo.com/XXX)
 
-<p align="center">
-<img src="_data/images/NB3_atoms.png" alt="NB3 stage" width="400" height="400">
-<p>
+## Nuclear Forces
 
-----
+Wait. What's up with Hydrogen? Why no Neutrons? Oh...what about Helium? Why don't those Protons, with their positve charges, just fly apart?
+
+{10}
+Watch this video.
+- *Video*: [LBB:Electrons:Nuclear Forces](https://vimeo.com/XXX)
+
+## Fission and Fusion
+
+Not all Nuclei are stable, sometimes they can fall apart (fission). What if two atoms go *sooooo* close to one another that their Nuclei connected (fused)? Lots of energy.
+
+{10}
+Watch this video.
+- *Video*: [LBB:Electrons:Fission and Fusion](https://vimeo.com/XXX)
+
