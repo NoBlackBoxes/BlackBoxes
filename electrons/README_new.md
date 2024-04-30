@@ -21,7 +21,7 @@ Watch this video...closely.
 {10}
 Watch this video.
 - *Video*: [NB3:Electrons:Dipoles](https://vimeo.com/843622939)
-  - **Task**(draw_a_dipole_field): Draw the electric field around an electron and a proton seperated by some distance (as experienced by another electon). Upload a photo of your field drawing here [photo]. Use the following image as a starting point.
+  - **Task**(draw_a_dipole_field): Draw the electric field around an electron and a proton seperated by some distance (as experienced by another electon).<br>Upload a photo of your field drawing here.<br>[photo]<br>Use the following image as a starting point.
 
 <img src="../electrons/_data/images/dipole_field_template.png" alt="dipole field template" height="250" style="border: 2px solid #000000;"/>
 
