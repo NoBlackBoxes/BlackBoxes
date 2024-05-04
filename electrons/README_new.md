@@ -21,9 +21,11 @@ Watch this video...closely.
 {10}
 Watch this video.
 - *Video*: [NB3:Electrons:Dipoles](https://vimeo.com/843622939)
-  - **Task**(draw_a_dipole_field): Draw the electric field around an electron and a proton seperated by some distance (as experienced by another electon).<br>Upload a photo of your field drawing here.<br>[photo]<br>Use the following image as a starting point.
 
+Use the following image as a starting point for the next task.
 <img src="../electrons/_data/images/dipole_field_template.png" alt="dipole field template" height="250" style="border: 2px solid #000000;"/>
+
+- **Task**(draw_a_dipole_field): Draw the electric field around an electron(-) and a proton(+) seperated by some small distance (as experienced by another electon). Upload a photo of your field drawing. [photo]
 
 ## Voltage
 
@@ -41,16 +43,16 @@ Producing a stable voltage was hard, but very useful.
 
 {10}
 - *Video*: [NB3:Electrons:Household Battery](https://vimeo.com/XXX)
-  - **Task**(build_a_battery): Build a battery. Upload a photo of your design and the voltage generated (as shown on the multimeter screen) here [photo].
+- **Task**(build_a_battery): Build a battery. Upload a photo of your design and the voltage generated (as shown on the multimeter screen) here: [photo]
  
 ## Measuring Voltage
 
 We can measure voltage (and other electrical properties) with a multi-meter.
 
 {01}
-- *Video*: [NB3:Electrons:Measuring Voltage](https://vimeo.com/xXX)
-  - **Task**: Measure the voltage of a AA battery. Enter your measurement.*(number)*
-  - **Task**: Measure the voltage of 4xAA batteries in series (i.e. in your holder). Enter your measurement.*(number)*
+- *Video*: [NB3:Electrons:Measuring Voltage](https://vimeo.com/XXX)
+- **Task**(measure_AA_battery): Measure the voltage of a AA battery. Enter your measurement.*(number)*
+- **Task**(measure_4xAA_batteries): Measure the voltage of 4xAA batteries in series (i.e. in your battery holder). Enter your measurement here: [number]
 
 ## Conductors
 
@@ -103,7 +105,7 @@ Electrons, pushed by a voltage, moving in a conductor, or less so in a resistor 
 
 {01}
 - *Video*: [LBB:Electrons:Current](https://vimeo.com/XXX)
-  - **Task**(measure_current): Measure the current flowing across a resitor. Enter the votage you used here [number], the resistor value here [number], and the measured current here [number].
+- **Task**(measure_current): Measure the current flowing across a resitor. Enter the votage you used here [number], the resistor value here [number], and the measured current here [number].
 
 ## Measuring Current
 
