@@ -1,7 +1,7 @@
 (export 
   (version D) 
   (design 
-    (source /home/kampff/Dropbox/Voight-Kampff/Training/LastBlackBox/designs/NB3_power/NB3_power.sch) 
+    (source /home/kampff/Dropbox/Voight-Kampff/Training/LastBlackBox/_designs/NB3_power/NB3_power.sch) 
     (date "Wed 07 Oct 2020 10:18:46 BST") 
     (tool "Eeschema 5.1.5+dfsg1-2build2") 
     (sheet 
@@ -1548,7 +1548,7 @@
       (uri /usr/share/kicad/library/Device.lib)) 
     (library 
       (logical NB3_power) 
-      (uri /home/kampff/Dropbox/Voight-Kampff/Training/LastBlackBox/designs/power/libraries/NB3_power.lib)) 
+      (uri /home/kampff/Dropbox/Voight-Kampff/Training/LastBlackBox/_designs/power/libraries/NB3_power.lib)) 
     (library 
       (logical Switch) 
       (uri /usr/share/kicad/library/Switch.lib))) 
