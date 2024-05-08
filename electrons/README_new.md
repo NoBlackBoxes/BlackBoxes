@@ -51,8 +51,8 @@ We can measure voltage (and other electrical properties) with a multi-meter.
 
 {01}
 - *Video*: [NB3:Electrons:Measuring Voltage](https://vimeo.com/XXX)
-- **Task**(measure_AA_battery): Measure the voltage of a AA battery. Enter your measurement.*(number)*
-- **Task**(measure_4xAA_batteries): Measure the voltage of 4xAA batteries in series (i.e. in your battery holder). Enter your measurement here: [number]
+- **Task**(measure_AA_battery): Measure the voltage of a AA battery. Enter your measurement [number].
+- **Task**(measure_4xAA_batteries): Measure the voltage of 4xAA batteries in series (i.e. in your battery holder). Enter your measurement here [number].
 
 ## Conductors
 
@@ -81,7 +81,7 @@ We can draw simple schematics of electronic circuits using symbols for the real 
 
 {01}
 - *Video*: [LBB:Electrons:Circuit Diagrams](https://vimeo.com/XXX)
-  - **Task**: Draw a circuit with one battery and two resistors. Lbale the voltage and resistor values. Upload a picture of your circuit here [photo].
+- **Task**(draw_a_simple_circuit): Draw a circuit with one battery and two resistors. Lable the voltage and resistor values. Upload a picture of your circuit here [photo].
 
 ## Prototyping
 
@@ -89,7 +89,7 @@ Let's build a prototyping board for creating and testing our first circuits.
 
 {01}
 - *Video*: [NB3:Electrons:Assemble NB3 Body](https://vimeo.com/XXX)
-  - **Task**(assemble_nb3_body): Build your NB3 body [photo].
+- **Task**(assemble_nb3_body): Build your NB3 body [photo].
 
 ## Printed Circuit Boards
 
@@ -97,7 +97,7 @@ Let's have a look at a printed circuit board.
 
 {01}
 - *Video*: [NB3:Electrons:Assemble NB3 Body](https://vimeo.com/XXX)
-  - **Task**(assemble_nb3_body): Build your NB3 body [photo].
+- **Task**(assemble_nb3_body): Build your NB3 body [photo].
   
 ## Current
 
@@ -105,7 +105,7 @@ Electrons, pushed by a voltage, moving in a conductor, or less so in a resistor 
 
 {01}
 - *Video*: [LBB:Electrons:Current](https://vimeo.com/XXX)
-- **Task**(measure_current): Measure the current flowing across a resitor. Enter the votage you used here [number], the resistor value here [number], and the measured current here [number].
+- **Task**(measure_current): Measure the current flowing across a resitor. Enter the votage you used here [number.voltage], the resistor value here [number.resistance], and the measured current here [number.current].
 
 ## Measuring Current
 
@@ -113,7 +113,7 @@ We can measure current (and other electrical properties) with a multi-mteter.
 
 {01}
 - *Video*: [LBB:Electrons:Measuring Current](https://vimeo.com/XXX)
-  - **Task**(measure_current): Measure the current flowing across a resistor. Enter the votage you used here [number], the resistor value here [number], and the measured current here [number].
+- **Task**(measure_current): Measure the current flowing across a resistor. Enter the votage you used here [number.voltage], the resistor value here [number.resistance], and the measured current here [number.current].
 
 ## Ohm's Law
 
@@ -121,7 +121,7 @@ A simple, linear, relationship between voltage, current, and resistance.
 
 {01}
 - *Video*: [LBB:Electrons:Ohms's Law](https://vimeo.com/XXX)
-  - **Task**: Measure the current flowing across a resitor.*(number)*
+- **Task**: Measure the current flowing across a resitor [number].
 
 ## Voltage Divider
 
@@ -129,7 +129,7 @@ Your first circuit.
 
 {01}
 - *Video*: [LBB:Electrons:Voltage Divider](https://vimeo.com/625820421)
-  - **Task**: Build a voltage divider using two resistors and measure the "divided" voltage level. Is it what you epxected? Upload a picture of your circuit diagram with voltage and resistor values indicated. *(voltage_divider:photo)*
+- **Task**: Build a voltage divider using two resistors and measure the "divided" voltage level. Is it what you epxected? Upload a picture of your circuit diagram with voltage and resistor values indicated [photo].
 
 ## Capacitors
 
@@ -137,4 +137,4 @@ Capacitors are cool.
 
 {10}
 - *Video*: [LBB:Electrons:Capacitors](https://vimeo.com/625820421)
-  - **Task**: Measure the capacitance of your cap.*(measure_capacitance:number)*
+- **Task**: Measure the capacitance of your cap [number]
