@@ -27,10 +27,10 @@ PCB design and fabrication for NB3 power, a 5V/3A DC to Dc power supply
 - Quantity: *80*
 
 ##### Other Parameters
-- Number of unique Parts: 17
-- Number of SMD Parts: 29
+- Number of unique Parts: 19
+- Number of SMD Parts: 30
 - Number of BGA/QFP Parts: 1
-- Number of Through-Hole Parts: 0
+- Number of Through-Hole Parts: 1
 			
 #### PCB Specifications
 - Board type: Panel by PCBWay
