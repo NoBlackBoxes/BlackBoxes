@@ -1,5 +1,5 @@
-### Footprint positions - created on Sat 12 Aug 2023 12:24:21 CEST ###
-### Printed by KiCad version 7.0.4
+### Footprint positions - created on 2024-06-29T10:40:09+0100 ###
+### Printed by KiCad version 8.0.2
 ## Unit = mm, Angle = deg.
 ## Side : All
 # Ref     Val                              Package                                  PosX       PosY       Rot  Side
@@ -23,6 +23,7 @@ D1        LED_(Green)                      LED_0603_1608Metric                  
 D2        LED_(Red)                        LED_0603_1608Metric                    2.0000    34.2500    0.0000  top
 J1        Barrel_Jack_PJ-036AH-SMT-TR      Barrel_Jack_PJ-036AH-SMT-TR           16.0000    21.6000    0.0000  top
 J2        Connector_S4B-PH-SM4-TB(LF)(SN)  Connector_S4B-PH-SM4-TB(LF)(SN)       46.0553    22.2500  -90.0000  top
+J3        Conn_01x02_Pin                   PinHeader_1x02_P2.54mm_Horizontal     22.7750    10.8750  -90.0000  top
 L1        SRN6045TA-2R2Y                   L_Bourns_SRN6045TA                    37.5000    28.4000   90.0000  top
 R1        5.6k                             R_0402_1005Metric                      1.2000    30.3600  -90.0000  top
 R2        10R                              R_0402_1005Metric                     36.5000    24.2500    0.0000  top
