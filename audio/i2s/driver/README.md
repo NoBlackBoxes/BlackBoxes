@@ -9,7 +9,7 @@ The Raspberry Pi does not enable i2s by default. You can enable it by opening th
 We also need to enable a driver for the NB£ Mouth board. The board uses an I2S codec + amplifier chip called the MAX98357A and driver is included in Linux. We only need to tell the OS that we want to use this driver by adding a "sevice tree overlay". This will require adding one more line to the configuration text file.
 
 ```bash
-sudo nano /boot/config.txt
+sudo nano /boot/firmware/config.txt
 ```
 
 Then use the text editor to change and add the following lines:
