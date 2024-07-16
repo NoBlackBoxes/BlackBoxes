@@ -82,7 +82,7 @@ Should output something like this...
 
 ```txt
 **** List of CAPTURE Hardware Devices ****
-card 3: NB3audiocard [NB3_audio_card], device 0: simple-card_codec_link snd-soc-dummy-dai-0 [simple-card_codec_link snd-soc-dummy-dai-0]
+card 3: MAX98357A [MAX98357A], device 0: fe203000.i2s-HiFi HiFi-0 [fe203000.i2s-HiFi HiFi-0]
   Subdevices: 1/1
   Subdevice #0: subdevice #0
 ```
