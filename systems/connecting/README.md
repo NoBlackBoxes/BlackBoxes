@@ -94,6 +94,33 @@ ssh username@<NB3's IP Address>
 
 These methods work, but there is an even more convenient way to connect to and develop code for your NB3...VSCode's Remote SSH Extension.
 
+### Visual Studio Code's "Remote - SSH" Extension
+
+We will be using Visual Studio Code (VS Code) as our tool for writing programs. VS Code is just a simple, *but really powerful*, text editor. It has extensions for all sorts of useful tools (Python, Git, etc.), and for connecting to a "remote" computer (our NB3's Raspberry Pi).
+
+1. Download Visual Studio Code to your Host (laptop/desktop) computer: [VS Code](https://code.visualstudio.com/Download)
+
+2. Connect to your Raspberry Pi from your Host computer.
+    - Install the "Remote - SSH" extension (search for it in the left-hand toolbar "Extensions" menu)
+    - Click on the little green box in the lower left corner and select "Connect to Host".
+
+<p align="center">
+<img src="resources/images/remote-ssh-button.png" alt="Remote SH" width="220" height="125">
+</p>
+
+3. Enter the following in the text command box that appears:
+
+      ```bash
+      ssh <your-username>@<NB3-IP-address>
+      # Example: ssh adam@192.168.1.121
+
+      # It may also work, without knowing your IP, to enter the following
+      ssh <your-username>@<NB3-hostname>
+      # Example: ssh adam@NB3
+      ```
+    - If all goes well, then you should be able to open a "Terminal" window in VS code that is *actually* a command line terminal running on your NB3. You are connected!
+    - If all *does not* go well, and it often doesn't, then please check out the "Common Problems" section below.
+
 ## Common Problems
 
 ### "Known Host" Identification has changed
