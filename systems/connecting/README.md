@@ -77,6 +77,13 @@ There are many different software programmes designed to map local networks. I r
 <img src="resources/images/nmap_output.png" alt="NMAP Output" width="800" height="600">
 </p>
 
+3. *Alternative*: On MacOS (and some Linux distributions), the command "arp" is pre-installed and can acheive similar results to "nmap". If you have trouble installing NMAP, then try the following in your command terminal:
+
+    ```bash
+    arp -a
+    ```
+
+
 ### Connecting
 
 Now that your Host and NB3 are connected to same local network and you know your NB3's IP address. You can connect using a "secure shell" (i.e. terminal), SSH. There are many different programmes that provide SSH connections. 
