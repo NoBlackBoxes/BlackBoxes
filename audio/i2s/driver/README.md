@@ -1,4 +1,4 @@
-# audio : i2s : driver_MAX98357A
+# Audio : i2s : Driver for NB3 Ears and Mouth
 
 ***Important***: This driver installation only applies to *Revision 2* NB3_Mouth boards.
 
@@ -68,7 +68,7 @@ and add...
 nb3-audio-module
 ```
 
-***After this, power down your NB3 and complete the hardware installation.***
+***After this, power down your NB3 and complete the hardware installation.*** Follow the instructions [here](../README.md).
 
 ## Testing
 
