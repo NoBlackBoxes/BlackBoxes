@@ -6,9 +6,9 @@ ODHWI&TV"£*O&"^VRS"^VSOV&"
 
 <details><summary><b>Materials</b></summary><p>
 
-Contents|Description| # |Data|Link|
-:-------|:----------|:-:|:--:|:--:|
-Secret Message|10|A SHA256 encrypted message (in HEX)|[-D-](1)|-||Loose|100|60|1
+Contents|Level|Description| # |Data|Link|
+:-------|:---:|:----------|:-:|:--:|:--:|
+Secret Message|10|A SHA256 encrypted message (in HEX)|1|-|-
 
 </p></details>
 

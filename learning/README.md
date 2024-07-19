@@ -6,9 +6,9 @@ Supervised, unsupervised, and reinforcement learning
 
 <details><summary><b>Materials</b></summary><p>
 
-Contents|Description| # |Data|Link|
-:-------|:----------|:-:|:--:|:--:|
-Clicker|10|Loud sound maker (and whistle)|[-D-](1)|-|https://www.amazon.co.uk/gp/product/B07HD3RDMK|Loose|70|20|30
+Contents|Level|Description| # |Data|Link|
+:-------|:---:|:----------|:-:|:--:|:--:|
+Clicker|10|Loud sound maker (and whistle)|1|-|[-L-](https://www.amazon.co.uk/gp/product/B07HD3RDMK)
 
 </p></details>
 

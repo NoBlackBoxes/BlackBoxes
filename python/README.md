@@ -6,8 +6,8 @@ Seting up a python environment
 
 <details><summary><b>Materials</b></summary><p>
 
-Contents|Description| # |Data|Link|
-:-------|:----------|:-:|:--:|:--:|
+Contents|Level|Description| # |Data|Link|
+:-------|:---:|:----------|:-:|:--:|:--:|
 
 </p></details>
 

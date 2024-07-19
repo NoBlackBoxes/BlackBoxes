@@ -10,9 +10,9 @@ In this box, we being to open up the world of the internet and start communicati
 
 <details><summary><b>Materials</b></summary><p>
 
-Contents|Description| # |Data|Link|
-:-------|:----------|:-:|:--:|:--:|
-Cable (Ethernet)|10|RJ45 cact5e ethernet patch cable (1 m)|[-D-](1)|[-L-](_data/datasheets/ethernet_cable_1m.pdf)|https://uk.farnell.com/pro-signal/ps11074/lead-patch-cat-5e-1-00m-black/dp/1734943|Loose|100|50|10
+Contents|Level|Description| # |Data|Link|
+:-------|:---:|:----------|:-:|:--:|:--:|
+Cable (Ethernet)|10|RJ45 cact5e ethernet patch cable (1 m)|1|[-D-](_data/datasheets/ethernet_cable_1m.pdf)|[-L-](https://uk.farnell.com/pro-signal/ps11074/lead-patch-cat-5e-1-00m-black/dp/1734943)
 
 </p></details>
 

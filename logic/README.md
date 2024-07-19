@@ -6,12 +6,12 @@ Boole was cool.
 
 <details><summary><b>Materials</b></summary><p>
 
-Contents|Description| # |Data|Link|
-:-------|:----------|:-:|:--:|:--:|
-Gate (AND)|10|4xAND gate|[-D-](1)|[-L-](_data/datasheets/AND_gates.pdf)|https://uk.farnell.com/texas-instruments/cd4081be/ic-4000-cmos-4081-dip14-18v/dp/3120147|Active|10|20|8
-Gate (OR)|10|4xOR gate|[-D-](1)|[-L-](_data/datasheets/OR_gates.pdf)|https://uk.farnell.com/texas-instruments/cd4072be/ic-gate/dp/3120138|Active|10|20|8
-Gate (NOR)|10|4xNOR gate|[-D-](1)|[-L-](_data/datasheets/NOR_gates.pdf)|https://uk.farnell.com/texas-instruments/cd4001be/ic-nor-quad-4000-cmos-14dip/dp/3120100|Active|10|20|8
-Gate (XOR)|10|4xXOR gate|[-D-](1)|[-L-](_data/datasheets/XOR_gates.pdf)|https://uk.farnell.com/texas-instruments/cd4070be/ic-4000-cmos-4070-dip14-18v/dp/3120134|Active|10|20|8
+Contents|Level|Description| # |Data|Link|
+:-------|:---:|:----------|:-:|:--:|:--:|
+Gate (AND)|10|4xAND gate|1|[-D-](_data/datasheets/AND_gates.pdf)|[-L-](https://uk.farnell.com/texas-instruments/cd4081be/ic-4000-cmos-4081-dip14-18v/dp/3120147)
+Gate (OR)|10|4xOR gate|1|[-D-](_data/datasheets/OR_gates.pdf)|[-L-](https://uk.farnell.com/texas-instruments/cd4072be/ic-gate/dp/3120138)
+Gate (NOR)|10|4xNOR gate|1|[-D-](_data/datasheets/NOR_gates.pdf)|[-L-](https://uk.farnell.com/texas-instruments/cd4001be/ic-nor-quad-4000-cmos-14dip/dp/3120100)
+Gate (XOR)|10|4xXOR gate|1|[-D-](_data/datasheets/XOR_gates.pdf)|[-L-](https://uk.farnell.com/texas-instruments/cd4070be/ic-4000-cmos-4070-dip14-18v/dp/3120134)
 
 </p></details>
 

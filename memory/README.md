@@ -6,9 +6,9 @@ What happens...wait...what?
 
 <details><summary><b>Materials</b></summary><p>
 
-Contents|Description| # |Data|Link|
-:-------|:----------|:-:|:--:|:--:|
-Gate (NAND)|10|4xNAND gate|[-D-](2)|[-L-](_data/datasheets/NAND_gates.pdf)|https://uk.farnell.com/texas-instruments/cd4011be/ic-4000-cmos-4011-dip14-18v/dp/3120113|Active|10|20|8
+Contents|Level|Description| # |Data|Link|
+:-------|:---:|:----------|:-:|:--:|:--:|
+Gate (NAND)|10|4xNAND gate|2|[-D-](_data/datasheets/NAND_gates.pdf)|[-L-](https://uk.farnell.com/texas-instruments/cd4011be/ic-4000-cmos-4011-dip14-18v/dp/3120113)
 
 </p></details>
 

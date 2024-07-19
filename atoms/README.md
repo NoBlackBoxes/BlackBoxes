@@ -5,11 +5,13 @@
 
 ----
 
-### Required Materials
+<details><summary><b>Materials</b></summary><p>
 
-- {01}: NBB-11
-- {10}: NBB-21
-- {11}: NBB-31
+Contents|Level|Description| # |Data|Link|
+:-------|:---:|:----------|:-:|:--:|:--:|
+Periodic Table|01|Periodic Table business card|1|[-D-](card)|[-L-](VK)
+
+</p></details>
 
 ----
 
