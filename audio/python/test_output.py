@@ -3,11 +3,13 @@ import time
 import numpy as np
 
 # Locals libs
-import libs.NBB_sound as sound
+import NBB_sound.speaker as Speaker
+import NBB_sound.utilities as Utilities
 
 # Reimport
 import importlib
-importlib.reload(sound)
+importlib.reload(Speaker)
+importlib.reload(Utilities)
 
 # Get user name
 username = os.getlogin()
@@ -25,10 +27,10 @@ buffer_size = int(sample_rate / 10)
 max_samples = int(sample_rate * 10)
 
 # List available sound devices
-sound.list_devices()
+Utilities.list_devices()
 
 # Initialize speaker
-speaker = sound.speaker(output_device, num_channels, 'int16', sample_rate, buffer_size)
+speaker = Speaker(output_device, num_channels, 'int16', sample_rate, buffer_size)
 speaker.start()
 
 # Clear error ALSA/JACK messages from terminal
