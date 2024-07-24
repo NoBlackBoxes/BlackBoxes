@@ -17,7 +17,7 @@ username = os.getlogin()
 # Specify paths
 repo_path = '/home/' + username + '/NoBlackBoxes/LastBlackBox'
 box_path = repo_path + '/boxes/audio'
-wav_path = box_path + '/_tmp/test.wav'
+wav_path = repo_path + '/_tmp/test.wav'
 
 # Specify params
 input_device = 1
@@ -30,7 +30,7 @@ max_samples = int(sample_rate * 10)
 Utilities.list_devices()
 
 # Initialize microphone
-microphone = Microphone(input_device, num_channels, 'int32', sample_rate, buffer_size, max_samples)
+microphone = Microphone.Microphone(input_device, num_channels, 'int32', sample_rate, buffer_size, max_samples)
 microphone.start()
 
 # Clear error ALSA/JACK messages from terminal

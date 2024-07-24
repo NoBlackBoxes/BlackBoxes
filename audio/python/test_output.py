@@ -22,7 +22,7 @@ wav_path = box_path + '/_data/sounds/Bach_prelude_C_major.wav'
 # Specify params
 output_device = 1
 num_channels = 2
-sample_rate = 44100
+sample_rate = 48000
 buffer_size = int(sample_rate / 10)
 max_samples = int(sample_rate * 10)
 
@@ -30,7 +30,7 @@ max_samples = int(sample_rate * 10)
 Utilities.list_devices()
 
 # Initialize speaker
-speaker = Speaker(output_device, num_channels, 'int16', sample_rate, buffer_size)
+speaker = Speaker.Speaker(output_device, num_channels, 'int32', sample_rate, buffer_size)
 speaker.start()
 
 # Clear error ALSA/JACK messages from terminal
