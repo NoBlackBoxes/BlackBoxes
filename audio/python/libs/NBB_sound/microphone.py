@@ -7,7 +7,7 @@ from threading import Lock
 #
 # Sound input (microphone)
 #
-class microphone:
+class Microphone:
     def __init__(self, device, num_channels, format, sample_rate, buffer_size_samples, max_samples):        
         self.num_channels = num_channels
         self.format = format

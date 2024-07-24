@@ -7,7 +7,7 @@ from threading import Lock
 #
 # Sound output (speaker)
 #
-class speaker:
+class Speaker:
     def __init__(self, device, num_channels, format, sample_rate, buffer_size_samples):        
         self.num_channels = num_channels
         self.format = format
