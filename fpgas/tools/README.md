@@ -14,6 +14,29 @@ source $NBB_ROOT/tools/environments/nbb-python/bin/activate
 
 ```
 
+### TO DO
+
+Need to add NB3_hindbrain to board file in APIO lib (site-packages)
+Need correct FTDI descriptor (can I change it? EEPROM?)
+Need to generate an apio.ini file in synthesis...
+
+```json
+  "NB3_hindbrain": {
+    "name": "NB3 Hindbrain",
+    "fpga": "iCE40-UP5K-SG48",
+    "programmer": {
+      "type": "iceprog"
+    },
+    "usb": {
+      "vid": "0403",
+      "pid": "6010"
+    },
+    "ftdi": {
+      "desc": "Dual RS232-HS"
+    }
+  },
+```
+
 ## Notes for Upduino3
 
 ### Linux
@@ -23,7 +46,7 @@ source $NBB_ROOT/tools/environments/nbb-python/bin/activate
 ```bash
 pip install apio
 
-# For Upduino3...might need the latest apio
+# For NB3_hindbrain...might need the latest apio
 pip install -U apio
 
 apio install system scons ice40 iverilog yosys

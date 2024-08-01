@@ -12,7 +12,7 @@ mkdir -p bin
 cp ../counter.v bin/.
 
 # Copy constraints file
-cp nb3_hindrabrain.pcf bin/.
+cp NB3_hindbrain.pcf bin/.
 
 # Verify Verilog
 apio verify --project-dir=bin --board NB3_hindbrain --verbose

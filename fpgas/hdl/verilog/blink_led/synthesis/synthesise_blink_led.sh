@@ -1,6 +1,10 @@
 #!/bin/bash
 set -eu
 
+# Set Roots
+NBB_ROOT="/home/${USER}/NoBlackBoxes"
+LBB_ROOT=$NBB_ROOT"/LastBlackBox"
+
 # Create out directory
 mkdir -p bin
 
@@ -8,7 +12,7 @@ mkdir -p bin
 cp ../blink_led.v bin/.
 
 # Copy constraints file
-cp ../NB3_hindbrain.pcf bin/.
+cp NB3_hindbrain.pcf bin/.
 
 # Verify Verilog
 apio verify --project-dir=bin --board NB3_hindbrain --verbose
