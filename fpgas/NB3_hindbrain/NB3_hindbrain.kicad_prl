@@ -70,6 +70,12 @@
     "visible_layers": "ff81020_7ffffff9",
     "zone_display_mode": 0
   },
+  "git": {
+    "repo_password": "",
+    "repo_type": "",
+    "repo_username": "",
+    "ssh_key": ""
+  },
   "meta": {
     "filename": "NB3_hindbrain.kicad_prl",
     "version": 3
