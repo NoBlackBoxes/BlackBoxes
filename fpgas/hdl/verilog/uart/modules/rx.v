@@ -1,26 +1,28 @@
 // Rx (UART)
-module rx(clock, pin, valid, byte) #(parameter BAUD_RATE=9600, parameter CLOCK_HZ=12_000_000);
+module rx(clock, pin, valid, byte);
+
+    // Parameters
+    parameter BAUD_RATE = 9600;
+    parameter CLOCK_HZ = 12_000_000;
 
     // Declarations
     input  wire clock;          // Clock Input
     input  wire pin;            // Serial Recieve Pin
     output wire valid;          // Output Valid
-    output reg  [7:0] byte;     // The Recieved Byte
+    output wire [7:0] byte;     // The Recieved Byte
 
-    // Parameters
-    localparam BIT_PERIOD_NS = 1_000_000_000 / BAUD_RATE;           // Bit period in nanoseconds
-    localparam CLOCK_PERIOD_NS = 1_000_000_000 / CLOCK_HZ;          // Clock period in nanoseconds
-    localparam CYCLES_PER_BIT = BIT_PERIOD_NS / CLOCK_PERIOD_NS;    // Clock cycles per bit
-    localparam CLOCK_COUNT_SIZE = 1+$clog2(CYCLES_PER_BIT);         // Size of the register that stores clock count
+    // Constants
+    localparam CYCLES_PER_BIT = CLOCK_HZ / BAUD_RATE;           // Clock cycles per bit
+    localparam CLOCK_COUNT_SIZE = 1+$clog2(CYCLES_PER_BIT);     // Size of the register that stores clock count
 
     // States
     localparam FSM_IDLE = 0;    // Do nothing
     localparam FSM_START = 1;   // Start reception
     localparam FSM_RECEIVE = 2; // Still receiving
     localparam FSM_STOP = 3;    // Stop reception
-    localparam FSM_CLEANUP = 3; // Cleanup
+    localparam FSM_CLEANUP = 4; // Cleanup
 
-    // Registers 
+    // Registers
     reg serial_data;                            // Serial Rx data
     reg serial_data_buffer;                     // Double-registered serial Rx data
     reg data_valid;                             // Data valid flag
@@ -29,11 +31,15 @@ module rx(clock, pin, valid, byte) #(parameter BAUD_RATE=9600, parameter CLOCK_H
     reg [7:0] internal_byte;                    // Internal storage for the received byte
     reg [CLOCK_COUNT_SIZE-1:0] clock_count;     // Clock counter
 
+    // Output assignment
+    assign valid = data_valid;
+    assign byte = internal_byte;
+  
     // Logic: Double-register serial Rx pin data
     always @(posedge clock)
         begin
             serial_data_buffer <= pin;
-            serial_data   <= serial_data_buffer;
+            serial_data <= serial_data_buffer;
         end
 
     // Logic: State Machine
@@ -46,7 +52,9 @@ module rx(clock, pin, valid, byte) #(parameter BAUD_RATE=9600, parameter CLOCK_H
                         clock_count <= 0;
                         bit_index <= 0;
                         if (serial_data == 1'b0)  // Start bit detected
-                            state <= FSM_START;
+                            begin
+                                state <= FSM_START;
+                            end
                         else
                             state <= FSM_IDLE;
                     end
@@ -82,12 +90,12 @@ module rx(clock, pin, valid, byte) #(parameter BAUD_RATE=9600, parameter CLOCK_H
                                 if (bit_index < 7) // Check if all bits received
                                     begin
                                         bit_index <= bit_index + 1;
-                                        state   <= FSM_RECEIVE;
+                                        state <= FSM_RECEIVE;
                                     end
                                 else
                                     begin
                                         bit_index <= 0;
-                                        state   <= FSM_STOP;
+                                        state <= FSM_STOP;
                                     end
                             end
                     end            

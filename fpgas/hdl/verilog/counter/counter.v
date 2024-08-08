@@ -7,20 +7,21 @@ module counter(clock, reset, left_leds, right_leds);
     input reset;
     output wire[7:0] left_leds;
     output wire[7:0] right_leds;
-    
+
+    // Registers     
     reg[31:0] count;
 
+    // Logic: Report
+    assign left_leds = count[31:24];
+    assign right_leds = count[7:0];
 
-assign left_leds = count[31:24];
-assign right_leds = count[31:24];
+    // Initialize
+    initial
+        begin
+            count <= 0;
+        end
 
-// Initialize
-initial
-    begin
-        count <= 0;
-    end
-
-    // Logic
+    // Logic: Count
     always @(posedge clock)
         begin
             if(reset)

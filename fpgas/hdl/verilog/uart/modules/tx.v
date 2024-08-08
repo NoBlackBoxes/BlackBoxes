@@ -1,39 +1,36 @@
 // Rx (UART)
-module tx(clock, valid, byte, busy, done, pin) #(parameter BAUD_RATE=9600, parameter CLOCK_HZ=12_000_000);
-
-    // Declarations
-    input  wire clock;     // Clock Input
-    input  wire valid;     // Input Valid
-    input  [7:0] byte;     // The Byte to Transmit
-    output wire busy;      // Tx Busy
-    output wire done;      // Tx Done
-    output reg pin;        // Serial Transmit Pin
+module tx(clock, valid, byte, done, pin);
 
     // Parameters
-    localparam BIT_PERIOD_NS = 1_000_000_000 / BAUD_RATE;           // Bit period in nanoseconds
-    localparam CLOCK_PERIOD_NS = 1_000_000_000 / CLOCK_HZ;          // Clock period in nanoseconds
-    localparam CYCLES_PER_BIT = BIT_PERIOD_NS / CLOCK_PERIOD_NS;    // Clock cycles per bit
-    localparam CLOCK_COUNT_SIZE = 1+$clog2(CYCLES_PER_BIT);         // Size of the register that stores clock count
+    parameter BAUD_RATE = 9600;
+    parameter CLOCK_HZ = 12_000_000;
+
+    // Declarations
+    input  wire clock;              // Clock Input
+    input  wire valid;              // Input Valid
+    input  wire [7:0] byte;         // The Byte to Transmit
+    output wire done;               // Tx Done
+    output reg pin;                 // Serial Transmit Pin
+
+    // Constants
+    localparam CYCLES_PER_BIT = CLOCK_HZ / BAUD_RATE;           // Clock cycles per bit
+    localparam CLOCK_COUNT_SIZE = 1+$clog2(CYCLES_PER_BIT);     // Size of the register that stores clock count
 
     // States
     localparam FSM_IDLE = 0;        // Do nothing
     localparam FSM_START = 1;       // Start transmission
     localparam FSM_TRANSMIT = 2;    // Transmitting
     localparam FSM_STOP = 3;        // Stop transmission
-    localparam FSM_CLEANUP = 3;     // Cleanup
+    localparam FSM_CLEANUP = 4;     // Cleanup
 
     // Registers
-    reg serial_data;                            // Serial Tx data
-    reg tx_busy;                                // Tx busy
     reg tx_done;                                // Tx done
-    reg data_valid;                             // Data valid flag
     reg [2:0] state;                            // Current state
     reg [2:0] bit_index;                        // Index of current bit
     reg [7:0] internal_byte;                    // Internal storage for the transmitting byte
     reg [CLOCK_COUNT_SIZE-1:0] clock_count;     // Clock counter
 
     // Logic: Assign outputs 
-    assign busy = tx_busy;
     assign done = tx_done;     
 
     // Logic: State Machine
@@ -48,7 +45,6 @@ module tx(clock, valid, byte, busy, done, pin) #(parameter BAUD_RATE=9600, param
                         bit_index <= 0;                       
                         if (valid == 1'b1)                      // Transmit byte ready
                             begin
-                                tx_busy <= 1'b1;
                                 internal_byte <= byte;
                                 state <= FSM_START;
                             end
@@ -71,7 +67,7 @@ module tx(clock, valid, byte, busy, done, pin) #(parameter BAUD_RATE=9600, param
                     end                                
                 FSM_TRANSMIT:
                     begin
-                        pin <= serial_data[bit_index];                        
+                        pin <= internal_byte[bit_index];                        
                         if (clock_count < CYCLES_PER_BIT-1)     // Wait CYCLES_PER_BIT-1 for data bits to transmit         
                             begin
                                 clock_count <= clock_count + 1;
@@ -105,7 +101,6 @@ module tx(clock, valid, byte, busy, done, pin) #(parameter BAUD_RATE=9600, param
                                 tx_done <= 1'b1;
                                 clock_count <= 0;
                                 state <= FSM_CLEANUP;
-                                tx_busy <= 1'b0;
                             end
                     end                
                 FSM_CLEANUP:

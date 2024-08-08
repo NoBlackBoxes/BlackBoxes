@@ -5,7 +5,7 @@ set -eu
 mkdir -p bin
 
 # Build
-iverilog -o bin/uart ../modules/rx.v ../modules/tx.v uart_tb.v
+iverilog -o bin/uart uart.v modules/rx.v modules/tx.v uart_tb.v
 
 # Simulate
 vvp bin/uart

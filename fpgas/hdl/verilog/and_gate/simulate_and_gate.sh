@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eu
 
-# Create out directory
+# Create output directory
 mkdir -p bin
 
 # Build
